@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!--不生成注释-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--
+            MySQL 8.x 版本驱动：com.mysql.cj.jdbc.Driver
+            MySQL 5.X 版本驱动：com.mysql.jdbc.Driver
+        -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/db_lhxm"
+                        userId="root"
+                        password="123456">
+            <property name="useUnicode" value="TRUE"/>
+            <property name="characterEncoding" value="UTF-8"/>
+        <!-- MySQL 5.7 或更高的版本需要加上以下参数 -->
+            <property name="useSSL" value="FALSE"/>
+        <!-- MySQL 8.x 版本需要加上以下参数 -->
+            <property name="serverTimezone" value="Asia/Shanghai"/>
+            <property name="allowPublicKeyRetrieval" value="TRUE"/>
+        <!--
+            MySQL Connector 8.x 中，需要添加以下参数来确保Mybatis Generator获取的字段是正确的
+            详见官方文档：http://www.mybatis.org/generator/usage/mysql.html
+        -->
+            <property name="nullCatalogMeansCurrent" value="TRUE"/>
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!--实体类位置-->
+        <javaModelGenerator targetPackage="com.group7.edu.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!--mapper映射文件位置-->
+        <sqlMapGenerator targetPackage="mappers"  targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!--mapper接口位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.group7.edu.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table tableName="group" domainObjectName="Group"/>
+        <table tableName="order" domainObjectName="Order"/>
+        <table tableName="service" domainObjectName="ServiceType"/>
+        <table tableName="ad" domainObjectName="Ad"/>
+        <table tableName="teacher" domainObjectName="Teacher"/>
+        <table tableName="subject" domainObjectName="SysSubject"/>
+        <table tableName="course" domainObjectName="Course"/>
+        <table tableName="syllabus" domainObjectName="Syllabus"/>
+        <table tableName="course_evaluation" domainObjectName="CourseEvaluation"/>
+        <table tableName="contact_way" domainObjectName="ContactWay"/>
+        <table tableName="honour" domainObjectName="Honour"/>
+        <table tableName="video" domainObjectName="Video"/>
+        <table tableName="favorite" domainObjectName="Favorite"/>
+        <table tableName="disk" domainObjectName="NetDiskFile"/>
+        <table tableName="answer_question" domainObjectName="AnswerQuestion"/>
+        <table tableName="message" domainObjectName="Message"/>
+        <table tableName="news" domainObjectName="News"/>
+        <table tableName="student" domainObjectName="Student"/>
+        <table tableName="student_video_relation" domainObjectName="StudentVideoRelation"/>
+        <table tableName="department" domainObjectName="Department"/>
+        <table tableName="department_evaluation" domainObjectName="DepartmentEvaluation"/>
+        <table tableName="feedback" domainObjectName="Feedback"/>
+        <table tableName="focus" domainObjectName="Focus"/>
+        <table tableName="agreement" domainObjectName="Agreement"/>
+        <table tableName="payment_mode" domainObjectName="PaymentMode"/>
+        <table tableName="industry_info" domainObjectName="IndustryInfo"/>
+
+    </context>
+</generatorConfiguration>
