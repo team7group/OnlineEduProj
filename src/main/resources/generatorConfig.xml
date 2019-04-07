@@ -29,7 +29,7 @@
             MySQL Connector 8.x 中，需要添加以下参数来确保Mybatis Generator获取的字段是正确的
             详见官方文档：http://www.mybatis.org/generator/usage/mysql.html
         -->
-            <property name="nullCatalogMeansCurrent" value="TRUE"/>
+<!--            <property name="nullCatalogMeansCurrent" value="TRUE"/>-->
         </jdbcConnection>
 
         <javaTypeResolver >
@@ -51,32 +51,32 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="group" domainObjectName="Group"/>
-        <table tableName="order" domainObjectName="Order"/>
-        <table tableName="service" domainObjectName="ServiceType"/>
-        <table tableName="ad" domainObjectName="Ad"/>
-        <table tableName="teacher" domainObjectName="Teacher"/>
-        <table tableName="subject" domainObjectName="SysSubject"/>
-        <table tableName="course" domainObjectName="Course"/>
-        <table tableName="syllabus" domainObjectName="Syllabus"/>
-        <table tableName="course_evaluation" domainObjectName="CourseEvaluation"/>
-        <table tableName="contact_way" domainObjectName="ContactWay"/>
-        <table tableName="honour" domainObjectName="Honour"/>
-        <table tableName="video" domainObjectName="Video"/>
-        <table tableName="favorite" domainObjectName="Favorite"/>
-        <table tableName="disk" domainObjectName="NetDiskFile"/>
-        <table tableName="answer_question" domainObjectName="AnswerQuestion"/>
-        <table tableName="message" domainObjectName="Message"/>
-        <table tableName="news" domainObjectName="News"/>
-        <table tableName="student" domainObjectName="Student"/>
-        <table tableName="student_video_relation" domainObjectName="StudentVideoRelation"/>
-        <table tableName="department" domainObjectName="Department"/>
-        <table tableName="department_evaluation" domainObjectName="DepartmentEvaluation"/>
-        <table tableName="feedback" domainObjectName="Feedback"/>
-        <table tableName="focus" domainObjectName="Focus"/>
-        <table tableName="agreement" domainObjectName="Agreement"/>
-        <table tableName="payment_mode" domainObjectName="PaymentMode"/>
-        <table tableName="industry_info" domainObjectName="IndustryInfo"/>
+        <table tableName="sys_group" domainObjectName="SysGroup"/>
+        <table tableName="sys_order" domainObjectName="SysOrder"/>
+        <table tableName="sys_service" domainObjectName="SysServiceType"/>
+        <table tableName="sys_ad" domainObjectName="SysAd"/>
+        <table tableName="sys_teacher" domainObjectName="SysTeacher"/>
+        <table tableName="sys_subject" domainObjectName="SysSubject"/>
+        <table tableName="sys_course" domainObjectName="SysCourse"/>
+        <table tableName="sys_syllabus" domainObjectName="SysSyllabus"/>
+        <table tableName="sys_course_evaluation" domainObjectName="SysCourseEvaluation"/>
+        <table tableName="sys_contact_way" domainObjectName="SysContactWay"/>
+        <table tableName="sys_honour" domainObjectName="SysHonour"/>
+        <table tableName="sys_video" domainObjectName="SysVideo"/>
+        <table tableName="sys_favorite" domainObjectName="SysFavorite"/>
+        <table tableName="sys_disk" domainObjectName="SysNetDiskFile"/>
+        <table tableName="sys_answer_question" domainObjectName="SysAnswerQuestion"/>
+        <table tableName="sys_message" domainObjectName="SysMessage"/>
+        <table tableName="sys_news" domainObjectName="SysNews"/>
+        <table tableName="sys_student" domainObjectName="SysStudent"/>
+        <table tableName="sys_student_video_relation" domainObjectName="SysStudentVideoRelation"/>
+        <table tableName="sys_department" domainObjectName="SysDepartment"/>
+        <table tableName="sys_department_evaluation" domainObjectName="SysDepartmentEvaluation"/>
+        <table tableName="sys_feedback" domainObjectName="SysFeedback"/>
+        <table tableName="sys_focus" domainObjectName="SysFocus"/>
+        <table tableName="sys_agreement" domainObjectName="SysAgreement"/>
+        <table tableName="sys_payment_mode" domainObjectName="SysPaymentMode"/>
+        <table tableName="sys_industry_info" domainObjectName="SysIndustryInfo"/>
 
     </context>
 </generatorConfiguration>

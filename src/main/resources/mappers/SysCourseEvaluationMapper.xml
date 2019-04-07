@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.group7.edu.mapper.SysSubjectMapper">
-  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysSubject">
+<mapper namespace="com.group7.edu.mapper.SysCourseEvaluationMapper">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysCourseEvaluation">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="department" jdbcType="INTEGER" property="department" />
+    <result column="course" jdbcType="INTEGER" property="course" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="created_time" jdbcType="DATE" property="createdTime" />
+    <result column="evaluation_text" jdbcType="VARCHAR" property="evaluationText" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, department
+    id, course, score, created_time, evaluation_text
   </sql>
-  <select id="selectByExample" parameterType="com.group7.edu.entity.SysSubjectExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.group7.edu.entity.SysCourseEvaluationExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sys_subject
+    from sys_course_evaluation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,67 +86,85 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_subject
+    from sys_course_evaluation
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from sys_subject
+    delete from sys_course_evaluation
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysSubjectExample">
-    delete from sys_subject
+  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysCourseEvaluationExample">
+    delete from sys_course_evaluation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.group7.edu.entity.SysSubject">
-    insert into sys_subject (id, name, department
-      )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{department,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.group7.edu.entity.SysCourseEvaluation">
+    insert into sys_course_evaluation (id, course, score, 
+      created_time, evaluation_text)
+    values (#{id,jdbcType=INTEGER}, #{course,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{createdTime,jdbcType=DATE}, #{evaluationText,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysSubject">
-    insert into sys_subject
+  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysCourseEvaluation">
+    insert into sys_course_evaluation
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="name != null">
-        name,
+      <if test="course != null">
+        course,
       </if>
-      <if test="department != null">
-        department,
+      <if test="score != null">
+        score,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="evaluationText != null">
+        evaluation_text,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="course != null">
+        #{course,jdbcType=INTEGER},
       </if>
-      <if test="department != null">
-        #{department,jdbcType=INTEGER},
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=DATE},
+      </if>
+      <if test="evaluationText != null">
+        #{evaluationText,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.group7.edu.entity.SysSubjectExample" resultType="java.lang.Long">
-    select count(*) from sys_subject
+  <select id="countByExample" parameterType="com.group7.edu.entity.SysCourseEvaluationExample" resultType="java.lang.Long">
+    select count(*) from sys_course_evaluation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update sys_subject
+    update sys_course_evaluation
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.course != null">
+        course = #{record.course,jdbcType=INTEGER},
       </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=INTEGER},
+      <if test="record.score != null">
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdTime != null">
+        created_time = #{record.createdTime,jdbcType=DATE},
+      </if>
+      <if test="record.evaluationText != null">
+        evaluation_text = #{record.evaluationText,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -152,30 +172,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update sys_subject
+    update sys_course_evaluation
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      department = #{record.department,jdbcType=INTEGER}
+      course = #{record.course,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER},
+      created_time = #{record.createdTime,jdbcType=DATE},
+      evaluation_text = #{record.evaluationText,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysSubject">
-    update sys_subject
+  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysCourseEvaluation">
+    update sys_course_evaluation
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="course != null">
+        course = #{course,jdbcType=INTEGER},
       </if>
-      <if test="department != null">
-        department = #{department,jdbcType=INTEGER},
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=DATE},
+      </if>
+      <if test="evaluationText != null">
+        evaluation_text = #{evaluationText,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysSubject">
-    update sys_subject
-    set name = #{name,jdbcType=VARCHAR},
-      department = #{department,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysCourseEvaluation">
+    update sys_course_evaluation
+    set course = #{course,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=DATE},
+      evaluation_text = #{evaluationText,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

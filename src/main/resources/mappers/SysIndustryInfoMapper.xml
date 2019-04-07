@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.group7.edu.mapper.SysSubjectMapper">
-  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysSubject">
+<mapper namespace="com.group7.edu.mapper.SysIndustryInfoMapper">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysIndustryInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="department" jdbcType="INTEGER" property="department" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="info_text" jdbcType="VARCHAR" property="infoText" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, department
+    id, number, image_url, info_text
   </sql>
-  <select id="selectByExample" parameterType="com.group7.edu.entity.SysSubjectExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.group7.edu.entity.SysIndustryInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sys_subject
+    from sys_industry_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,67 +85,76 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_subject
+    from sys_industry_info
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from sys_subject
+    delete from sys_industry_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysSubjectExample">
-    delete from sys_subject
+  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysIndustryInfoExample">
+    delete from sys_industry_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.group7.edu.entity.SysSubject">
-    insert into sys_subject (id, name, department
-      )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{department,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.group7.edu.entity.SysIndustryInfo">
+    insert into sys_industry_info (id, number, image_url, 
+      info_text)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, #{imageUrl,jdbcType=VARCHAR}, 
+      #{infoText,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysSubject">
-    insert into sys_subject
+  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysIndustryInfo">
+    insert into sys_industry_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="name != null">
-        name,
+      <if test="number != null">
+        number,
       </if>
-      <if test="department != null">
-        department,
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+      <if test="infoText != null">
+        info_text,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
       </if>
-      <if test="department != null">
-        #{department,jdbcType=INTEGER},
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="infoText != null">
+        #{infoText,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.group7.edu.entity.SysSubjectExample" resultType="java.lang.Long">
-    select count(*) from sys_subject
+  <select id="countByExample" parameterType="com.group7.edu.entity.SysIndustryInfoExample" resultType="java.lang.Long">
+    select count(*) from sys_industry_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update sys_subject
+    update sys_industry_info
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.number != null">
+        number = #{record.number,jdbcType=INTEGER},
       </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=INTEGER},
+      <if test="record.imageUrl != null">
+        image_url = #{record.imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infoText != null">
+        info_text = #{record.infoText,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -152,30 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update sys_subject
+    update sys_industry_info
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      department = #{record.department,jdbcType=INTEGER}
+      number = #{record.number,jdbcType=INTEGER},
+      image_url = #{record.imageUrl,jdbcType=VARCHAR},
+      info_text = #{record.infoText,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysSubject">
-    update sys_subject
+  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysIndustryInfo">
+    update sys_industry_info
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
       </if>
-      <if test="department != null">
-        department = #{department,jdbcType=INTEGER},
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="infoText != null">
+        info_text = #{infoText,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysSubject">
-    update sys_subject
-    set name = #{name,jdbcType=VARCHAR},
-      department = #{department,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysIndustryInfo">
+    update sys_industry_info
+    set number = #{number,jdbcType=INTEGER},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      info_text = #{infoText,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

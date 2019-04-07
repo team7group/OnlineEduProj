@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.group7.edu.mapper.SysSubjectMapper">
-  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysSubject">
+<mapper namespace="com.group7.edu.mapper.SysStudentVideoRelationMapper">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysStudentVideoRelation">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="department" jdbcType="INTEGER" property="department" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="video_id" jdbcType="INTEGER" property="videoId" />
+    <result column="is_watched" jdbcType="BIT" property="isWatched" />
+    <result column="is_liked" jdbcType="BIT" property="isLiked" />
+    <result column="is_saved" jdbcType="BIT" property="isSaved" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, department
+    id, user_id, video_id, is_watched, is_liked, is_saved
   </sql>
-  <select id="selectByExample" parameterType="com.group7.edu.entity.SysSubjectExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.group7.edu.entity.SysStudentVideoRelationExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sys_subject
+    from sys_student_video_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,67 +87,94 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_subject
+    from sys_student_video_relation
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from sys_subject
+    delete from sys_student_video_relation
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysSubjectExample">
-    delete from sys_subject
+  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysStudentVideoRelationExample">
+    delete from sys_student_video_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.group7.edu.entity.SysSubject">
-    insert into sys_subject (id, name, department
-      )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{department,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.group7.edu.entity.SysStudentVideoRelation">
+    insert into sys_student_video_relation (id, user_id, video_id, 
+      is_watched, is_liked, is_saved)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{videoId,jdbcType=INTEGER}, 
+      #{isWatched,jdbcType=BIT}, #{isLiked,jdbcType=BIT}, #{isSaved,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysSubject">
-    insert into sys_subject
+  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysStudentVideoRelation">
+    insert into sys_student_video_relation
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="name != null">
-        name,
+      <if test="userId != null">
+        user_id,
       </if>
-      <if test="department != null">
-        department,
+      <if test="videoId != null">
+        video_id,
+      </if>
+      <if test="isWatched != null">
+        is_watched,
+      </if>
+      <if test="isLiked != null">
+        is_liked,
+      </if>
+      <if test="isSaved != null">
+        is_saved,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="department != null">
-        #{department,jdbcType=INTEGER},
+      <if test="videoId != null">
+        #{videoId,jdbcType=INTEGER},
+      </if>
+      <if test="isWatched != null">
+        #{isWatched,jdbcType=BIT},
+      </if>
+      <if test="isLiked != null">
+        #{isLiked,jdbcType=BIT},
+      </if>
+      <if test="isSaved != null">
+        #{isSaved,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.group7.edu.entity.SysSubjectExample" resultType="java.lang.Long">
-    select count(*) from sys_subject
+  <select id="countByExample" parameterType="com.group7.edu.entity.SysStudentVideoRelationExample" resultType="java.lang.Long">
+    select count(*) from sys_student_video_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update sys_subject
+    update sys_student_video_relation
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=INTEGER},
+      <if test="record.videoId != null">
+        video_id = #{record.videoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isWatched != null">
+        is_watched = #{record.isWatched,jdbcType=BIT},
+      </if>
+      <if test="record.isLiked != null">
+        is_liked = #{record.isLiked,jdbcType=BIT},
+      </if>
+      <if test="record.isSaved != null">
+        is_saved = #{record.isSaved,jdbcType=BIT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -152,30 +182,45 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update sys_subject
+    update sys_student_video_relation
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      department = #{record.department,jdbcType=INTEGER}
+      user_id = #{record.userId,jdbcType=INTEGER},
+      video_id = #{record.videoId,jdbcType=INTEGER},
+      is_watched = #{record.isWatched,jdbcType=BIT},
+      is_liked = #{record.isLiked,jdbcType=BIT},
+      is_saved = #{record.isSaved,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysSubject">
-    update sys_subject
+  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysStudentVideoRelation">
+    update sys_student_video_relation
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="department != null">
-        department = #{department,jdbcType=INTEGER},
+      <if test="videoId != null">
+        video_id = #{videoId,jdbcType=INTEGER},
+      </if>
+      <if test="isWatched != null">
+        is_watched = #{isWatched,jdbcType=BIT},
+      </if>
+      <if test="isLiked != null">
+        is_liked = #{isLiked,jdbcType=BIT},
+      </if>
+      <if test="isSaved != null">
+        is_saved = #{isSaved,jdbcType=BIT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysSubject">
-    update sys_subject
-    set name = #{name,jdbcType=VARCHAR},
-      department = #{department,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysStudentVideoRelation">
+    update sys_student_video_relation
+    set user_id = #{userId,jdbcType=INTEGER},
+      video_id = #{videoId,jdbcType=INTEGER},
+      is_watched = #{isWatched,jdbcType=BIT},
+      is_liked = #{isLiked,jdbcType=BIT},
+      is_saved = #{isSaved,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

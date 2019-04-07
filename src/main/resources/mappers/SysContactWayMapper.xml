@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.group7.edu.mapper.SysSubjectMapper">
-  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysSubject">
+<mapper namespace="com.group7.edu.mapper.SysContactWayMapper">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysContactWay">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="department" jdbcType="INTEGER" property="department" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="service" jdbcType="INTEGER" property="service" />
+    <result column="focus" jdbcType="INTEGER" property="focus" />
+    <result column="bugget" jdbcType="DOUBLE" property="bugget" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,15 +69,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, department
+    id, name, phone, school, service, focus, bugget
   </sql>
-  <select id="selectByExample" parameterType="com.group7.edu.entity.SysSubjectExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.group7.edu.entity.SysContactWayExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sys_subject
+    from sys_contact_way
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,27 +88,29 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_subject
+    from sys_contact_way
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from sys_subject
+    delete from sys_contact_way
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysSubjectExample">
-    delete from sys_subject
+  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysContactWayExample">
+    delete from sys_contact_way
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.group7.edu.entity.SysSubject">
-    insert into sys_subject (id, name, department
-      )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{department,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.group7.edu.entity.SysContactWay">
+    insert into sys_contact_way (id, name, phone, 
+      school, service, focus, 
+      bugget)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{school,jdbcType=VARCHAR}, #{service,jdbcType=INTEGER}, #{focus,jdbcType=INTEGER}, 
+      #{bugget,jdbcType=DOUBLE})
   </insert>
-  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysSubject">
-    insert into sys_subject
+  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysContactWay">
+    insert into sys_contact_way
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -112,8 +118,20 @@
       <if test="name != null">
         name,
       </if>
-      <if test="department != null">
-        department,
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="service != null">
+        service,
+      </if>
+      <if test="focus != null">
+        focus,
+      </if>
+      <if test="bugget != null">
+        bugget,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -123,19 +141,31 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="department != null">
-        #{department,jdbcType=INTEGER},
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="service != null">
+        #{service,jdbcType=INTEGER},
+      </if>
+      <if test="focus != null">
+        #{focus,jdbcType=INTEGER},
+      </if>
+      <if test="bugget != null">
+        #{bugget,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.group7.edu.entity.SysSubjectExample" resultType="java.lang.Long">
-    select count(*) from sys_subject
+  <select id="countByExample" parameterType="com.group7.edu.entity.SysContactWayExample" resultType="java.lang.Long">
+    select count(*) from sys_contact_way
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update sys_subject
+    update sys_contact_way
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
@@ -143,8 +173,20 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=INTEGER},
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.school != null">
+        school = #{record.school,jdbcType=VARCHAR},
+      </if>
+      <if test="record.service != null">
+        service = #{record.service,jdbcType=INTEGER},
+      </if>
+      <if test="record.focus != null">
+        focus = #{record.focus,jdbcType=INTEGER},
+      </if>
+      <if test="record.bugget != null">
+        bugget = #{record.bugget,jdbcType=DOUBLE},
       </if>
     </set>
     <if test="_parameter != null">
@@ -152,30 +194,50 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update sys_subject
+    update sys_contact_way
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      department = #{record.department,jdbcType=INTEGER}
+      phone = #{record.phone,jdbcType=VARCHAR},
+      school = #{record.school,jdbcType=VARCHAR},
+      service = #{record.service,jdbcType=INTEGER},
+      focus = #{record.focus,jdbcType=INTEGER},
+      bugget = #{record.bugget,jdbcType=DOUBLE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysSubject">
-    update sys_subject
+  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysContactWay">
+    update sys_contact_way
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="department != null">
-        department = #{department,jdbcType=INTEGER},
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="service != null">
+        service = #{service,jdbcType=INTEGER},
+      </if>
+      <if test="focus != null">
+        focus = #{focus,jdbcType=INTEGER},
+      </if>
+      <if test="bugget != null">
+        bugget = #{bugget,jdbcType=DOUBLE},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysSubject">
-    update sys_subject
+  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysContactWay">
+    update sys_contact_way
     set name = #{name,jdbcType=VARCHAR},
-      department = #{department,jdbcType=INTEGER}
+      phone = #{phone,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      service = #{service,jdbcType=INTEGER},
+      focus = #{focus,jdbcType=INTEGER},
+      bugget = #{bugget,jdbcType=DOUBLE}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

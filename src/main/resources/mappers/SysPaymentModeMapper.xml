@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.group7.edu.mapper.SysSubjectMapper">
-  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysSubject">
+<mapper namespace="com.group7.edu.mapper.SysPaymentModeMapper">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysPaymentMode">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="department" jdbcType="INTEGER" property="department" />
+    <result column="icon_url" jdbcType="VARCHAR" property="iconUrl" />
+    <result column="payment_type" jdbcType="INTEGER" property="paymentType" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+    <result column="agent" jdbcType="VARCHAR" property="agent" />
+    <result column="account_number" jdbcType="VARCHAR" property="accountNumber" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,15 +69,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, department
+    id, name, icon_url, payment_type, account_name, agent, account_number
   </sql>
-  <select id="selectByExample" parameterType="com.group7.edu.entity.SysSubjectExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.group7.edu.entity.SysPaymentModeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sys_subject
+    from sys_payment_mode
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,27 +88,29 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_subject
+    from sys_payment_mode
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from sys_subject
+    delete from sys_payment_mode
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysSubjectExample">
-    delete from sys_subject
+  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysPaymentModeExample">
+    delete from sys_payment_mode
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.group7.edu.entity.SysSubject">
-    insert into sys_subject (id, name, department
-      )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{department,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.group7.edu.entity.SysPaymentMode">
+    insert into sys_payment_mode (id, name, icon_url, 
+      payment_type, account_name, agent, 
+      account_number)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{iconUrl,jdbcType=VARCHAR}, 
+      #{paymentType,jdbcType=INTEGER}, #{accountName,jdbcType=VARCHAR}, #{agent,jdbcType=VARCHAR}, 
+      #{accountNumber,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysSubject">
-    insert into sys_subject
+  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysPaymentMode">
+    insert into sys_payment_mode
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -112,8 +118,20 @@
       <if test="name != null">
         name,
       </if>
-      <if test="department != null">
-        department,
+      <if test="iconUrl != null">
+        icon_url,
+      </if>
+      <if test="paymentType != null">
+        payment_type,
+      </if>
+      <if test="accountName != null">
+        account_name,
+      </if>
+      <if test="agent != null">
+        agent,
+      </if>
+      <if test="accountNumber != null">
+        account_number,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -123,19 +141,31 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="department != null">
-        #{department,jdbcType=INTEGER},
+      <if test="iconUrl != null">
+        #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null">
+        #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="agent != null">
+        #{agent,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null">
+        #{accountNumber,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.group7.edu.entity.SysSubjectExample" resultType="java.lang.Long">
-    select count(*) from sys_subject
+  <select id="countByExample" parameterType="com.group7.edu.entity.SysPaymentModeExample" resultType="java.lang.Long">
+    select count(*) from sys_payment_mode
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update sys_subject
+    update sys_payment_mode
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
@@ -143,8 +173,20 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=INTEGER},
+      <if test="record.iconUrl != null">
+        icon_url = #{record.iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentType != null">
+        payment_type = #{record.paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountName != null">
+        account_name = #{record.accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agent != null">
+        agent = #{record.agent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNumber != null">
+        account_number = #{record.accountNumber,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -152,30 +194,50 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update sys_subject
+    update sys_payment_mode
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      department = #{record.department,jdbcType=INTEGER}
+      icon_url = #{record.iconUrl,jdbcType=VARCHAR},
+      payment_type = #{record.paymentType,jdbcType=INTEGER},
+      account_name = #{record.accountName,jdbcType=VARCHAR},
+      agent = #{record.agent,jdbcType=VARCHAR},
+      account_number = #{record.accountNumber,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysSubject">
-    update sys_subject
+  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysPaymentMode">
+    update sys_payment_mode
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="department != null">
-        department = #{department,jdbcType=INTEGER},
+      <if test="iconUrl != null">
+        icon_url = #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null">
+        payment_type = #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="accountName != null">
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="agent != null">
+        agent = #{agent,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null">
+        account_number = #{accountNumber,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysSubject">
-    update sys_subject
+  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysPaymentMode">
+    update sys_payment_mode
     set name = #{name,jdbcType=VARCHAR},
-      department = #{department,jdbcType=INTEGER}
+      icon_url = #{iconUrl,jdbcType=VARCHAR},
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      agent = #{agent,jdbcType=VARCHAR},
+      account_number = #{accountNumber,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
