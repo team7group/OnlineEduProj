@@ -1,12 +1,30 @@
 package com.group7.edu.entity;
 
+/**
+ * 资讯
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysIndustryInfo {
+    /**
+     * 资讯id
+     */
     private Integer id;
 
+    /**
+     * 资讯编号
+     */
     private Integer number;
 
-    private String imageUrl;
+    /**
+     * 图片uuid
+     */
+    private String imageUuid;
 
+    /**
+     * 资讯内容
+     */
     private String infoText;
 
     public Integer getId() {
@@ -25,12 +43,12 @@ public class SysIndustryInfo {
         this.number = number;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageUuid() {
+        return imageUuid;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl == null ? null : imageUrl.trim();
+    public void setImageUuid(String imageUuid) {
+        this.imageUuid = imageUuid == null ? null : imageUuid.trim();
     }
 
     public String getInfoText() {

@@ -2,19 +2,46 @@ package com.group7.edu.entity;
 
 import java.util.Date;
 
+/**
+ * 收藏类型
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysFavorite {
+    /**
+     * 收藏id
+     */
     private Integer id;
 
+    /**
+     * 收藏时间
+     */
     private Date createdTime;
 
+    /**
+     * 用户Id
+     */
     private Integer uid;
 
+    /**
+     * 课程id
+     */
     private Integer courseId;
 
+    /**
+     * 课程名称
+     */
     private String courseName;
 
+    /**
+     * 课程封面
+     */
     private String coverUrl;
 
+    /**
+     * 收藏类型
+     */
     private Integer type;
 
     public Integer getId() {

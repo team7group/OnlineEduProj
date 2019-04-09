@@ -5,10 +5,15 @@
 
 <generatorConfiguration>
     <context id="DB2Tables" targetRuntime="MyBatis3">
-        <commentGenerator>
-            <!--不生成注释-->
-            <property name="suppressAllComments" value="true"/>
+        <!-- 自定义注释生成器 -->
+        <commentGenerator type="com.group7.edu.config.mybatis.mbgcomment.MySQLCommentGenerator">
+            <property name="author" value="default"/>
+            <property name="dateFormat" value="yyyy/MM/dd"/>
         </commentGenerator>
+
+<!--        &lt;!&ndash; 生成的pojo，将implements Serializable&ndash;&gt;-->
+<!--        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
+<!--        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>-->
 
         <!--
             MySQL 8.x 版本驱动：com.mysql.cj.jdbc.Driver
@@ -29,7 +34,7 @@
             MySQL Connector 8.x 中，需要添加以下参数来确保Mybatis Generator获取的字段是正确的
             详见官方文档：http://www.mybatis.org/generator/usage/mysql.html
         -->
-<!--            <property name="nullCatalogMeansCurrent" value="TRUE"/>-->
+            <property name="nullCatalogMeansCurrent" value="TRUE"/>
         </jdbcConnection>
 
         <javaTypeResolver >
@@ -51,32 +56,32 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="sys_group" domainObjectName="SysGroup"/>
-        <table tableName="sys_order" domainObjectName="SysOrder"/>
-        <table tableName="sys_service" domainObjectName="SysServiceType"/>
-        <table tableName="sys_ad" domainObjectName="SysAd"/>
-        <table tableName="sys_teacher" domainObjectName="SysTeacher"/>
-        <table tableName="sys_subject" domainObjectName="SysSubject"/>
-        <table tableName="sys_course" domainObjectName="SysCourse"/>
-        <table tableName="sys_syllabus" domainObjectName="SysSyllabus"/>
-        <table tableName="sys_course_evaluation" domainObjectName="SysCourseEvaluation"/>
-        <table tableName="sys_contact_way" domainObjectName="SysContactWay"/>
-        <table tableName="sys_honour" domainObjectName="SysHonour"/>
-        <table tableName="sys_video" domainObjectName="SysVideo"/>
-        <table tableName="sys_favorite" domainObjectName="SysFavorite"/>
-        <table tableName="sys_disk" domainObjectName="SysNetDiskFile"/>
-        <table tableName="sys_answer_question" domainObjectName="SysAnswerQuestion"/>
-        <table tableName="sys_message" domainObjectName="SysMessage"/>
-        <table tableName="sys_news" domainObjectName="SysNews"/>
-        <table tableName="sys_student" domainObjectName="SysStudent"/>
-        <table tableName="sys_student_video_relation" domainObjectName="SysStudentVideoRelation"/>
-        <table tableName="sys_department" domainObjectName="SysDepartment"/>
-        <table tableName="sys_department_evaluation" domainObjectName="SysDepartmentEvaluation"/>
-        <table tableName="sys_feedback" domainObjectName="SysFeedback"/>
-        <table tableName="sys_focus" domainObjectName="SysFocus"/>
-        <table tableName="sys_agreement" domainObjectName="SysAgreement"/>
-        <table tableName="sys_payment_mode" domainObjectName="SysPaymentMode"/>
-        <table tableName="sys_industry_info" domainObjectName="SysIndustryInfo"/>
+        <table tableName="sys_group" domainObjectName="SysGroup" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_order" domainObjectName="SysOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_service" domainObjectName="SysServiceType" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_ad" domainObjectName="SysAd" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_teacher" domainObjectName="SysTeacher" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_subject" domainObjectName="SysSubject" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_course" domainObjectName="SysCourse" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_syllabus" domainObjectName="SysSyllabus" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_course_evaluation" domainObjectName="SysCourseEvaluation" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_contact_way" domainObjectName="SysContactWay" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_honour" domainObjectName="SysHonour" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_video" domainObjectName="SysVideo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_favorite" domainObjectName="SysFavorite" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_disk" domainObjectName="SysNetDiskFile" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_answer_question" domainObjectName="SysAnswerQuestion" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_message" domainObjectName="SysMessage" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_news" domainObjectName="SysNews" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_student" domainObjectName="SysStudent" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_student_video_relation" domainObjectName="SysStudentVideoRelation" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_department" domainObjectName="SysDepartment" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_department_evaluation" domainObjectName="SysDepartmentEvaluation" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_feedback" domainObjectName="SysFeedback" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_focus" domainObjectName="SysFocus" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_agreement" domainObjectName="SysAgreement" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_payment_mode" domainObjectName="SysPaymentMode" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="sys_industry_info" domainObjectName="SysIndustryInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
 
     </context>
 </generatorConfiguration>

@@ -2,35 +2,86 @@ package com.group7.edu.entity;
 
 import java.util.Date;
 
+/**
+ * 学生
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysStudent {
+    /**
+     * 学生Id
+     */
     private Integer id;
 
+    /**
+     * 学号
+     */
     private Integer number;
 
+    /**
+     * 用户名
+     */
     private String username;
 
+    /**
+     * 用户昵称
+     */
     private String nickname;
 
+    /**
+     * 用户密码哈希值
+     */
     private String passwordHash;
 
+    /**
+     * 用户密码私盐
+     */
     private String passwordSalt;
 
+    /**
+     * 用户是否被禁止
+     */
     private Boolean banned;
 
+    /**
+     * 用户打卡信息，二进制一位一天，可记录一个月的
+     */
     private Integer checkinDays;
 
-    private String iconUrl;
+    /**
+     * 用户头像uuid
+     */
+    private String iconUuid;
 
+    /**
+     * 用户手机号
+     */
     private String phone;
 
+    /**
+     * 用户邮箱
+     */
     private String email;
 
+    /**
+     * 用户性别
+     */
     private String sex;
 
+    /**
+     * 用户生日
+     */
     private Date birthday;
 
+    /**
+     * 用户微信号
+     */
     private String wechat;
 
+    /**
+     * 用户QQ号
+     */
     private String qq;
 
     public Integer getId() {
@@ -97,12 +148,12 @@ public class SysStudent {
         this.checkinDays = checkinDays;
     }
 
-    public String getIconUrl() {
-        return iconUrl;
+    public String getIconUuid() {
+        return iconUuid;
     }
 
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl == null ? null : iconUrl.trim();
+    public void setIconUuid(String iconUuid) {
+        this.iconUuid = iconUuid == null ? null : iconUuid.trim();
     }
 
     public String getPhone() {

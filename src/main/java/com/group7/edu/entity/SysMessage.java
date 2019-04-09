@@ -1,14 +1,35 @@
 package com.group7.edu.entity;
 
+/**
+ * 消息
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysMessage {
+    /**
+     * 消息Id
+     */
     private Integer id;
 
+    /**
+     * 消息类型
+     */
     private Integer type;
 
+    /**
+     * 消息发送者id
+     */
     private Integer sender;
 
+    /**
+     * 消息接收者Id
+     */
     private Integer uid;
 
+    /**
+     * 消息内容
+     */
     private String messageText;
 
     public Integer getId() {

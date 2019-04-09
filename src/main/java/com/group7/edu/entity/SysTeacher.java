@@ -2,41 +2,101 @@ package com.group7.edu.entity;
 
 import java.util.Date;
 
+/**
+ * 讲师
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysTeacher {
+    /**
+     * 讲师Id
+     */
     private Integer id;
 
+    /**
+     * 讲师工号
+     */
     private Integer number;
 
+    /**
+     * 讲师用户名
+     */
     private String username;
 
+    /**
+     * 讲师用户昵称
+     */
     private String nickname;
 
+    /**
+     * 讲师用户真实姓名
+     */
     private String realname;
 
+    /**
+     * 讲师用户密码哈希值
+     */
     private String passwordHash;
 
+    /**
+     * 讲师用户密码私盐
+     */
     private String passwordSalt;
 
+    /**
+     * 讲师用户是否被禁止
+     */
     private Boolean banned;
 
+    /**
+     * 讲师评分，最大为10，不需要精确
+     */
     private Integer score;
 
+    /**
+     * 讲师总学生数量
+     */
     private Integer studentCount;
 
-    private String iconUrl;
+    /**
+     * 讲师用户头像uuid
+     */
+    private String iconUuid;
 
+    /**
+     * 讲师用户手机号
+     */
     private String phone;
 
+    /**
+     * 讲师用户邮箱
+     */
     private String email;
 
+    /**
+     * 讲师用户性别
+     */
     private String sex;
 
+    /**
+     * 讲师用户生日
+     */
     private Date birthday;
 
+    /**
+     * 讲师用户微信号
+     */
     private String wechat;
 
+    /**
+     * 讲师用户QQ号
+     */
     private String qq;
 
+    /**
+     * 讲师简介
+     */
     private String lecturerText;
 
     public Integer getId() {
@@ -119,12 +179,12 @@ public class SysTeacher {
         this.studentCount = studentCount;
     }
 
-    public String getIconUrl() {
-        return iconUrl;
+    public String getIconUuid() {
+        return iconUuid;
     }
 
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl == null ? null : iconUrl.trim();
+    public void setIconUuid(String iconUuid) {
+        this.iconUuid = iconUuid == null ? null : iconUuid.trim();
     }
 
     public String getPhone() {

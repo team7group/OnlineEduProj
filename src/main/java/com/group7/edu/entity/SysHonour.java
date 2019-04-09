@@ -1,13 +1,31 @@
 package com.group7.edu.entity;
 
+/**
+ * 荣誉，展示在宣传页面上的
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysHonour {
+    /**
+     * 荣誉id
+     */
     private Integer id;
 
+    /**
+     * 荣誉编号
+     */
     private Integer number;
 
+    /**
+     * 荣誉名称
+     */
     private String name;
 
-    private String imageUrl;
+    /**
+     * 荣誉uuid
+     */
+    private String imageUuid;
 
     public Integer getId() {
         return id;
@@ -33,11 +51,11 @@ public class SysHonour {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageUuid() {
+        return imageUuid;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl == null ? null : imageUrl.trim();
+    public void setImageUuid(String imageUuid) {
+        this.imageUuid = imageUuid == null ? null : imageUuid.trim();
     }
 }
