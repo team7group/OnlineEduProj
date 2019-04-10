@@ -14,4 +14,6 @@ public interface SysCourseMapper {
     int updateByPrimaryKeySelective(SysCourse record);
 
     int updateByPrimaryKey(SysCourse record);
+
+    String banner(int id);
 }

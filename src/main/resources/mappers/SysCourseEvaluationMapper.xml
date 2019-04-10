@@ -90,4 +90,9 @@
       evaluation_text = #{evaluationText,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="evaluation" parameterType="int" resultType="int">
+    select cast(sum(score) / count(*) as decimal(11,1) ) as evaluate
+    from sys_course_evaluation where course = #{course}
+  </select>
 </mapper>

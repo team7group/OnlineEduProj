@@ -14,4 +14,6 @@ public interface SysCourseEvaluationMapper {
     int updateByPrimaryKeySelective(SysCourseEvaluation record);
 
     int updateByPrimaryKey(SysCourseEvaluation record);
+
+    int evaluation(int course);
 }

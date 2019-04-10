@@ -174,4 +174,8 @@
       course_text = #{courseText,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="banner" parameterType="int" resultType="String">
+    select cover_url from sys_course where id = #{id}
+  </select>
 </mapper>

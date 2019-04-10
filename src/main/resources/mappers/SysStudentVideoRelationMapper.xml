@@ -101,4 +101,9 @@
       is_saved = #{isSaved,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="isWatch" resultType="boolean">
+    select is_watched as isWatch from sys_student_video_relation where user_id = #{userId}
+                                                                   and video_id = #{videoId}
+  </select>
 </mapper>

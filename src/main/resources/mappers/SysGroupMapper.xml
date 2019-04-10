@@ -138,4 +138,8 @@
       text_time = #{textTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="notice" parameterType="int" resultType="com.group7.edu.entity.SysGroup">
+    select class_text as classText, text_time as textTime from sys_group where id = #{id}
+  </select>
 </mapper>
