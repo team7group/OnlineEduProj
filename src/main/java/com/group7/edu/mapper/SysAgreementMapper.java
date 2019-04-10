@@ -5,6 +5,8 @@ import com.group7.edu.entity.SysAgreementExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface SysAgreementMapper {
     long countByExample(SysAgreementExample example);
 
@@ -33,4 +35,6 @@ public interface SysAgreementMapper {
     int updateByPrimaryKeyWithBLOBs(SysAgreement record);
 
     int updateByPrimaryKey(SysAgreement record);
+
+    List<SysAgreement> selectByName(String name);
 }
