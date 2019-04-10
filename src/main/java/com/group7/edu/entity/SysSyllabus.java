@@ -1,8 +1,20 @@
 package com.group7.edu.entity;
 
+/**
+ * 课程表
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysSyllabus {
+    /**
+     * 课程表Id
+     */
     private Integer id;
 
+    /**
+     * 课程集合
+     */
     private String courses;
 
     public Integer getId() {

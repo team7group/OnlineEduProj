@@ -2,23 +2,56 @@ package com.group7.edu.entity;
 
 import java.util.Date;
 
+/**
+ * 班级
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysGroup {
+    /**
+     * 班级Id
+     */
     private Integer id;
 
+    /**
+     * 班级名称
+     */
     private String name;
 
+    /**
+     * 班级是第几期
+     */
     private Integer times;
 
+    /**
+     * 上课时间
+     */
     private Date classTime;
 
+    /**
+     * 课程表Id
+     */
     private Integer syllabus;
 
+    /**
+     * 封面url
+     */
     private String coverUrl;
 
+    /**
+     * 班级QQ群号
+     */
     private String qqGroup;
 
+    /**
+     * 班级公告
+     */
     private String classText;
 
+    /**
+     * 公告发布时间
+     */
     private Date textTime;
 
     public Integer getId() {

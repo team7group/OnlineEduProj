@@ -1,10 +1,8 @@
 package com.group7.edu.test;
 
+import com.group7.edu.entity.SysAd;
 import com.group7.edu.utils.PasswordUtils;
 import org.junit.Test;
-
-
-import java.util.Objects;
 
 public class TestPasswordUtils {
 
@@ -24,4 +22,11 @@ public class TestPasswordUtils {
             System.out.println("PasswordUtils.genSalt() = " + PasswordUtils.genSalt());
         }
     }
+
+    @Test
+    public void test1(){
+        SysAd sysAd = new SysAd();
+
+    }
+
 }

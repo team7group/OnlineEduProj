@@ -1,16 +1,40 @@
 package com.group7.edu.entity;
 
+/**
+ * 广告
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysAd {
+    /**
+     * 广告id
+     */
     private Integer id;
 
+    /**
+     * 广告展示的位置的名称
+     */
     private String page;
 
+    /**
+     * 广告标题
+     */
     private String title;
 
+    /**
+     * 广告编号
+     */
     private Integer number;
 
-    private String imageUrl;
+    /**
+     * 图片uuid
+     */
+    private String fileuuid;
 
+    /**
+     * 广告内容
+     */
     private String adText;
 
     public Integer getId() {
@@ -45,12 +69,12 @@ public class SysAd {
         this.number = number;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getFileuuid() {
+        return fileuuid;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl == null ? null : imageUrl.trim();
+    public void setFileuuid(String fileuuid) {
+        this.fileuuid = fileuuid == null ? null : fileuuid.trim();
     }
 
     public String getAdText() {

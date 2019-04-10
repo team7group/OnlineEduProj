@@ -2,15 +2,36 @@ package com.group7.edu.entity;
 
 import java.util.Date;
 
+/**
+ * 用户协议
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysAgreement {
+    /**
+     * 协议Id
+     */
     private Integer id;
 
+    /**
+     * 协议名称
+     */
     private String name;
 
+    /**
+     * 协议创建时间
+     */
     private Date createdTime;
 
+    /**
+     * 协议最后修改时间
+     */
     private Date lastModify;
 
+    /**
+     * 协议内容
+     */
     private String agreementText;
 
     public Integer getId() {

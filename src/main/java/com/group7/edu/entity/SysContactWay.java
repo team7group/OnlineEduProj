@@ -1,18 +1,45 @@
 package com.group7.edu.entity;
 
+/**
+ * 联系方式，用户提交上来的
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysContactWay {
+    /**
+     * 联系我们id
+     */
     private Integer id;
 
+    /**
+     * 姓名
+     */
     private String name;
 
+    /**
+     * 手机号
+     */
     private String phone;
 
+    /**
+     * 学校名称
+     */
     private String school;
 
+    /**
+     * 服务类型
+     */
     private Integer service;
 
+    /**
+     * 关注点id
+     */
     private Integer focus;
 
+    /**
+     * 预算 不需要精度，改成decimal也行
+     */
     private Double bugget;
 
     public Integer getId() {

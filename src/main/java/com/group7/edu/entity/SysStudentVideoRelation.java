@@ -1,16 +1,40 @@
 package com.group7.edu.entity;
 
+/**
+ * 学生与视频的关系
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysStudentVideoRelation {
+    /**
+     * 用户与视频关系id
+     */
     private Integer id;
 
+    /**
+     * 用户id
+     */
     private Integer userId;
 
+    /**
+     * 视频id
+     */
     private Integer videoId;
 
+    /**
+     * 用户是否看过该视频
+     */
     private Boolean isWatched;
 
+    /**
+     * 用户是否收藏过该视频
+     */
     private Boolean isLiked;
 
+    /**
+     * 用户是否保存过该视频
+     */
     private Boolean isSaved;
 
     public Integer getId() {

@@ -3,23 +3,56 @@ package com.group7.edu.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * 订单
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysOrder {
+    /**
+     * 订单编号
+     */
     private Integer id;
 
+    /**
+     * 购买者Id
+     */
     private Integer uid;
 
+    /**
+     * 消费金额
+     */
     private BigDecimal cost;
 
+    /**
+     * 下单时间
+     */
     private Date createdTime;
 
+    /**
+     * 课程Id
+     */
     private Integer courseId;
 
+    /**
+     * 课程名称
+     */
     private String courseName;
 
+    /**
+     * 教师名称
+     */
     private String lecturerName;
 
-    private String coverUrl;
+    /**
+     * 课程封面uuid
+     */
+    private String coverUuid;
 
+    /**
+     * 订阅过期时间
+     */
     private Date expireTime;
 
     public Integer getId() {
@@ -78,12 +111,12 @@ public class SysOrder {
         this.lecturerName = lecturerName == null ? null : lecturerName.trim();
     }
 
-    public String getCoverUrl() {
-        return coverUrl;
+    public String getCoverUuid() {
+        return coverUuid;
     }
 
-    public void setCoverUrl(String coverUrl) {
-        this.coverUrl = coverUrl == null ? null : coverUrl.trim();
+    public void setCoverUuid(String coverUuid) {
+        this.coverUuid = coverUuid == null ? null : coverUuid.trim();
     }
 
     public Date getExpireTime() {
