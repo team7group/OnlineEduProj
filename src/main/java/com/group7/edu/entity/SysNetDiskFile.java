@@ -2,16 +2,42 @@ package com.group7.edu.entity;
 
 import java.util.Date;
 
+/**
+ * 网盘
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysNetDiskFile {
+    /**
+     * 文件Id
+     */
     private Integer id;
 
+    /**
+     * 用户Id
+     */
     private Integer uid;
 
-    private Double size;
+    /**
+     * 文件大小
+     */
+    private String size;
 
-    private String url;
+    /**
+     * 文件uuid
+     */
+    private String fileuuid;
 
+    /**
+     * 文件添加时间
+     */
     private Date createdTime;
+
+    /**
+     * 文件名
+     */
+    private String filename;
 
     public Integer getId() {
         return id;
@@ -29,20 +55,20 @@ public class SysNetDiskFile {
         this.uid = uid;
     }
 
-    public Double getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(Double size) {
-        this.size = size;
+    public void setSize(String size) {
+        this.size = size == null ? null : size.trim();
     }
 
-    public String getUrl() {
-        return url;
+    public String getFileuuid() {
+        return fileuuid;
     }
 
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
+    public void setFileuuid(String fileuuid) {
+        this.fileuuid = fileuuid == null ? null : fileuuid.trim();
     }
 
     public Date getCreatedTime() {
@@ -51,5 +77,13 @@ public class SysNetDiskFile {
 
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename == null ? null : filename.trim();
     }
 }

@@ -7,89 +7,17 @@
     <result column="course" jdbcType="INTEGER" property="course" />
     <result column="capter" jdbcType="INTEGER" property="capter" />
     <result column="part" jdbcType="INTEGER" property="part" />
-    <result column="cover_url" jdbcType="VARCHAR" property="coverUrl" />
+    <result column="cover_uuid" jdbcType="VARCHAR" property="coverUuid" />
     <result column="duration" jdbcType="TIME" property="duration" />
-    <result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+    <result column="file_uuid" jdbcType="VARCHAR" property="fileUuid" />
     <result column="sharing_times" jdbcType="INTEGER" property="sharingTimes" />
     <result column="like_times" jdbcType="INTEGER" property="likeTimes" />
     <result column="collection_times" jdbcType="INTEGER" property="collectionTimes" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
-    id, name, course, capter, part, cover_url, duration, file_url, sharing_times, like_times, 
+    id, name, course, capter, part, cover_uuid, duration, file_uuid, sharing_times, like_times, 
     collection_times
   </sql>
-  <select id="selectByExample" parameterType="com.group7.edu.entity.SysVideoExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from sys_video
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -100,20 +28,14 @@
     delete from sys_video
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysVideoExample">
-    delete from sys_video
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
   <insert id="insert" parameterType="com.group7.edu.entity.SysVideo">
     insert into sys_video (id, name, course, 
-      capter, part, cover_url, 
-      duration, file_url, sharing_times, 
+      capter, part, cover_uuid, 
+      duration, file_uuid, sharing_times, 
       like_times, collection_times)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{course,jdbcType=INTEGER}, 
-      #{capter,jdbcType=INTEGER}, #{part,jdbcType=INTEGER}, #{coverUrl,jdbcType=VARCHAR}, 
-      #{duration,jdbcType=TIME}, #{fileUrl,jdbcType=VARCHAR}, #{sharingTimes,jdbcType=INTEGER}, 
+      #{capter,jdbcType=INTEGER}, #{part,jdbcType=INTEGER}, #{coverUuid,jdbcType=VARCHAR}, 
+      #{duration,jdbcType=TIME}, #{fileUuid,jdbcType=VARCHAR}, #{sharingTimes,jdbcType=INTEGER}, 
       #{likeTimes,jdbcType=INTEGER}, #{collectionTimes,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.group7.edu.entity.SysVideo">
@@ -134,14 +56,14 @@
       <if test="part != null">
         part,
       </if>
-      <if test="coverUrl != null">
-        cover_url,
+      <if test="coverUuid != null">
+        cover_uuid,
       </if>
       <if test="duration != null">
         duration,
       </if>
-      <if test="fileUrl != null">
-        file_url,
+      <if test="fileUuid != null">
+        file_uuid,
       </if>
       <if test="sharingTimes != null">
         sharing_times,
@@ -169,14 +91,14 @@
       <if test="part != null">
         #{part,jdbcType=INTEGER},
       </if>
-      <if test="coverUrl != null">
-        #{coverUrl,jdbcType=VARCHAR},
+      <if test="coverUuid != null">
+        #{coverUuid,jdbcType=VARCHAR},
       </if>
       <if test="duration != null">
         #{duration,jdbcType=TIME},
       </if>
-      <if test="fileUrl != null">
-        #{fileUrl,jdbcType=VARCHAR},
+      <if test="fileUuid != null">
+        #{fileUuid,jdbcType=VARCHAR},
       </if>
       <if test="sharingTimes != null">
         #{sharingTimes,jdbcType=INTEGER},
@@ -189,70 +111,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.group7.edu.entity.SysVideoExample" resultType="java.lang.Long">
-    select count(*) from sys_video
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update sys_video
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.course != null">
-        course = #{record.course,jdbcType=INTEGER},
-      </if>
-      <if test="record.capter != null">
-        capter = #{record.capter,jdbcType=INTEGER},
-      </if>
-      <if test="record.part != null">
-        part = #{record.part,jdbcType=INTEGER},
-      </if>
-      <if test="record.coverUrl != null">
-        cover_url = #{record.coverUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="record.duration != null">
-        duration = #{record.duration,jdbcType=TIME},
-      </if>
-      <if test="record.fileUrl != null">
-        file_url = #{record.fileUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sharingTimes != null">
-        sharing_times = #{record.sharingTimes,jdbcType=INTEGER},
-      </if>
-      <if test="record.likeTimes != null">
-        like_times = #{record.likeTimes,jdbcType=INTEGER},
-      </if>
-      <if test="record.collectionTimes != null">
-        collection_times = #{record.collectionTimes,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update sys_video
-    set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      course = #{record.course,jdbcType=INTEGER},
-      capter = #{record.capter,jdbcType=INTEGER},
-      part = #{record.part,jdbcType=INTEGER},
-      cover_url = #{record.coverUrl,jdbcType=VARCHAR},
-      duration = #{record.duration,jdbcType=TIME},
-      file_url = #{record.fileUrl,jdbcType=VARCHAR},
-      sharing_times = #{record.sharingTimes,jdbcType=INTEGER},
-      like_times = #{record.likeTimes,jdbcType=INTEGER},
-      collection_times = #{record.collectionTimes,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysVideo">
     update sys_video
     <set>
@@ -268,14 +126,14 @@
       <if test="part != null">
         part = #{part,jdbcType=INTEGER},
       </if>
-      <if test="coverUrl != null">
-        cover_url = #{coverUrl,jdbcType=VARCHAR},
+      <if test="coverUuid != null">
+        cover_uuid = #{coverUuid,jdbcType=VARCHAR},
       </if>
       <if test="duration != null">
         duration = #{duration,jdbcType=TIME},
       </if>
-      <if test="fileUrl != null">
-        file_url = #{fileUrl,jdbcType=VARCHAR},
+      <if test="fileUuid != null">
+        file_uuid = #{fileUuid,jdbcType=VARCHAR},
       </if>
       <if test="sharingTimes != null">
         sharing_times = #{sharingTimes,jdbcType=INTEGER},
@@ -295,9 +153,9 @@
       course = #{course,jdbcType=INTEGER},
       capter = #{capter,jdbcType=INTEGER},
       part = #{part,jdbcType=INTEGER},
-      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      cover_uuid = #{coverUuid,jdbcType=VARCHAR},
       duration = #{duration,jdbcType=TIME},
-      file_url = #{fileUrl,jdbcType=VARCHAR},
+      file_uuid = #{fileUuid,jdbcType=VARCHAR},
       sharing_times = #{sharingTimes,jdbcType=INTEGER},
       like_times = #{likeTimes,jdbcType=INTEGER},
       collection_times = #{collectionTimes,jdbcType=INTEGER}

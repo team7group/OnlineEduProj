@@ -12,7 +12,7 @@
     <result column="banned" jdbcType="BIT" property="banned" />
     <result column="score" jdbcType="INTEGER" property="score" />
     <result column="student_count" jdbcType="INTEGER" property="studentCount" />
-    <result column="icon_url" jdbcType="VARCHAR" property="iconUrl" />
+    <result column="icon_uuid" jdbcType="VARCHAR" property="iconUuid" />
     <result column="phone" jdbcType="CHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
@@ -21,82 +21,10 @@
     <result column="qq" jdbcType="CHAR" property="qq" />
     <result column="lecturer_text" jdbcType="VARCHAR" property="lecturerText" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     id, number, username, nickname, realname, password_hash, password_salt, banned, score, 
-    student_count, icon_url, phone, email, sex, birthday, wechat, qq, lecturer_text
+    student_count, icon_uuid, phone, email, sex, birthday, wechat, qq, lecturer_text
   </sql>
-  <select id="selectByExample" parameterType="com.group7.edu.entity.SysTeacherExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from sys_teacher
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -107,24 +35,18 @@
     delete from sys_teacher
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysTeacherExample">
-    delete from sys_teacher
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
   <insert id="insert" parameterType="com.group7.edu.entity.SysTeacher">
     insert into sys_teacher (id, number, username, 
       nickname, realname, password_hash, 
       password_salt, banned, score, 
-      student_count, icon_url, phone, 
+      student_count, icon_uuid, phone, 
       email, sex, birthday, 
       wechat, qq, lecturer_text
       )
     values (#{id,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
       #{nickname,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{passwordHash,jdbcType=VARCHAR}, 
       #{passwordSalt,jdbcType=VARCHAR}, #{banned,jdbcType=BIT}, #{score,jdbcType=INTEGER}, 
-      #{studentCount,jdbcType=INTEGER}, #{iconUrl,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, 
+      #{studentCount,jdbcType=INTEGER}, #{iconUuid,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, 
       #{email,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
       #{wechat,jdbcType=VARCHAR}, #{qq,jdbcType=CHAR}, #{lecturerText,jdbcType=VARCHAR}
       )
@@ -162,8 +84,8 @@
       <if test="studentCount != null">
         student_count,
       </if>
-      <if test="iconUrl != null">
-        icon_url,
+      <if test="iconUuid != null">
+        icon_uuid,
       </if>
       <if test="phone != null">
         phone,
@@ -218,8 +140,8 @@
       <if test="studentCount != null">
         #{studentCount,jdbcType=INTEGER},
       </if>
-      <if test="iconUrl != null">
-        #{iconUrl,jdbcType=VARCHAR},
+      <if test="iconUuid != null">
+        #{iconUuid,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
         #{phone,jdbcType=CHAR},
@@ -244,98 +166,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.group7.edu.entity.SysTeacherExample" resultType="java.lang.Long">
-    select count(*) from sys_teacher
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update sys_teacher
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.number != null">
-        number = #{record.number,jdbcType=INTEGER},
-      </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
-      </if>
-      <if test="record.nickname != null">
-        nickname = #{record.nickname,jdbcType=VARCHAR},
-      </if>
-      <if test="record.realname != null">
-        realname = #{record.realname,jdbcType=VARCHAR},
-      </if>
-      <if test="record.passwordHash != null">
-        password_hash = #{record.passwordHash,jdbcType=VARCHAR},
-      </if>
-      <if test="record.passwordSalt != null">
-        password_salt = #{record.passwordSalt,jdbcType=VARCHAR},
-      </if>
-      <if test="record.banned != null">
-        banned = #{record.banned,jdbcType=BIT},
-      </if>
-      <if test="record.score != null">
-        score = #{record.score,jdbcType=INTEGER},
-      </if>
-      <if test="record.studentCount != null">
-        student_count = #{record.studentCount,jdbcType=INTEGER},
-      </if>
-      <if test="record.iconUrl != null">
-        icon_url = #{record.iconUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="record.phone != null">
-        phone = #{record.phone,jdbcType=CHAR},
-      </if>
-      <if test="record.email != null">
-        email = #{record.email,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sex != null">
-        sex = #{record.sex,jdbcType=VARCHAR},
-      </if>
-      <if test="record.birthday != null">
-        birthday = #{record.birthday,jdbcType=DATE},
-      </if>
-      <if test="record.wechat != null">
-        wechat = #{record.wechat,jdbcType=VARCHAR},
-      </if>
-      <if test="record.qq != null">
-        qq = #{record.qq,jdbcType=CHAR},
-      </if>
-      <if test="record.lecturerText != null">
-        lecturer_text = #{record.lecturerText,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update sys_teacher
-    set id = #{record.id,jdbcType=INTEGER},
-      number = #{record.number,jdbcType=INTEGER},
-      username = #{record.username,jdbcType=VARCHAR},
-      nickname = #{record.nickname,jdbcType=VARCHAR},
-      realname = #{record.realname,jdbcType=VARCHAR},
-      password_hash = #{record.passwordHash,jdbcType=VARCHAR},
-      password_salt = #{record.passwordSalt,jdbcType=VARCHAR},
-      banned = #{record.banned,jdbcType=BIT},
-      score = #{record.score,jdbcType=INTEGER},
-      student_count = #{record.studentCount,jdbcType=INTEGER},
-      icon_url = #{record.iconUrl,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=CHAR},
-      email = #{record.email,jdbcType=VARCHAR},
-      sex = #{record.sex,jdbcType=VARCHAR},
-      birthday = #{record.birthday,jdbcType=DATE},
-      wechat = #{record.wechat,jdbcType=VARCHAR},
-      qq = #{record.qq,jdbcType=CHAR},
-      lecturer_text = #{record.lecturerText,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysTeacher">
     update sys_teacher
     <set>
@@ -366,8 +196,8 @@
       <if test="studentCount != null">
         student_count = #{studentCount,jdbcType=INTEGER},
       </if>
-      <if test="iconUrl != null">
-        icon_url = #{iconUrl,jdbcType=VARCHAR},
+      <if test="iconUuid != null">
+        icon_uuid = #{iconUuid,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
         phone = #{phone,jdbcType=CHAR},
@@ -404,7 +234,7 @@
       banned = #{banned,jdbcType=BIT},
       score = #{score,jdbcType=INTEGER},
       student_count = #{studentCount,jdbcType=INTEGER},
-      icon_url = #{iconUrl,jdbcType=VARCHAR},
+      icon_uuid = #{iconUuid,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=CHAR},
       email = #{email,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},

@@ -2,17 +2,41 @@ package com.group7.edu.entity;
 
 import java.util.Date;
 
+/**
+ * 新闻
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysNews {
+    /**
+     * 新闻id
+     */
     private Integer id;
 
+    /**
+     * 编号
+     */
     private Integer number;
 
+    /**
+     * 新闻标题
+     */
     private String title;
 
-    private String coverUrl;
+    /**
+     * 新闻封面uuid
+     */
+    private String coverUuid;
 
+    /**
+     * 创建时间
+     */
     private Date createdTime;
 
+    /**
+     * 新闻内容
+     */
     private String newsText;
 
     public Integer getId() {
@@ -39,12 +63,12 @@ public class SysNews {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getCoverUrl() {
-        return coverUrl;
+    public String getCoverUuid() {
+        return coverUuid;
     }
 
-    public void setCoverUrl(String coverUrl) {
-        this.coverUrl = coverUrl == null ? null : coverUrl.trim();
+    public void setCoverUuid(String coverUuid) {
+        this.coverUuid = coverUuid == null ? null : coverUuid.trim();
     }
 
     public Date getCreatedTime() {

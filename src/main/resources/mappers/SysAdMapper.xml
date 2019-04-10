@@ -6,105 +6,17 @@
     <result column="page" jdbcType="VARCHAR" property="page" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="number" jdbcType="INTEGER" property="number" />
-    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="fileuuid" jdbcType="VARCHAR" property="fileuuid" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.group7.edu.entity.SysAd">
     <result column="ad_text" jdbcType="LONGVARCHAR" property="adText" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
-    id, page, title, number, image_url
+    id, page, title, number, fileuuid
   </sql>
   <sql id="Blob_Column_List">
     ad_text
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.group7.edu.entity.SysAdExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from sys_ad
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExample" parameterType="com.group7.edu.entity.SysAdExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from sys_ad
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
@@ -117,18 +29,12 @@
     delete from sys_ad
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.group7.edu.entity.SysAdExample">
-    delete from sys_ad
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
   <insert id="insert" parameterType="com.group7.edu.entity.SysAd">
     insert into sys_ad (id, page, title, 
-      number, image_url, ad_text
+      number, fileuuid, ad_text
       )
     values (#{id,jdbcType=INTEGER}, #{page,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{number,jdbcType=INTEGER}, #{imageUrl,jdbcType=VARCHAR}, #{adText,jdbcType=LONGVARCHAR}
+      #{number,jdbcType=INTEGER}, #{fileuuid,jdbcType=VARCHAR}, #{adText,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.group7.edu.entity.SysAd">
@@ -146,8 +52,8 @@
       <if test="number != null">
         number,
       </if>
-      <if test="imageUrl != null">
-        image_url,
+      <if test="fileuuid != null">
+        fileuuid,
       </if>
       <if test="adText != null">
         ad_text,
@@ -166,69 +72,14 @@
       <if test="number != null">
         #{number,jdbcType=INTEGER},
       </if>
-      <if test="imageUrl != null">
-        #{imageUrl,jdbcType=VARCHAR},
+      <if test="fileuuid != null">
+        #{fileuuid,jdbcType=VARCHAR},
       </if>
       <if test="adText != null">
         #{adText,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.group7.edu.entity.SysAdExample" resultType="java.lang.Long">
-    select count(*) from sys_ad
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update sys_ad
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.page != null">
-        page = #{record.page,jdbcType=VARCHAR},
-      </if>
-      <if test="record.title != null">
-        title = #{record.title,jdbcType=VARCHAR},
-      </if>
-      <if test="record.number != null">
-        number = #{record.number,jdbcType=INTEGER},
-      </if>
-      <if test="record.imageUrl != null">
-        image_url = #{record.imageUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="record.adText != null">
-        ad_text = #{record.adText,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update sys_ad
-    set id = #{record.id,jdbcType=INTEGER},
-      page = #{record.page,jdbcType=VARCHAR},
-      title = #{record.title,jdbcType=VARCHAR},
-      number = #{record.number,jdbcType=INTEGER},
-      image_url = #{record.imageUrl,jdbcType=VARCHAR},
-      ad_text = #{record.adText,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update sys_ad
-    set id = #{record.id,jdbcType=INTEGER},
-      page = #{record.page,jdbcType=VARCHAR},
-      title = #{record.title,jdbcType=VARCHAR},
-      number = #{record.number,jdbcType=INTEGER},
-      image_url = #{record.imageUrl,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysAd">
     update sys_ad
     <set>
@@ -241,8 +92,8 @@
       <if test="number != null">
         number = #{number,jdbcType=INTEGER},
       </if>
-      <if test="imageUrl != null">
-        image_url = #{imageUrl,jdbcType=VARCHAR},
+      <if test="fileuuid != null">
+        fileuuid = #{fileuuid,jdbcType=VARCHAR},
       </if>
       <if test="adText != null">
         ad_text = #{adText,jdbcType=LONGVARCHAR},
@@ -255,7 +106,7 @@
     set page = #{page,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       number = #{number,jdbcType=INTEGER},
-      image_url = #{imageUrl,jdbcType=VARCHAR},
+      fileuuid = #{fileuuid,jdbcType=VARCHAR},
       ad_text = #{adText,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -264,7 +115,7 @@
     set page = #{page,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       number = #{number,jdbcType=INTEGER},
-      image_url = #{imageUrl,jdbcType=VARCHAR}
+      fileuuid = #{fileuuid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,18 +1,45 @@
 package com.group7.edu.entity;
 
+/**
+ * 支付方式
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysPaymentMode {
+    /**
+     * 支付方式Id
+     */
     private Integer id;
 
+    /**
+     * 支付方式名称
+     */
     private String name;
 
-    private String iconUrl;
+    /**
+     * 支付方式uuid
+     */
+    private String iconUuid;
 
+    /**
+     * 支付方式分类
+     */
     private Integer paymentType;
 
+    /**
+     * 账户所有者名称
+     */
     private String accountName;
 
+    /**
+     * 支付机构名称
+     */
     private String agent;
 
+    /**
+     * 支付账号
+     */
     private String accountNumber;
 
     public Integer getId() {
@@ -31,12 +58,12 @@ public class SysPaymentMode {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getIconUrl() {
-        return iconUrl;
+    public String getIconUuid() {
+        return iconUuid;
     }
 
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl == null ? null : iconUrl.trim();
+    public void setIconUuid(String iconUuid) {
+        this.iconUuid = iconUuid == null ? null : iconUuid.trim();
     }
 
     public Integer getPaymentType() {

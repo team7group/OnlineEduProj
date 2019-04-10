@@ -2,15 +2,36 @@ package com.group7.edu.entity;
 
 import java.util.Date;
 
+/**
+ * 学院评价
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysDepartmentEvaluation {
+    /**
+     * 学院评价Id
+     */
     private Integer id;
 
+    /**
+     * 用户id
+     */
     private Integer uid;
 
+    /**
+     * 学院Id
+     */
     private Integer departmentId;
 
+    /**
+     * 评价时间
+     */
     private Date createdTime;
 
+    /**
+     * 评价内容
+     */
     private String evaluationText;
 
     public Integer getId() {

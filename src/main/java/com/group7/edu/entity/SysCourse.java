@@ -3,29 +3,71 @@ package com.group7.edu.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * 课程
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysCourse {
+    /**
+     * 课程Id 主键 自动增长
+     */
     private Integer id;
 
+    /**
+     * 课程名称
+     */
     private String name;
 
+    /**
+     * 讲师Id
+     */
     private Integer lecturer;
 
+    /**
+     * 课程分类
+     */
     private String category;
 
+    /**
+     * 课程封面URL
+     */
     private String coverUrl;
 
+    /**
+     * 课程价格
+     */
     private BigDecimal price;
 
+    /**
+     * 课程原价
+     */
     private BigDecimal origPrice;
 
+    /**
+     * 科目Id
+     */
     private Integer subject;
 
+    /**
+     * 课程创建日期
+     */
     private Date createdTime;
 
+    /**
+     * 课程开始时间
+     */
     private Date starttime;
 
+    /**
+     * 课程结束日期
+     */
     private Date terminalTime;
 
+    /**
+     * 课程描述
+     */
     private String courseText;
 
     public Integer getId() {

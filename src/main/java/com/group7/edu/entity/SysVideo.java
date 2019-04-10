@@ -2,27 +2,66 @@ package com.group7.edu.entity;
 
 import java.util.Date;
 
+/**
+ * 视频
+ *
+ * @author default
+ * @date   2019/04/09
+ */
 public class SysVideo {
+    /**
+     * 视频Id
+     */
     private Integer id;
 
+    /**
+     * 视频名称
+     */
     private String name;
 
+    /**
+     * 课程Id
+     */
     private Integer course;
 
+    /**
+     * 章编号
+     */
     private Integer capter;
 
+    /**
+     * 节编号
+     */
     private Integer part;
 
-    private String coverUrl;
+    /**
+     * 视频封面uuid
+     */
+    private String coverUuid;
 
+    /**
+     * 视频时长
+     */
     private Date duration;
 
-    private String fileUrl;
+    /**
+     * 视频文件uuid
+     */
+    private String fileUuid;
 
+    /**
+     * 视频分享次数
+     */
     private Integer sharingTimes;
 
+    /**
+     * 视频点赞次数
+     */
     private Integer likeTimes;
 
+    /**
+     * 视频保存次数
+     */
     private Integer collectionTimes;
 
     public Integer getId() {
@@ -65,12 +104,12 @@ public class SysVideo {
         this.part = part;
     }
 
-    public String getCoverUrl() {
-        return coverUrl;
+    public String getCoverUuid() {
+        return coverUuid;
     }
 
-    public void setCoverUrl(String coverUrl) {
-        this.coverUrl = coverUrl == null ? null : coverUrl.trim();
+    public void setCoverUuid(String coverUuid) {
+        this.coverUuid = coverUuid == null ? null : coverUuid.trim();
     }
 
     public Date getDuration() {
@@ -81,12 +120,12 @@ public class SysVideo {
         this.duration = duration;
     }
 
-    public String getFileUrl() {
-        return fileUrl;
+    public String getFileUuid() {
+        return fileUuid;
     }
 
-    public void setFileUrl(String fileUrl) {
-        this.fileUrl = fileUrl == null ? null : fileUrl.trim();
+    public void setFileUuid(String fileUuid) {
+        this.fileUuid = fileUuid == null ? null : fileUuid.trim();
     }
 
     public Integer getSharingTimes() {
