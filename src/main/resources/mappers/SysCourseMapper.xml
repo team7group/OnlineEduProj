@@ -11,13 +11,13 @@
     <result column="orig_price" jdbcType="DECIMAL" property="origPrice" />
     <result column="subject" jdbcType="INTEGER" property="subject" />
     <result column="created_time" jdbcType="DATE" property="createdTime" />
-    <result column="startTime" jdbcType="DATE" property="starttime" />
+    <result column="start_time" jdbcType="DATE" property="startTime" />
     <result column="terminal_time" jdbcType="DATE" property="terminalTime" />
     <result column="course_text" jdbcType="VARCHAR" property="courseText" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, lecturer, category, cover_url, price, orig_price, subject, created_time, 
-    startTime, terminal_time, course_text
+    start_time, terminal_time, course_text
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -33,12 +33,12 @@
     insert into sys_course (id, name, lecturer, 
       category, cover_url, price, 
       orig_price, subject, created_time, 
-      startTime, terminal_time, course_text
+      start_time, terminal_time, course_text
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{lecturer,jdbcType=INTEGER}, 
       #{category,jdbcType=VARCHAR}, #{coverUrl,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
       #{origPrice,jdbcType=DECIMAL}, #{subject,jdbcType=INTEGER}, #{createdTime,jdbcType=DATE}, 
-      #{starttime,jdbcType=DATE}, #{terminalTime,jdbcType=DATE}, #{courseText,jdbcType=VARCHAR}
+      #{startTime,jdbcType=DATE}, #{terminalTime,jdbcType=DATE}, #{courseText,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.group7.edu.entity.SysCourse">
@@ -71,8 +71,8 @@
       <if test="createdTime != null">
         created_time,
       </if>
-      <if test="starttime != null">
-        startTime,
+      <if test="startTime != null">
+        start_time,
       </if>
       <if test="terminalTime != null">
         terminal_time,
@@ -109,8 +109,8 @@
       <if test="createdTime != null">
         #{createdTime,jdbcType=DATE},
       </if>
-      <if test="starttime != null">
-        #{starttime,jdbcType=DATE},
+      <if test="startTime != null">
+        #{startTime,jdbcType=DATE},
       </if>
       <if test="terminalTime != null">
         #{terminalTime,jdbcType=DATE},
@@ -147,8 +147,8 @@
       <if test="createdTime != null">
         created_time = #{createdTime,jdbcType=DATE},
       </if>
-      <if test="starttime != null">
-        startTime = #{starttime,jdbcType=DATE},
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=DATE},
       </if>
       <if test="terminalTime != null">
         terminal_time = #{terminalTime,jdbcType=DATE},
@@ -169,7 +169,7 @@
       orig_price = #{origPrice,jdbcType=DECIMAL},
       subject = #{subject,jdbcType=INTEGER},
       created_time = #{createdTime,jdbcType=DATE},
-      startTime = #{starttime,jdbcType=DATE},
+      start_time = #{startTime,jdbcType=DATE},
       terminal_time = #{terminalTime,jdbcType=DATE},
       course_text = #{courseText,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

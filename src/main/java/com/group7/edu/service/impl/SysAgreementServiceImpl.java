@@ -1,8 +1,10 @@
 package com.group7.edu.service.impl;
 
 import com.group7.edu.entity.SysAgreement;
+import com.group7.edu.mapper.SysAgreementExtMapper;
 import com.group7.edu.mapper.SysAgreementMapper;
 import com.group7.edu.service.SysAgreementService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -10,14 +12,15 @@ import java.util.List;
 /**
  * @author Yyjs
  */
-public class SysAgreementImpl implements SysAgreementService {
+@Service
+public class SysAgreementServiceImpl implements SysAgreementService {
 
     @Resource
-    private SysAgreementMapper sysAgreementMapper;
+    private SysAgreementExtMapper sysAgreementExtMapper;
 
     @Override
     public SysAgreement findAgreementByName(String name) {
-        List<SysAgreement> sysAgreements = sysAgreementMapper.selectByName(name);
+        List<SysAgreement> sysAgreements = sysAgreementExtMapper.selectByName(name);
         if (sysAgreements == null || sysAgreements.size() < 1) {
             return null;
         }

@@ -7,7 +7,7 @@ import java.util.Date;
  * 课程
  *
  * @author default
- * @date   2019/04/09
+ * @date   2019/04/11
  */
 public class SysCourse {
     /**
@@ -58,7 +58,7 @@ public class SysCourse {
     /**
      * 课程开始时间
      */
-    private Date starttime;
+    private Date startTime;
 
     /**
      * 课程结束日期
@@ -142,12 +142,12 @@ public class SysCourse {
         this.createdTime = createdTime;
     }
 
-    public Date getStarttime() {
-        return starttime;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
     public Date getTerminalTime() {

@@ -6,7 +6,7 @@ import java.util.Date;
  * 讲师
  *
  * @author default
- * @date   2019/04/09
+ * @date   2019/04/11
  */
 public class SysTeacher {
     /**
@@ -25,7 +25,7 @@ public class SysTeacher {
     private String username;
 
     /**
-     * 讲师用户昵称
+     * 讲师用户昵称（将改为讲师至理名言）
      */
     private String nickname;
 
@@ -58,6 +58,11 @@ public class SysTeacher {
      * 讲师总学生数量
      */
     private Integer studentCount;
+
+    /**
+     * 授课总时长
+     */
+    private Integer teachingDuration;
 
     /**
      * 讲师用户头像uuid
@@ -177,6 +182,14 @@ public class SysTeacher {
 
     public void setStudentCount(Integer studentCount) {
         this.studentCount = studentCount;
+    }
+
+    public Integer getTeachingDuration() {
+        return teachingDuration;
+    }
+
+    public void setTeachingDuration(Integer teachingDuration) {
+        this.teachingDuration = teachingDuration;
     }
 
     public String getIconUuid() {

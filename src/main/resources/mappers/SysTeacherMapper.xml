@@ -12,6 +12,7 @@
     <result column="banned" jdbcType="BIT" property="banned" />
     <result column="score" jdbcType="INTEGER" property="score" />
     <result column="student_count" jdbcType="INTEGER" property="studentCount" />
+    <result column="teaching_duration" jdbcType="INTEGER" property="teachingDuration" />
     <result column="icon_uuid" jdbcType="VARCHAR" property="iconUuid" />
     <result column="phone" jdbcType="CHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
@@ -23,7 +24,8 @@
   </resultMap>
   <sql id="Base_Column_List">
     id, number, username, nickname, realname, password_hash, password_salt, banned, score, 
-    student_count, icon_uuid, phone, email, sex, birthday, wechat, qq, lecturer_text
+    student_count, teaching_duration, icon_uuid, phone, email, sex, birthday, wechat, 
+    qq, lecturer_text
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -39,15 +41,15 @@
     insert into sys_teacher (id, number, username, 
       nickname, realname, password_hash, 
       password_salt, banned, score, 
-      student_count, icon_uuid, phone, 
-      email, sex, birthday, 
+      student_count, teaching_duration, icon_uuid, 
+      phone, email, sex, birthday, 
       wechat, qq, lecturer_text
       )
     values (#{id,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
       #{nickname,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{passwordHash,jdbcType=VARCHAR}, 
       #{passwordSalt,jdbcType=VARCHAR}, #{banned,jdbcType=BIT}, #{score,jdbcType=INTEGER}, 
-      #{studentCount,jdbcType=INTEGER}, #{iconUuid,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, 
-      #{email,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
+      #{studentCount,jdbcType=INTEGER}, #{teachingDuration,jdbcType=INTEGER}, #{iconUuid,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
       #{wechat,jdbcType=VARCHAR}, #{qq,jdbcType=CHAR}, #{lecturerText,jdbcType=VARCHAR}
       )
   </insert>
@@ -83,6 +85,9 @@
       </if>
       <if test="studentCount != null">
         student_count,
+      </if>
+      <if test="teachingDuration != null">
+        teaching_duration,
       </if>
       <if test="iconUuid != null">
         icon_uuid,
@@ -140,6 +145,9 @@
       <if test="studentCount != null">
         #{studentCount,jdbcType=INTEGER},
       </if>
+      <if test="teachingDuration != null">
+        #{teachingDuration,jdbcType=INTEGER},
+      </if>
       <if test="iconUuid != null">
         #{iconUuid,jdbcType=VARCHAR},
       </if>
@@ -196,6 +204,9 @@
       <if test="studentCount != null">
         student_count = #{studentCount,jdbcType=INTEGER},
       </if>
+      <if test="teachingDuration != null">
+        teaching_duration = #{teachingDuration,jdbcType=INTEGER},
+      </if>
       <if test="iconUuid != null">
         icon_uuid = #{iconUuid,jdbcType=VARCHAR},
       </if>
@@ -234,6 +245,7 @@
       banned = #{banned,jdbcType=BIT},
       score = #{score,jdbcType=INTEGER},
       student_count = #{studentCount,jdbcType=INTEGER},
+      teaching_duration = #{teachingDuration,jdbcType=INTEGER},
       icon_uuid = #{iconUuid,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=CHAR},
       email = #{email,jdbcType=VARCHAR},

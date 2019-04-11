@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.SysCourseExtMapper">
+    <resultMap id="ExtResultMap" type="com.group7.edu.dto.SysCourseDTO">
+        <id column="course_id" jdbcType="INTEGER" property="courseId"/>
+        <result column="course_name" jdbcType="VARCHAR" property="courseName"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="orig_price" jdbcType="DECIMAL" property="origPrice"/>
+        <result column="terminal_time" jdbcType="DATE" property="terminalDate"/>
+        <result column="created_time" jdbcType="DATE" property="createdTime"/>
+        <result column="start_time" jdbcType="DATE" property="startTime"/>
+        <result column="cover_url" jdbcType="VARCHAR" property="coverUrl"/>
+        <result column="course_text" jdbcType="VARCHAR" property="courseText"/>
+        <result column="title" jdbcType="VARCHAR" property="adTitle"/>
+        <result column="ad_text" jdbcType="VARCHAR" property="adText"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <result column="group_name" jdbcType="VARCHAR" property="groupName"/>
+        <result column="times" jdbcType="INTEGER" property="times"/>
+        <result column="realname" jdbcType="VARCHAR" property="teacherName"/>
+        <result column="signature" jdbcType="VARCHAR" property="teacherSignature"/>
+        <result column="score" jdbcType="INTEGER" property="teacherScore"/>
+        <result column="student_count" jdbcType="INTEGER" property="studentCount"/>
+        <result column="teaching_duration" jdbcType="INTEGER" property="duration"/>
+    </resultMap>
+    <select id="selectCourseDetails" parameterType="integer" resultMap="ExtResultMap">
+        SELECT c.id as course_id, c.name as course_name, c.price, c.orig_price, c.terminal_time,
+               c.created_time, c.start_time, c.cover_url, c.course_text,
+               ad.title, ad.ad_text,
+               g.id as group_id, g.name as group_name, g.times,
+               t.realname, t.nickname as signature, t.score, t.student_count, t.teaching_duration
+        FROM sys_course c
+                 INNER JOIN sys_group g ON c.id = g.id
+                 INNER JOIN sys_teacher t ON t.id = c.lecturer
+                 LEFT JOIN sys_ad ad ON c.name = ad.page
+        WHERE c.id = #{courseId};
+    </select>
+</mapper>

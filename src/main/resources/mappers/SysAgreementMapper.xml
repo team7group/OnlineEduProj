@@ -104,8 +104,4 @@
       last_modify = #{lastModify,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
-  <select id="selectByName" resultType="com.group7.edu.entity.SysAgreement">
-    SELECT * FROM sys_agreement WHERE name = #{name}
-  </select>
 </mapper>
