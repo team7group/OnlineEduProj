@@ -3,11 +3,12 @@
 <mapper namespace="com.group7.edu.mapper.SysAnswerQuestionMapper">
   <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysAnswerQuestion">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="courseId" jdbcType="INTEGER" property="courseid" />
     <result column="question" jdbcType="VARCHAR" property="question" />
     <result column="answer" jdbcType="VARCHAR" property="answer" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, question, answer
+    id, courseId, question, answer
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -20,16 +21,19 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.group7.edu.entity.SysAnswerQuestion">
-    insert into sys_answer_question (id, question, answer
-      )
-    values (#{id,jdbcType=INTEGER}, #{question,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}
-      )
+    insert into sys_answer_question (id, courseId, question, 
+      answer)
+    values (#{id,jdbcType=INTEGER}, #{courseid,jdbcType=INTEGER}, #{question,jdbcType=VARCHAR}, 
+      #{answer,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.group7.edu.entity.SysAnswerQuestion">
     insert into sys_answer_question
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="courseid != null">
+        courseId,
       </if>
       <if test="question != null">
         question,
@@ -42,6 +46,9 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
+      <if test="courseid != null">
+        #{courseid,jdbcType=INTEGER},
+      </if>
       <if test="question != null">
         #{question,jdbcType=VARCHAR},
       </if>
@@ -53,6 +60,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysAnswerQuestion">
     update sys_answer_question
     <set>
+      <if test="courseid != null">
+        courseId = #{courseid,jdbcType=INTEGER},
+      </if>
       <if test="question != null">
         question = #{question,jdbcType=VARCHAR},
       </if>
@@ -64,7 +74,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysAnswerQuestion">
     update sys_answer_question
-    set question = #{question,jdbcType=VARCHAR},
+    set courseId = #{courseid,jdbcType=INTEGER},
+      question = #{question,jdbcType=VARCHAR},
       answer = #{answer,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -2,7 +2,6 @@ package com.group7.edu.service.impl;
 
 import com.group7.edu.entity.SysAgreement;
 import com.group7.edu.mapper.SysAgreementExtMapper;
-import com.group7.edu.mapper.SysAgreementMapper;
 import com.group7.edu.service.SysAgreementService;
 import org.springframework.stereotype.Service;
 

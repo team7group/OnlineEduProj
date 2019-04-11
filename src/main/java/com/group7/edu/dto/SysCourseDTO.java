@@ -53,12 +53,14 @@ public class SysCourseDTO {
     private Integer times;
 
     /**
+     * teacherIcon          教师头像
      * teacherName          教师姓名
      * teacherSignature     教师个性签名
      * teacherScore         教师评分
      * studentCount         教师学生数量
      * duration             教师授课时长
      */
+    private String teacherIcon;
     private String teacherName;
     private String teacherSignature;
     private String teacherScore;

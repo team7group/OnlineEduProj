@@ -14,7 +14,11 @@ public class ResultData extends HashMap<String, Object> {
 
     @Override
     public ResultData put(String key, Object value) {
-        super.put(key, value);
+        try {
+            super.put(key, value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return this;
     }
 

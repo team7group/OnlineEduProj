@@ -17,6 +17,7 @@
         <result column="group_name" jdbcType="VARCHAR" property="groupName"/>
         <result column="times" jdbcType="INTEGER" property="times"/>
         <result column="realname" jdbcType="VARCHAR" property="teacherName"/>
+        <result column="icon_uuid" jdbcType="VARCHAR" property="teacherIcon"/>
         <result column="signature" jdbcType="VARCHAR" property="teacherSignature"/>
         <result column="score" jdbcType="INTEGER" property="teacherScore"/>
         <result column="student_count" jdbcType="INTEGER" property="studentCount"/>
@@ -27,11 +28,42 @@
                c.created_time, c.start_time, c.cover_url, c.course_text,
                ad.title, ad.ad_text,
                g.id as group_id, g.name as group_name, g.times,
-               t.realname, t.nickname as signature, t.score, t.student_count, t.teaching_duration
+               t.icon_uuid, t.realname, t.nickname as signature, t.score, t.student_count, t.teaching_duration
         FROM sys_course c
                  INNER JOIN sys_group g ON c.id = g.id
                  INNER JOIN sys_teacher t ON t.id = c.lecturer
                  LEFT JOIN sys_ad ad ON c.name = ad.page
         WHERE c.id = #{courseId};
+    </select>
+
+    <resultMap id="QaResultMap" type="com.group7.edu.entity.SysAnswerQuestion">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="course_id" jdbcType="INTEGER" property="id"/>
+        <result column="answer" jdbcType="VARCHAR" property="answer"/>
+        <result column="question" jdbcType="VARCHAR" property="question"/>
+    </resultMap>
+    <select id="selectByPage" resultMap="QaResultMap">
+        SELECT id, answer, question FROM sys_answer_question LIMIT #{off}, #{len}
+    </select>
+    <select id="selectQaCount" resultType="integer">
+        SELECT COUNT(*) FROM sys_answer_question WHERE courseId = #{courseId};
+    </select>
+    <select id="selectSyllabusById" resultType="java.lang.String">
+        SELECT courses FROM sys_syllabus WHERE id = #{courseId}
+    </select>
+
+    <resultMap id="CourseEvaluationResultMap" type="com.group7.edu.dto.SysCourseEvaluationDTO">
+        <result column="score" jdbcType="INTEGER" property="score"/>
+        <result column="created_time" jdbcType="DATE" property="createdTime"/>
+        <result column="evaluation_text" jdbcType="VARCHAR" property="evaluationText"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="icon_uuid" jdbcType="VARCHAR" property="userIcon"/>
+    </resultMap>
+    <select id="selectCourseEvaluationById" resultMap="CourseEvaluationResultMap">
+        SELECT e.score, e.created_time, e.evaluation_text,
+               s.nickname, s.icon_uuid
+        FROM sys_course_evaluation e
+                 LEFT JOIN sys_student s ON s.id = e.user_id
+        WHERE e.course = #{courseId}
     </select>
 </mapper>

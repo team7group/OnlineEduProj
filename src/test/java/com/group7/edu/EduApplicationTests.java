@@ -1,16 +1,12 @@
 package com.group7.edu;
 
-import com.group7.edu.entity.SysVideo;
 import com.group7.edu.mapper.SysVideoMapper;
-import com.group7.edu.utils.PasswordUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.concurrent.ThreadLocalRandom;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

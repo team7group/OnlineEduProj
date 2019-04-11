@@ -34,6 +34,21 @@ public class SysCourseEvaluation {
      */
     private String evaluationText;
 
+    /**
+     * 用户id
+     */
+    private Integer userId;
+
+    /**
+     * 文件uuid
+     */
+    private String uuid;
+
+    /**
+     * 文件名
+     */
+    private String fileName;
+
     public Integer getId() {
         return id;
     }
@@ -72,5 +87,29 @@ public class SysCourseEvaluation {
 
     public void setEvaluationText(String evaluationText) {
         this.evaluationText = evaluationText == null ? null : evaluationText.trim();
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid == null ? null : uuid.trim();
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName == null ? null : fileName.trim();
     }
 }

@@ -13,6 +13,11 @@ public class SysAnswerQuestion {
     private Integer id;
 
     /**
+     * 课程Id
+     */
+    private Integer courseid;
+
+    /**
      * 问题
      */
     private String question;
@@ -28,6 +33,14 @@ public class SysAnswerQuestion {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getCourseid() {
+        return courseid;
+    }
+
+    public void setCourseid(Integer courseid) {
+        this.courseid = courseid;
     }
 
     public String getQuestion() {
