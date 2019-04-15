@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
  */
 @SpringBootConfiguration
 public class ShiroConfig {
-
+//xcz
     @Bean(name = "authorizer")
     public Realm getRealm(Realm userRealm) {
         return userRealm;
