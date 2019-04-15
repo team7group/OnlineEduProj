@@ -1,8 +1,5 @@
 package com.group7.edu.oss;
 
-import java.io.IOException;
-import java.net.URL;
-
 /**
  * 图片处理
  *传入的是文件的uuid
@@ -25,5 +22,4 @@ public interface OssPicture {
      * @param fileUuid 文件uuid
      */
     String  originalGraph(String fileUuid);
-
 }

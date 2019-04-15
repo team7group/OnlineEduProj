@@ -1,16 +1,17 @@
 package com.group7.edu;
 
-import com.group7.edu.entity.SysVideo;
+import com.alibaba.fastjson.JSON;
+import com.group7.edu.dto.SysStudentDTO;
 import com.group7.edu.mapper.SysVideoMapper;
-import com.group7.edu.utils.PasswordUtils;
+import com.group7.edu.service.SysServiceTypeService;
+import com.group7.edu.service.SysStudentService;
+import com.group7.edu.utils.ResultData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.concurrent.ThreadLocalRandom;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -45,4 +46,28 @@ public class EduApplicationTests {
 //            }
 //        }
     }
+
+    @Resource
+    SysStudentService sysStudentService;
+    @Test
+    public void register(){
+        SysStudentDTO sysStudent = new SysStudentDTO();
+        sysStudent.setUsername("admin");
+        sysStudent.setNickname("11111");
+        sysStudent.setBanned(true);
+        sysStudent.setCheckinDays(1);
+        sysStudent.setNumber(5);
+        sysStudent.setPassword("admin");
+        sysStudent.setPhone("110");
+        sysStudent.setEmail("120");
+        sysStudentService.register(sysStudent);
+    }
+    @Resource
+    SysServiceTypeService sysServiceTypeService;
+    @Test
+    public void ServiceType(){
+        ResultData resultData = sysServiceTypeService.selectServiceType();
+        System.out.println("JSON.toJSON(resultData) = " + JSON.toJSON(resultData));
+    }
+
 }

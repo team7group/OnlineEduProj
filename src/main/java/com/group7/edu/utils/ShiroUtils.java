@@ -60,6 +60,10 @@ public class ShiroUtils {
 //        return ((SysStudent) getSubject().getPrincipal()).getId();
         return 1;
     }
+    public static SysStudent getCurrentUser(){
+        return (SysStudent) SecurityUtils.getSubject().getPrincipal();
+    }
+
 
     public static void main(String[] args) {
         System.out.println("getSession() = " + getSession());
