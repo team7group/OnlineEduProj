@@ -18,10 +18,6 @@ public class SysServiceTypeServiceImpl implements SysServiceTypeService {
     @Override
     public ResultData selectServiceType() {
         List<SysServiceType> list = sysServiceTypeMapperDTO.selectAll();
-        for (SysServiceType sysServiceType : list) {
-
-            System.out.println(sysServiceType.getName());
-        }
         return ResultData.isSuccess().put("sysServiceTypes",list);
     }
 }

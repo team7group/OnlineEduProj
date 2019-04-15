@@ -122,16 +122,6 @@ public class SysStudentController {
     @RequestMapping("/sys/student/resetPassword")
     public ResultData resetPassword(@RequestBody SysStudentDTO sysStudentDTO){
         String verificationCode = (String)ShiroUtils.getAttribute("verificationCode");
-        System.out.println("verificationCode = " + verificationCode);
-        System.out.println("verificationCode = " + verificationCode);
-        System.out.println("verificationCode = " + verificationCode);
-        System.out.println("verificationCode = " + verificationCode);
-        System.out.println("sysStudentDTO.getPassword() = " + sysStudentDTO.getPassword());
-        System.out.println("sysStudentDTO.getPassword() = " + sysStudentDTO.getPassword());
-        System.out.println("sysStudentDTO.getPassword() = " + sysStudentDTO.getPassword());
-        System.out.println("sysStudentDTO.getConfirmPassword() = " + sysStudentDTO.getConfirmPassword());
-        System.out.println("sysStudentDTO.getConfirmPassword() = " + sysStudentDTO.getConfirmPassword());
-        System.out.println("sysStudentDTO.getConfirmPassword() = " + sysStudentDTO.getConfirmPassword());
 
         if(StringUtils.isBlank(sysStudentDTO.getVerificationCode())){
             return ResultData.isFailure("验证码不能为空");
@@ -145,6 +135,7 @@ public class SysStudentController {
         if(!sysStudentDTO.getPassword().equals(sysStudentDTO.getConfirmPassword())){
             return ResultData.isFailure("两次密码输入不一致");
         }
+
         if(!sysStudentDTO.getVerificationCode().equalsIgnoreCase(verificationCode)){
             return ResultData.isFailure("验证码错误");
         }
@@ -164,15 +155,14 @@ public class SysStudentController {
 
     @RequestMapping("/sys/verificationCode")
     public ResultData verificationCode(@RequestBody SysStudent sysStudent){
-
         if(sysStudent.getEmail()==null){
-            return ResultData.isFailure("验证码不能为空");
+            return ResultData.isFailure("邮箱不能为空");
         }
 
         ResultData resultData = sysStudentService.resetPasswordSelectStudent(sysStudent);
 
         if(resultData.getCode()==1){
-            return ResultData.isFailure("邮箱输入错误");
+            return ResultData.isFailure("邮箱填写错误");
         }
 
         try {
@@ -186,11 +176,6 @@ public class SysStudentController {
             //从数据库获得该邮箱的使用人的用户名
             String username = ((SysStudent)resultData.get("sysStudent")).getUsername();
 
-            System.out.println("username = " + username);
-            System.out.println("username = " + username);
-            System.out.println("username = " + username);
-            System.out.println("username = " + username);
-            System.out.println("username = " + username);
             //发送邮箱
             Sendmail.pushmail("513888573@qq.com","jzftpodbiotabhhf",email,
                     "第七项目组","验证码",verificationCode,username);

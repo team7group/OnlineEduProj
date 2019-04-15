@@ -67,6 +67,6 @@ public class SysStudentServiceImpl implements SysStudentService {
 
         int i = sysStudentMapperDTO.updateByPrimaryKeySelective(sysStudentDTO);
 
-        return i>0?ResultData.isSuccess("修改成功"):ResultData.isFailure("服务器繁忙请稍后再试");
+        return i>0?ResultData.isSuccess("找回成功"):ResultData.isFailure("服务器繁忙请稍后再试");
     }
 }
