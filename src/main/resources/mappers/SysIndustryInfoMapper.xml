@@ -10,6 +10,23 @@
   <sql id="Base_Column_List">
     id, number, image_uuid, info_text
   </sql>
+  <select id="infoList" parameterType="com.group7.edu.entity.SysIndustryInfo" resultType="com.group7.edu.entity.SysIndustryInfo">
+    select
+    id,
+    number ,
+    image_uuid as imageUuid,
+    info_text as infoText
+    from sys_industry_info
+    where
+    concat(
+    number,
+    info_text
+    )
+    <if test="params!= null">
+      like  concat('%',#{params},'%')
+    </if>
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

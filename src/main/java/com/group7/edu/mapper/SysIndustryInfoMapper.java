@@ -2,6 +2,8 @@ package com.group7.edu.mapper;
 
 import com.group7.edu.entity.SysIndustryInfo;
 
+import java.util.List;
+
 public interface SysIndustryInfoMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface SysIndustryInfoMapper {
     int updateByPrimaryKeySelective(SysIndustryInfo record);
 
     int updateByPrimaryKey(SysIndustryInfo record);
+
+    List<SysIndustryInfo> infoList (SysIndustryInfo info);
 }

@@ -1,5 +1,8 @@
 package com.group7.edu.entity;
 
+import com.group7.edu.utils.BaseEntity;
+
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -9,10 +12,12 @@ import java.util.Date;
  * @author default
  * @date   2019/04/09
  */
-public class SysCourse {
+
+public class SysCourse extends BaseEntity {
     /**
      * 课程Id 主键 自动增长
      */
+
     private Integer id;
 
     /**
@@ -69,6 +74,20 @@ public class SysCourse {
      * 课程描述
      */
     private String courseText;
+
+    /**
+     * 模糊查詢参数 (自定义无字段)
+     */
+    private String params;
+
+
+    public String getParams() {
+        return params;
+    }
+
+    public void setParams(String params) {
+        this.params = params;
+    }
 
     public Integer getId() {
         return id;
@@ -163,6 +182,38 @@ public class SysCourse {
     }
 
     public void setCourseText(String courseText) {
+
         this.courseText = courseText == null ? null : courseText.trim();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"id\":")
+                .append(id);
+        sb.append(",\"name\":\"")
+                .append(name).append('\"');
+        sb.append(",\"lecturer\":")
+                .append(lecturer);
+        sb.append(",\"category\":\"")
+                .append(category).append('\"');
+        sb.append(",\"coverUrl\":\"")
+                .append(coverUrl).append('\"');
+        sb.append(",\"price\":")
+                .append(price);
+        sb.append(",\"origPrice\":")
+                .append(origPrice);
+        sb.append(",\"subject\":")
+                .append(subject);
+        sb.append(",\"createdTime\":\"")
+                .append(createdTime).append('\"');
+        sb.append(",\"starttime\":\"")
+                .append(starttime).append('\"');
+        sb.append(",\"terminalTime\":\"")
+                .append(terminalTime).append('\"');
+        sb.append(",\"courseText\":\"")
+                .append(courseText).append('\"');
+        sb.append('}');
+        return sb.toString();
     }
 }

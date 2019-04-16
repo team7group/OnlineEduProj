@@ -17,6 +17,39 @@
   <sql id="Blob_Column_List">
     news_text
   </sql>
+
+  <select id="newsList" parameterType="com.group7.edu.entity.SysNews" resultType="com.group7.edu.entity.SysNews">
+    select
+    id ,
+    title,
+    cover_uuid as coverUuid ,
+    created_time  as createdTime,
+    number,
+    news_text as newsText
+
+    from sys_news
+    where
+    concat(
+    number,
+    title,
+    news_text)
+    <if test="params!= null">
+      like  concat('%',#{params},'%')
+    </if>
+  </select>
+
+  <select id="selectAllSysNews" parameterType="com.group7.edu.entity.SysNews" resultType="com.group7.edu.entity.SysNews">
+    select
+    id ,
+    title,
+    cover_uuid as coverUuid ,
+    created_time  as createdTime,
+    number,
+    news_text as newsText
+    from sys_news
+
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />

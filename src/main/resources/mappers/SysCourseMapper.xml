@@ -19,6 +19,40 @@
     id, name, lecturer, category, cover_url, price, orig_price, subject, created_time, 
     startTime, terminal_time, course_text
   </sql>
+  <select id="selectAllSysCourse" parameterType="com.group7.edu.entity.SysCourse" resultType="com.group7.edu.entity.SysCourse">
+    select
+        id ,
+        name  ,
+        category ,
+        cover_url as coverUrl ,
+        course_text as courseText,
+        created_time as  createdTime
+        from sys_course
+
+  </select>
+  <select id="courseList" parameterType="com.group7.edu.entity.SysCourse" resultType="com.group7.edu.entity.SysCourse">
+    select
+    id ,
+    name  ,
+    category ,
+    cover_url as coverUrl ,
+    course_text as courseText
+    from sys_course
+    where
+    concat(
+    name,
+    category,
+    course_text,
+    subject,
+    lecturer
+    )
+    <if test="params!= null">
+      like  concat('%',#{params},'%')
+    </if>
+  </select>
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -174,4 +208,8 @@
       course_text = #{courseText,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--<select id="">
+          SELECT `name`,cover_uuid, course_text,price,orig_price FROM `sys_course` where id =2;
+  </select>-->
 </mapper>

@@ -9,6 +9,21 @@
   <sql id="Base_Column_List">
     id, name, department
   </sql>
+  <select id="subjectList" parameterType="com.group7.edu.entity.SysSubject" resultType="com.group7.edu.entity.SysSubject">
+    select
+    id ,
+    name
+    from sys_subject
+    where
+    concat(
+    name
+    )
+    <if test="params!= null">
+      like  concat('%',#{params},'%')
+    </if>
+  </select>
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
