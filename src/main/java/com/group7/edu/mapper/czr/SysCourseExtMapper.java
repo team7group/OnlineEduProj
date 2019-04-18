@@ -1,4 +1,4 @@
-package com.group7.edu.mapper;
+package com.group7.edu.mapper.czr;
 
 import com.group7.edu.dto.SysCourseDTO;
 import com.group7.edu.dto.SysCourseEvaluationDTO;
@@ -19,5 +19,7 @@ public interface SysCourseExtMapper {
 
     List<String> selectSyllabusById(Integer courseId);
 
-    List<SysCourseEvaluationDTO> selectCourseEvaluationById(Integer courseId);
+    List<SysCourseEvaluationDTO> selectCourseEvaluationById(Integer courseId, Integer off, Integer len);
+
+    Integer selectEvaluationCount(Integer courseId);
 }

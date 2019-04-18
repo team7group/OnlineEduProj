@@ -1,4 +1,4 @@
-package com.group7.edu.service;
+package com.group7.edu.service.czr;
 
 import com.group7.edu.entity.SysAgreement;
 

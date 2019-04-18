@@ -1,8 +1,8 @@
-package com.group7.edu.service.impl;
+package com.group7.edu.service.czr.impl;
 
 import com.group7.edu.entity.SysAgreement;
-import com.group7.edu.mapper.SysAgreementExtMapper;
-import com.group7.edu.service.SysAgreementService;
+import com.group7.edu.mapper.czr.SysAgreementExtMapper;
+import com.group7.edu.service.czr.SysAgreementService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

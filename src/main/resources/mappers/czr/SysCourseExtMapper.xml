@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.group7.edu.mapper.SysCourseExtMapper">
+<mapper namespace="com.group7.edu.mapper.czr.SysCourseExtMapper">
     <resultMap id="ExtResultMap" type="com.group7.edu.dto.SysCourseDTO">
         <id column="course_id" jdbcType="INTEGER" property="courseId"/>
         <result column="course_name" jdbcType="VARCHAR" property="courseName"/>
@@ -60,10 +60,15 @@
         <result column="icon_uuid" jdbcType="VARCHAR" property="userIcon"/>
     </resultMap>
     <select id="selectCourseEvaluationById" resultMap="CourseEvaluationResultMap">
-        SELECT e.score, e.created_time, e.evaluation_text,
+        SELECT e.id, e.score, e.created_time, e.evaluation_text,
                s.nickname, s.icon_uuid
         FROM sys_course_evaluation e
-                 LEFT JOIN sys_student s ON s.id = e.user_id
+                 LEFT JOIN sys_student s ON IFNULL(e.user_id, -1) = s.id
         WHERE e.course = #{courseId}
+        LIMIT #{off}, #{len}
+    </select>
+
+    <select id="selectEvaluationCount" resultType="integer">
+        SELECT COUNT(*) FROM sys_course_evaluation WHERE course = #{courseId}
     </select>
 </mapper>

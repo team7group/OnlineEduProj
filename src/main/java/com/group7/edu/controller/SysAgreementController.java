@@ -1,7 +1,7 @@
 package com.group7.edu.controller;
 
 import com.group7.edu.entity.SysAgreement;
-import com.group7.edu.service.SysAgreementService;
+import com.group7.edu.service.czr.SysAgreementService;
 import com.group7.edu.utils.ResultData;
 import org.codehaus.plexus.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;

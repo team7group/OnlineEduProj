@@ -1,13 +1,14 @@
-package com.group7.edu.service.impl;
+package com.group7.edu.service.czr.impl;
 
 import com.group7.edu.dto.SysCourseDTO;
 import com.group7.edu.dto.SysCourseEvaluationDTO;
 import com.group7.edu.entity.SysAnswerQuestion;
 import com.group7.edu.entity.SysCourse;
-import com.group7.edu.mapper.SysCourseExtMapper;
+import com.group7.edu.mapper.czr.SysCourseExtMapper;
 import com.group7.edu.mapper.SysCourseMapper;
 import com.group7.edu.oss.OssPicture;
-import com.group7.edu.service.SysCourseService;
+import com.group7.edu.service.czr.SysCourseService;
+import com.group7.edu.utils.ResultData;
 import org.codehaus.plexus.util.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -90,10 +91,13 @@ public class SysCourseServiceImpl implements SysCourseService {
     }
 
     @Override
-    public List<SysCourseEvaluationDTO> findCourseEvaluationById(Integer courseId) {
+    public ResultData findCourseEvaluationById(Integer courseId, Integer page, Integer pageSize) {
         List<SysCourseEvaluationDTO> evaluations = null;
+        Integer count = null;
+        page = (page - 1) * pageSize;
         try {
-            evaluations = sysCourseExtMapper.selectCourseEvaluationById(courseId);
+            count = sysCourseExtMapper.selectEvaluationCount(courseId);
+            evaluations = sysCourseExtMapper.selectCourseEvaluationById(courseId, page, pageSize);
             if (evaluations != null) {
                 for (SysCourseEvaluationDTO evaluation : evaluations) {
                     if (evaluation != null && StringUtils.isNotBlank(evaluation.getUserIcon())) {
@@ -105,6 +109,25 @@ public class SysCourseServiceImpl implements SysCourseService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return evaluations;
+        if (evaluations == null || count == null) {
+            return ResultData.isFailure("未查询到相关结果");
+        }
+        for (SysCourseEvaluationDTO evaluation : evaluations) {
+            if (evaluation == null) {
+                continue;
+            }
+
+            if (StringUtils.isBlank(evaluation.getEvaluationText())) {
+                evaluation.setEvaluationText("超级好评");
+            }
+
+            if (StringUtils.isBlank(evaluation.getNickname())) {
+                evaluation.setNickname("匿名");
+                evaluation.setUserIcon(ossPicture.originalGraph("匿名头像UUID"));
+            } else if (StringUtils.isBlank(evaluation.getUserIcon())) {
+                evaluation.setUserIcon(ossPicture.originalGraph("默认头像UUID"));
+            }
+        }
+        return ResultData.isSuccess().put("count", count).put("evaluations", evaluations);
     }
 }

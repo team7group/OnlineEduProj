@@ -1,5 +1,7 @@
 package com.group7.edu.entity;
 
+import lombok.ToString;
+
 import java.util.Date;
 
 /**
@@ -8,6 +10,7 @@ import java.util.Date;
  * @author default
  * @date   2019/04/11
  */
+@ToString
 public class SysCourseEvaluation {
     /**
      * 课程评价Id

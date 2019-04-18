@@ -1,5 +1,7 @@
 package com.group7.edu;
 
+import com.alibaba.fastjson.JSON;
+import com.group7.edu.entity.SysCourseEvaluation;
 import com.group7.edu.mapper.SysVideoMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +20,12 @@ public class EduApplicationTests {
 
     @Resource
     private SysVideoMapper sysVideoMapper;
+
+    @Test
+    public void testJson() {
+//        Object parse = (SysCourseEvaluation)JSON.parse("{evaluationText:'[{'}");
+//        System.out.println("parse = " + parse);
+    }
 
     @Test
     public void insertVideo() {

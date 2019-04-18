@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.hky.SysCourseEvaluationMapperHky">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysCourseEvaluation">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="course" jdbcType="INTEGER" property="course" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="created_time" jdbcType="DATE" property="createdTime" />
+    <result column="evaluation_text" jdbcType="VARCHAR" property="evaluationText" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, course, score, created_time, evaluation_text, user_id, uuid, file_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_course_evaluation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_course_evaluation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group7.edu.entity.SysCourseEvaluation">
+    insert into sys_course_evaluation (id, course, score, 
+      created_time, evaluation_text, user_id, 
+      uuid, file_name)
+    values (#{id,jdbcType=INTEGER}, #{course,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{createdTime,jdbcType=DATE}, #{evaluationText,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{uuid,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysCourseEvaluation">
+    insert into sys_course_evaluation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="course != null">
+        course,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="evaluationText != null">
+        evaluation_text,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="course != null">
+        #{course,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=DATE},
+      </if>
+      <if test="evaluationText != null">
+        #{evaluationText,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysCourseEvaluation">
+    update sys_course_evaluation
+    <set>
+      <if test="course != null">
+        course = #{course,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=DATE},
+      </if>
+      <if test="evaluationText != null">
+        evaluation_text = #{evaluationText,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysCourseEvaluation">
+    update sys_course_evaluation
+    set course = #{course,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=DATE},
+      evaluation_text = #{evaluationText,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      file_name = #{fileName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="isEvaluate" parameterType="int" resultType="com.group7.edu.entity.SysCourseEvaluation">
+    select * from sys_course_evaluation where user_id = #{userId} and course = #{course}
+  </select>
+
+  <select id="evaluation" parameterType="int" resultType="java.lang.Double">
+    select cast(sum(score) / count(*) as decimal(11,1) ) as evaluate
+    from sys_course_evaluation where course = #{course}
+  </select>
+</mapper>

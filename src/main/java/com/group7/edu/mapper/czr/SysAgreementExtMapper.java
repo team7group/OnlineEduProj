@@ -1,4 +1,4 @@
-package com.group7.edu.mapper;
+package com.group7.edu.mapper.czr;
 
 import com.group7.edu.entity.SysAgreement;
 

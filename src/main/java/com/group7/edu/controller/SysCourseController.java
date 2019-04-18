@@ -1,9 +1,10 @@
 package com.group7.edu.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.group7.edu.dto.SysCourseDTO;
 import com.group7.edu.dto.SysCourseEvaluationDTO;
 import com.group7.edu.entity.SysAnswerQuestion;
-import com.group7.edu.service.SysCourseService;
+import com.group7.edu.service.czr.SysCourseService;
 import com.group7.edu.utils.ResultData;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class SysCourseController {
@@ -58,18 +60,14 @@ public class SysCourseController {
         if (syllabus == null) {
             return ResultData.isFailure("未查询到相关信息").put("syllabus", "{}");
         }
-        return ResultData.isSuccess().put("syllabus", syllabus);
+        return ResultData.isSuccess().put("syllabus", JSON.parseArray(syllabus));
     }
 
-    @RequestMapping("/course/evaluation/get/{id}")
-    public ResultData findEvaluationById(@PathVariable("id") Integer id) {
-        if (id == null || id <= 0) {
+    @RequestMapping("/course/evaluation/get")
+    public ResultData findEvaluationById(Integer courseId, Integer page, Integer pageSize) {
+        if (courseId == null || courseId <= 0 || page == null || pageSize == null) {
             return ResultData.isFailure("参数非法");
         }
-        List<SysCourseEvaluationDTO> evaluations = sysCourseService.findCourseEvaluationById(id);
-        if (evaluations == null) {
-            return ResultData.isFailure("未查询到相关的结果");
-        }
-        return ResultData.isSuccess().put("evaluations", evaluations);
+        return sysCourseService.findCourseEvaluationById(courseId, page, pageSize);
     }
 }
