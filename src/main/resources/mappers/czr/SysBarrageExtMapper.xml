@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.czr.SysBarrageExtMapper">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysBarrage">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="duration" jdbcType="INTEGER" property="duration" />
+    <result column="vid" jdbcType="INTEGER" property="vid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="pos" jdbcType="TINYINT" property="pos" />
+    <result column="barrage_text" jdbcType="VARCHAR" property="barrageText" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, duration, vid, uid, pos, barrage_text
+  </sql>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into sys_barrage (id, duration, vid,
+      uid, pos, created_time,
+      barrage_text)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+        (#{item.id,jdbcType=BIGINT}, #{item.duration,jdbcType=INTEGER}, #{item.vid,jdbcType=INTEGER},
+        #{item.uid,jdbcType=INTEGER}, #{item.pos,jdbcType=TINYINT}, #{item.createdTime,jdbcType=TIMESTAMP},
+        #{item.barrageText,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+    <select id="selectByIdDuration" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            sys_barrage
+        WHERE
+            vid = #{vid}
+            AND duration BETWEEN #{pos} AND #{duration}
+        ORDER BY created_time DESC
+        LIMIT #{off}, #{len};
+    </select>
+</mapper>
