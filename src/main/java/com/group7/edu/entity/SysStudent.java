@@ -19,7 +19,7 @@ public class SysStudent {
 
     private Integer checkinDays;
 
-    private String iconUrl;
+    private String iconUuid;
 
     private String phone;
 
@@ -97,12 +97,12 @@ public class SysStudent {
         this.checkinDays = checkinDays;
     }
 
-    public String getIconUrl() {
-        return iconUrl;
+    public String getIconUuid() {
+        return iconUuid;
     }
 
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl == null ? null : iconUrl.trim();
+    public void setIconUuid(String iconUuid) {
+        this.iconUuid = iconUuid == null ? null : iconUuid.trim();
     }
 
     public String getPhone() {

@@ -10,7 +10,7 @@
     <result column="password_salt" jdbcType="VARCHAR" property="passwordSalt" />
     <result column="banned" jdbcType="BIT" property="banned" />
     <result column="checkin_days" jdbcType="INTEGER" property="checkinDays" />
-    <result column="icon_url" jdbcType="VARCHAR" property="iconUrl" />
+    <result column="icon_uuid" jdbcType="VARCHAR" property="iconUuid" />
     <result column="phone" jdbcType="CHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
@@ -78,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, number, username, nickname, password_hash, password_salt, banned, checkin_days, 
-    icon_url, phone, email, sex, birthday, wechat, qq
+    icon_uuid, phone, email, sex, birthday, wechat, qq
   </sql>
   <select id="selectByExample" parameterType="com.group7.edu.entity.SysStudentExample" resultMap="BaseResultMap">
     select
@@ -95,8 +95,16 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
+    from sys_student
+    where id = #{id,jdbcType=INTEGER}
+
+  </select>
+
+  <select id="selectStudentByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+   select
+    id,`number`, username,nickname,banned,icon_uuid,phone,email,sex,birthday,wechat,qq
     from sys_student
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -113,12 +121,12 @@
   <insert id="insert" parameterType="com.group7.edu.entity.SysStudent">
     insert into sys_student (id, number, username, 
       nickname, password_hash, password_salt, 
-      banned, checkin_days, icon_url, 
+      banned, checkin_days, icon_uuid,
       phone, email, sex, birthday, 
       wechat, qq)
     values (#{id,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
       #{nickname,jdbcType=VARCHAR}, #{passwordHash,jdbcType=VARCHAR}, #{passwordSalt,jdbcType=VARCHAR}, 
-      #{banned,jdbcType=BIT}, #{checkinDays,jdbcType=INTEGER}, #{iconUrl,jdbcType=VARCHAR}, 
+      #{banned,jdbcType=BIT}, #{checkinDays,jdbcType=INTEGER}, #{iconUuid,jdbcType=VARCHAR},
       #{phone,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
       #{wechat,jdbcType=VARCHAR}, #{qq,jdbcType=CHAR})
   </insert>
@@ -149,8 +157,8 @@
       <if test="checkinDays != null">
         checkin_days,
       </if>
-      <if test="iconUrl != null">
-        icon_url,
+      <if test="iconUuid != null">
+        icon_uuid,
       </if>
       <if test="phone != null">
         phone,
@@ -196,8 +204,8 @@
       <if test="checkinDays != null">
         #{checkinDays,jdbcType=INTEGER},
       </if>
-      <if test="iconUrl != null">
-        #{iconUrl,jdbcType=VARCHAR},
+      <if test="iconUuid != null">
+        #{iconUuid,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
         #{phone,jdbcType=CHAR},
@@ -225,6 +233,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
+  <select id="findCheckinDays" parameterType="java.lang.Long" resultType="java.lang.Long">
+   select checkin_days from sys_student where id = #{id}
+  </select>
+  <update id="updateIcon" parameterType="com.group7.edu.entity.SysStudent">
+    UPDATE sys_student SET `icon_uuid` =#{iconUuid}  WHERE `id` =#{id}
+  </update>
   <update id="updateByExampleSelective" parameterType="map">
     update sys_student
     <set>
@@ -252,8 +267,8 @@
       <if test="record.checkinDays != null">
         checkin_days = #{record.checkinDays,jdbcType=INTEGER},
       </if>
-      <if test="record.iconUrl != null">
-        icon_url = #{record.iconUrl,jdbcType=VARCHAR},
+      <if test="record.iconUuid != null">
+        icon_uuid = #{record.iconUuid,jdbcType=VARCHAR},
       </if>
       <if test="record.phone != null">
         phone = #{record.phone,jdbcType=CHAR},
@@ -288,7 +303,7 @@
       password_salt = #{record.passwordSalt,jdbcType=VARCHAR},
       banned = #{record.banned,jdbcType=BIT},
       checkin_days = #{record.checkinDays,jdbcType=INTEGER},
-      icon_url = #{record.iconUrl,jdbcType=VARCHAR},
+    icon_uuid = #{record.iconUuid,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=CHAR},
       email = #{record.email,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=VARCHAR},
@@ -323,8 +338,8 @@
       <if test="checkinDays != null">
         checkin_days = #{checkinDays,jdbcType=INTEGER},
       </if>
-      <if test="iconUrl != null">
-        icon_url = #{iconUrl,jdbcType=VARCHAR},
+      <if test="iconUuid != null">
+        icon_uuid = #{iconUuid,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
         phone = #{phone,jdbcType=CHAR},
@@ -356,7 +371,7 @@
       password_salt = #{passwordSalt,jdbcType=VARCHAR},
       banned = #{banned,jdbcType=BIT},
       checkin_days = #{checkinDays,jdbcType=INTEGER},
-      icon_url = #{iconUrl,jdbcType=VARCHAR},
+      icon_uuid = #{iconUuid,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=CHAR},
       email = #{email,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
@@ -364,5 +379,20 @@
       wechat = #{wechat,jdbcType=VARCHAR},
       qq = #{qq,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updatePwd" parameterType="com.group7.edu.entity.SysStudent">
+   UPDATE sys_student SET `password_hash` = #{passwordHash} WHERE `id` = #{id}
+  </update>
+  <update id="updateWechat" parameterType="com.group7.edu.entity.SysStudent">
+   UPDATE sys_student SET `wechat` = #{wechat} WHERE `id` = #{id}
+  </update>
+  <update id="updateQQ" parameterType="com.group7.edu.entity.SysStudent">
+   UPDATE sys_student SET `qq` = #{qq} WHERE `id` = #{id}
+  </update>
+
+
+    <update id="updateCheckinDays" parameterType="com.group7.edu.entity.SysStudent">
+   UPDATE sys_student SET `checkin_days` = #{checkinDays} WHERE `id` = #{id}
   </update>
 </mapper>
