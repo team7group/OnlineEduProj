@@ -1,4 +1,4 @@
-package com.group7.edu.controller;
+package com.group7.edu.controller.hky;
 
 
 import com.group7.edu.entity.SysVideo;

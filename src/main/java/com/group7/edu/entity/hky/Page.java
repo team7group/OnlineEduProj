@@ -1,4 +1,4 @@
-package com.group7.edu.entity;
+package com.group7.edu.entity.hky;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

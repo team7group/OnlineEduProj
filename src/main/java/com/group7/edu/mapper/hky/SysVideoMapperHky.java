@@ -1,6 +1,6 @@
 package com.group7.edu.mapper.hky;
 
-import com.group7.edu.entity.Part;
+import com.group7.edu.entity.hky.Part;
 import com.group7.edu.entity.SysVideo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
