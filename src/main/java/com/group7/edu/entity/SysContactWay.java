@@ -4,7 +4,7 @@ package com.group7.edu.entity;
  * 联系方式，用户提交上来的
  *
  * @author default
- * @date   2019/04/09
+ * @date   2019/04/21
  */
 public class SysContactWay {
     /**

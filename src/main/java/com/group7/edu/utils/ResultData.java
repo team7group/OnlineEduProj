@@ -13,8 +13,8 @@ public class ResultData extends HashMap<String, Object> {
     private static final int STATUS_FAILURE = 1;
 
     @Override
-    public Object put(String key, Object value) {
-        super.put(key, value);
+    public ResultData put(String key, Object value) {
+        try{super.put(key, value);}catch (Exception e){e.printStackTrace();}
         return this;
     }
 
@@ -45,6 +45,8 @@ public class ResultData extends HashMap<String, Object> {
     public ResultData(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
+        put("code", code);
+        put("msg", msg);
     }
 
     public ResultData(Integer code) {

@@ -4,7 +4,7 @@ package com.group7.edu.entity;
  * 问答，展示在课程详情页上面的
  *
  * @author default
- * @date   2019/04/09
+ * @date   2019/04/21
  */
 public class SysAnswerQuestion {
     /**

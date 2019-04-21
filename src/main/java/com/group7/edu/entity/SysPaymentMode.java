@@ -4,7 +4,7 @@ package com.group7.edu.entity;
  * 支付方式
  *
  * @author default
- * @date   2019/04/09
+ * @date   2019/04/21
  */
 public class SysPaymentMode {
     /**

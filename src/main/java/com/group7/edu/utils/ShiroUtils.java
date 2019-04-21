@@ -36,6 +36,10 @@ public class ShiroUtils {
 //        return SecurityUtils.getSubject();
         return null;
     }
+    public static SysStudent getCurrentUser(){
+//        return (SysStudent) SecurityUtils.getSubject().getPrincipal();
+        return getUser();
+    }
 
     public static SysStudent getUser() {
 //        return (SysStudent) getSubject().getPrincipal();

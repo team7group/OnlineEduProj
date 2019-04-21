@@ -7,7 +7,7 @@ import java.util.Date;
  * 订单
  *
  * @author default
- * @date   2019/04/09
+ * @date   2019/04/21
  */
 public class SysOrder {
     /**
@@ -39,21 +39,6 @@ public class SysOrder {
      * 课程名称
      */
     private String courseName;
-
-    /**
-     * 教师名称
-     */
-    private String lecturerName;
-
-    /**
-     * 课程封面uuid
-     */
-    private String coverUuid;
-
-    /**
-     * 订阅过期时间
-     */
-    private Date expireTime;
 
     public Integer getId() {
         return id;
@@ -101,29 +86,5 @@ public class SysOrder {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName == null ? null : courseName.trim();
-    }
-
-    public String getLecturerName() {
-        return lecturerName;
-    }
-
-    public void setLecturerName(String lecturerName) {
-        this.lecturerName = lecturerName == null ? null : lecturerName.trim();
-    }
-
-    public String getCoverUuid() {
-        return coverUuid;
-    }
-
-    public void setCoverUuid(String coverUuid) {
-        this.coverUuid = coverUuid == null ? null : coverUuid.trim();
-    }
-
-    public Date getExpireTime() {
-        return expireTime;
-    }
-
-    public void setExpireTime(Date expireTime) {
-        this.expireTime = expireTime;
     }
 }

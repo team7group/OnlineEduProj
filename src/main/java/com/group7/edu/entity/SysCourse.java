@@ -7,7 +7,7 @@ import java.util.Date;
  * 课程
  *
  * @author default
- * @date   2019/04/09
+ * @date   2019/04/21
  */
 public class SysCourse {
     /**
@@ -31,9 +31,9 @@ public class SysCourse {
     private String category;
 
     /**
-     * 课程封面URL
+     * 课程封面uuid
      */
-    private String coverUrl;
+    private String coverUuid;
 
     /**
      * 课程价格
@@ -102,12 +102,12 @@ public class SysCourse {
         this.category = category == null ? null : category.trim();
     }
 
-    public String getCoverUrl() {
-        return coverUrl;
+    public String getCoverUuid() {
+        return coverUuid;
     }
 
-    public void setCoverUrl(String coverUrl) {
-        this.coverUrl = coverUrl == null ? null : coverUrl.trim();
+    public void setCoverUuid(String coverUuid) {
+        this.coverUuid = coverUuid == null ? null : coverUuid.trim();
     }
 
     public BigDecimal getPrice() {
