@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.SysOrderMapper">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="cost" jdbcType="DECIMAL" property="cost" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="course_name" jdbcType="VARCHAR" property="courseName" />
+    <result column="lecturer_name" jdbcType="VARCHAR" property="lecturerName" />
+    <result column="cover_uuid" jdbcType="VARCHAR" property="coverUuid" />
+    <result column="expire_time" jdbcType="DATE" property="expireTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, cost, created_time, course_id, course_name, lecturer_name, cover_uuid, expire_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group7.edu.entity.SysOrder">
+    insert into sys_order (id, uid, cost, 
+      created_time, course_id, course_name, 
+      lecturer_name, cover_uuid, expire_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{cost,jdbcType=DECIMAL}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{courseId,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, 
+      #{lecturerName,jdbcType=VARCHAR}, #{coverUuid,jdbcType=VARCHAR}, #{expireTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysOrder">
+    insert into sys_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="cost != null">
+        cost,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="courseName != null">
+        course_name,
+      </if>
+      <if test="lecturerName != null">
+        lecturer_name,
+      </if>
+      <if test="coverUuid != null">
+        cover_uuid,
+      </if>
+      <if test="expireTime != null">
+        expire_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="cost != null">
+        #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null">
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="lecturerName != null">
+        #{lecturerName,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUuid != null">
+        #{coverUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysOrder">
+    update sys_order
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="cost != null">
+        cost = #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="courseId != null">
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null">
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="lecturerName != null">
+        lecturer_name = #{lecturerName,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUuid != null">
+        cover_uuid = #{coverUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        expire_time = #{expireTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysOrder">
+    update sys_order
+    set uid = #{uid,jdbcType=INTEGER},
+      cost = #{cost,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      course_id = #{courseId,jdbcType=INTEGER},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      lecturer_name = #{lecturerName,jdbcType=VARCHAR},
+      cover_uuid = #{coverUuid,jdbcType=VARCHAR},
+      expire_time = #{expireTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -7,8 +7,8 @@ public class SysStudentDTO extends SysStudent {
     private String password;
     //确认密码
     private String confirmPassword;
-    //验证码
-    private String captchaCode;
+//    //验证码
+//    private String captchaCode;
     //记住我
     private boolean rememberMe;
     //登录时用户名
@@ -40,13 +40,13 @@ public class SysStudentDTO extends SysStudent {
         this.password = password;
     }
 
-    public String getCaptchaCode() {
-        return captchaCode;
-    }
-
-    public void setCaptchaCode(String captchaCode) {
-        this.captchaCode = captchaCode;
-    }
+//    public String getCaptchaCode() {
+//        return captchaCode;
+//    }
+//
+//    public void setCaptchaCode(String captchaCode) {
+//        this.captchaCode = captchaCode;
+//    }
 
     public boolean isRememberMe() {
         return rememberMe;

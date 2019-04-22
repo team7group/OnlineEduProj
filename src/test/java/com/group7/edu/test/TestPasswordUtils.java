@@ -3,9 +3,6 @@ package com.group7.edu.test;
 import com.group7.edu.utils.PasswordUtils;
 import org.junit.Test;
 
-
-import java.util.Objects;
-
 public class TestPasswordUtils {
 
     @Test
@@ -23,5 +20,12 @@ public class TestPasswordUtils {
         for (int i = 0; i < 100; i++) {
             System.out.println("PasswordUtils.genSalt() = " + PasswordUtils.genSalt());
         }
+    }
+
+    @Test
+    public void system() {
+        System.out.println("System.currentTimeMillis() = " + System.currentTimeMillis());
+        System.out.println((System.currentTimeMillis()+"").substring(4));
+        System.out.println();
     }
 }

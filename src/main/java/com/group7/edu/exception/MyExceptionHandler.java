@@ -15,8 +15,6 @@ public class MyExceptionHandler {
 //    全局异常处理
     @ExceptionHandler(Exception.class)
     public ResultData handlerException(Exception e){
-        System.out.println("-------------------------------->aaa");
-        e.printStackTrace();
         return ResultData.isFailure(e.getMessage());
     }
 

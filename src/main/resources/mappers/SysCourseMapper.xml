@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.SysCourseMapper">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysCourse">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="lecturer" jdbcType="INTEGER" property="lecturer" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="cover_uuid" jdbcType="VARCHAR" property="coverUuid" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="orig_price" jdbcType="DECIMAL" property="origPrice" />
+    <result column="subject" jdbcType="INTEGER" property="subject" />
+    <result column="created_time" jdbcType="DATE" property="createdTime" />
+    <result column="startTime" jdbcType="DATE" property="starttime" />
+    <result column="terminal_time" jdbcType="DATE" property="terminalTime" />
+    <result column="course_text" jdbcType="VARCHAR" property="courseText" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, lecturer, category, cover_uuid, price, orig_price, subject, created_time, 
+    startTime, terminal_time, course_text
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_course
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_course
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group7.edu.entity.SysCourse">
+    insert into sys_course (id, name, lecturer, 
+      category, cover_uuid, price, 
+      orig_price, subject, created_time, 
+      startTime, terminal_time, course_text
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{lecturer,jdbcType=INTEGER}, 
+      #{category,jdbcType=VARCHAR}, #{coverUuid,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{origPrice,jdbcType=DECIMAL}, #{subject,jdbcType=INTEGER}, #{createdTime,jdbcType=DATE}, 
+      #{starttime,jdbcType=DATE}, #{terminalTime,jdbcType=DATE}, #{courseText,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysCourse">
+    insert into sys_course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="lecturer != null">
+        lecturer,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="coverUuid != null">
+        cover_uuid,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="origPrice != null">
+        orig_price,
+      </if>
+      <if test="subject != null">
+        subject,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="terminalTime != null">
+        terminal_time,
+      </if>
+      <if test="courseText != null">
+        course_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="lecturer != null">
+        #{lecturer,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUuid != null">
+        #{coverUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="origPrice != null">
+        #{origPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=DATE},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="terminalTime != null">
+        #{terminalTime,jdbcType=DATE},
+      </if>
+      <if test="courseText != null">
+        #{courseText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysCourse">
+    update sys_course
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="lecturer != null">
+        lecturer = #{lecturer,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUuid != null">
+        cover_uuid = #{coverUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="origPrice != null">
+        orig_price = #{origPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="subject != null">
+        subject = #{subject,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=DATE},
+      </if>
+      <if test="starttime != null">
+        startTime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="terminalTime != null">
+        terminal_time = #{terminalTime,jdbcType=DATE},
+      </if>
+      <if test="courseText != null">
+        course_text = #{courseText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysCourse">
+    update sys_course
+    set name = #{name,jdbcType=VARCHAR},
+      lecturer = #{lecturer,jdbcType=INTEGER},
+      category = #{category,jdbcType=VARCHAR},
+      cover_uuid = #{coverUuid,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      orig_price = #{origPrice,jdbcType=DECIMAL},
+      subject = #{subject,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=DATE},
+      startTime = #{starttime,jdbcType=DATE},
+      terminal_time = #{terminalTime,jdbcType=DATE},
+      course_text = #{courseText,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

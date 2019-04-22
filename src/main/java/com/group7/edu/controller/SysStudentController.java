@@ -18,11 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.OutputStream;
 
 @RestController
 public class SysStudentController {
@@ -37,7 +32,7 @@ public class SysStudentController {
     @RequestMapping("/sys/student/login")
     public ResultData login(@RequestBody SysStudentDTO sysStudentDTO) {
         //获得验证码
-        String captchaCode = (String) ShiroUtils.getAttribute("captchaCode");
+//        String captchaCode = (String) ShiroUtils.getAttribute("captchaCode");
 
         if (StringUtils.isBlank(sysStudentDTO.getPhoneOrEmail())) {
             return ResultData.isFailure("用户名不能为空");
@@ -45,12 +40,12 @@ public class SysStudentController {
         if (StringUtils.isBlank(sysStudentDTO.getPassword())) {
             return ResultData.isFailure("密码不能为空");
         }
-        if (StringUtils.isBlank(captchaCode)) {
-            return ResultData.isFailure("验证码不能为空");
-        }
-        if (!captchaCode.equalsIgnoreCase(sysStudentDTO.getCaptchaCode())) {
-            return ResultData.isFailure("验证码错误");
-        }
+//        if (StringUtils.isBlank(captchaCode)) {
+//            return ResultData.isFailure("验证码不能为空");
+//        }
+//        if (!captchaCode.equalsIgnoreCase(sysStudentDTO.getCaptchaCode())) {
+//            return ResultData.isFailure("验证码错误");
+//        }
         try {
             //进入权限认证
             //得到subject
@@ -73,54 +68,70 @@ public class SysStudentController {
     }
 
 
-    @RequestMapping("/sys/captcha.jpg")
-    public void captcha(HttpServletResponse response) {
-
-        try {
-            //获取并将验证码code存入session中
-            String captchaCode = producer.createText();
-            ShiroUtils.setAttribute("captchaCode", captchaCode);
-
-            //画出图片
-            BufferedImage bufferedImage = producer.createImage(captchaCode);
-
-            //获得输出流
-            OutputStream os = response.getOutputStream();
-
-            //把生成的验证码展示到客户端
-            ImageIO.write(bufferedImage, "jpg", os);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    @RequestMapping("/sys/captcha.jpg")
+//    public void captcha(HttpServletResponse response) {
+//
+//        try {
+//            //获取并将验证码code存入session中
+//            String captchaCode = producer.createText();
+//            ShiroUtils.setAttribute("captchaCode", captchaCode);
+//
+//            //画出图片
+//            BufferedImage bufferedImage = producer.createImage(captchaCode);
+//
+//            //获得输出流
+//            OutputStream os = response.getOutputStream();
+//
+//            //把生成的验证码展示到客户端
+//            ImageIO.write(bufferedImage, "jpg", os);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     @RequestMapping("/sys/student/register")
     public ResultData register(@RequestBody SysStudentDTO sysStudentDTO) {
 
         //判断必要的值是否为空
-        if(sysStudentDTO.getNumber()==null||sysStudentDTO.getNumber()<0){
-            return ResultData.isFailure("学号不能为空");
-        }
-        if(StringUtils.isBlank(sysStudentDTO.getUsername())){
-            return ResultData.isFailure("用户昵称不能为空");
-        }
-        if(StringUtils.isBlank(sysStudentDTO.getNickname())){
-            return ResultData.isFailure("用户名不能为空");
+//        if(sysStudentDTO.getNumber()==null||sysStudentDTO.getNumber()<0){
+//            return ResultData.isFailure("学号不能为空");
+//        }
+//        if(StringUtils.isBlank(sysStudentDTO.getUsername())){
+//            return ResultData.isFailure("用户昵称不能为空");
+//        }
+//        if(StringUtils.isBlank(sysStudentDTO.getNickname())){
+//            return ResultData.isFailure("用户名不能为空");
+//        }
+
+        String verificationCode = (String)ShiroUtils.getAttribute("verificationCode");
+
+        if(StringUtils.isBlank(sysStudentDTO.getEmail())){
+            return ResultData.isFailure("邮箱不能为空");
         }
         if(StringUtils.isBlank(sysStudentDTO.getPassword())){
             return ResultData.isFailure("密码不能为空");
         }
-        if(StringUtils.isBlank(sysStudentDTO.getEmail())){
-            return ResultData.isFailure("邮箱不能为空");
+        if(StringUtils.isBlank(sysStudentDTO.getVerificationCode())){
+            return ResultData.isFailure("验证码不能为空");
         }
+        if(!sysStudentDTO.getVerificationCode().equalsIgnoreCase(verificationCode)){
+            return ResultData.isFailure("验证码错误");
+        }
+
+
+        //添加数据库不能为空的数据学号、昵称、用户名
+        sysStudentDTO.setNumber(Integer.valueOf(String.valueOf(System.currentTimeMillis()).substring(5)));
+        sysStudentDTO.setUsername(PasswordUtils.getVerificationCode());
+        sysStudentDTO.setNickname(PasswordUtils.getVerificationCode());
 
         return sysStudentService.register(sysStudentDTO);
     }
 
     @RequestMapping("/sys/student/resetPassword")
     public ResultData resetPassword(@RequestBody SysStudentDTO sysStudentDTO){
+
         String verificationCode = (String)ShiroUtils.getAttribute("verificationCode");
 
         if(StringUtils.isBlank(sysStudentDTO.getVerificationCode())){

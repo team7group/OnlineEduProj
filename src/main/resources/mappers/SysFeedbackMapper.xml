@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.SysFeedbackMapper">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysFeedback">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="subject" jdbcType="INTEGER" property="subject" />
+    <result column="department" jdbcType="INTEGER" property="department" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="feedback_text" jdbcType="VARCHAR" property="feedbackText" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, subject, department, image_url, feedback_text
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_feedback
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_feedback
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group7.edu.entity.SysFeedback">
+    insert into sys_feedback (id, type, subject, 
+      department, image_url, feedback_text
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{subject,jdbcType=INTEGER}, 
+      #{department,jdbcType=INTEGER}, #{imageUrl,jdbcType=VARCHAR}, #{feedbackText,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysFeedback">
+    insert into sys_feedback
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="subject != null">
+        subject,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+      <if test="feedbackText != null">
+        feedback_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=INTEGER},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=INTEGER},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackText != null">
+        #{feedbackText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysFeedback">
+    update sys_feedback
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null">
+        subject = #{subject,jdbcType=INTEGER},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=INTEGER},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackText != null">
+        feedback_text = #{feedbackText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysFeedback">
+    update sys_feedback
+    set type = #{type,jdbcType=INTEGER},
+      subject = #{subject,jdbcType=INTEGER},
+      department = #{department,jdbcType=INTEGER},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      feedback_text = #{feedbackText,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
