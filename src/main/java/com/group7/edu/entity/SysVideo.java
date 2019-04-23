@@ -1,14 +1,16 @@
 package com.group7.edu.entity;
 
+import com.group7.edu.utils.BaseEntity;
+
 import java.util.Date;
 
 /**
  * 视频
  *
  * @author default
- * @date   2019/04/09
+ * @date   2019/04/11
  */
-public class SysVideo {
+public class SysVideo extends BaseEntity {
     /**
      * 视频Id
      */
@@ -150,5 +152,16 @@ public class SysVideo {
 
     public void setCollectionTimes(Integer collectionTimes) {
         this.collectionTimes = collectionTimes;
+    }
+
+    //查询 用户id
+    private Integer uid;
+
+    public Integer getUid() {
+        return super.getUid();
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 }

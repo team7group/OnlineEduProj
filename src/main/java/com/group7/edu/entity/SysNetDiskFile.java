@@ -6,7 +6,7 @@ import java.util.Date;
  * 网盘
  *
  * @author default
- * @date   2019/04/09
+ * @date   2019/04/16
  */
 public class SysNetDiskFile {
     /**
@@ -38,6 +38,11 @@ public class SysNetDiskFile {
      * 文件名
      */
     private String filename;
+
+    /**
+     * 1=图 2=文档 3=视频 4=音乐 0=其他
+     */
+    private Integer type;
 
     public Integer getId() {
         return id;
@@ -85,5 +90,13 @@ public class SysNetDiskFile {
 
     public void setFilename(String filename) {
         this.filename = filename == null ? null : filename.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

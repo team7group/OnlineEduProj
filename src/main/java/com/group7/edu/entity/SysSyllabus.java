@@ -4,7 +4,7 @@ package com.group7.edu.entity;
  * 课程表
  *
  * @author default
- * @date   2019/04/09
+ * @date   2019/04/11
  */
 public class SysSyllabus {
     /**

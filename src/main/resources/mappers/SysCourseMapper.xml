@@ -6,7 +6,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="lecturer" jdbcType="INTEGER" property="lecturer" />
     <result column="category" jdbcType="VARCHAR" property="category" />
-    <result column="cover_url" jdbcType="VARCHAR" property="coverUrl" />
+    <result column="cover_uuid" jdbcType="VARCHAR" property="coverUuid" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="orig_price" jdbcType="DECIMAL" property="origPrice" />
     <result column="subject" jdbcType="INTEGER" property="subject" />
@@ -16,7 +16,7 @@
     <result column="course_text" jdbcType="VARCHAR" property="courseText" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, lecturer, category, cover_url, price, orig_price, subject, created_time, 
+    id, name, lecturer, category, cover_uuid, price, orig_price, subject, created_time, 
     startTime, terminal_time, course_text
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -31,12 +31,12 @@
   </delete>
   <insert id="insert" parameterType="com.group7.edu.entity.SysCourse">
     insert into sys_course (id, name, lecturer, 
-      category, cover_url, price, 
+      category, cover_uuid, price, 
       orig_price, subject, created_time, 
       startTime, terminal_time, course_text
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{lecturer,jdbcType=INTEGER}, 
-      #{category,jdbcType=VARCHAR}, #{coverUrl,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{category,jdbcType=VARCHAR}, #{coverUuid,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
       #{origPrice,jdbcType=DECIMAL}, #{subject,jdbcType=INTEGER}, #{createdTime,jdbcType=DATE}, 
       #{starttime,jdbcType=DATE}, #{terminalTime,jdbcType=DATE}, #{courseText,jdbcType=VARCHAR}
       )
@@ -56,8 +56,8 @@
       <if test="category != null">
         category,
       </if>
-      <if test="coverUrl != null">
-        cover_url,
+      <if test="coverUuid != null">
+        cover_uuid,
       </if>
       <if test="price != null">
         price,
@@ -94,8 +94,8 @@
       <if test="category != null">
         #{category,jdbcType=VARCHAR},
       </if>
-      <if test="coverUrl != null">
-        #{coverUrl,jdbcType=VARCHAR},
+      <if test="coverUuid != null">
+        #{coverUuid,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
         #{price,jdbcType=DECIMAL},
@@ -132,8 +132,8 @@
       <if test="category != null">
         category = #{category,jdbcType=VARCHAR},
       </if>
-      <if test="coverUrl != null">
-        cover_url = #{coverUrl,jdbcType=VARCHAR},
+      <if test="coverUuid != null">
+        cover_uuid = #{coverUuid,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
         price = #{price,jdbcType=DECIMAL},
@@ -164,7 +164,7 @@
     set name = #{name,jdbcType=VARCHAR},
       lecturer = #{lecturer,jdbcType=INTEGER},
       category = #{category,jdbcType=VARCHAR},
-      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      cover_uuid = #{coverUuid,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       orig_price = #{origPrice,jdbcType=DECIMAL},
       subject = #{subject,jdbcType=INTEGER},
@@ -174,4 +174,30 @@
       course_text = #{courseText,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+<!--
+"category": "入式处理器",
+            "courseText": "",
+            "coverUuid": "",
+            "createdTime": null,
+            "id": 2,
+            "lecturer": 1,
+            "name": "入式处理器",
+            "origPrice": null,
+            "price": 0.44,
+            "starttime": "2019-04-07 00:00:00",
+            "subject": 1,
+            "terminalTime": null,
+            "uid": 1-->
+<!--  查询查询所有的-->
+  <select id="find" parameterType="com.group7.edu.entity.SysCourse" resultType="com.group7.edu.entity.SysCourse" >
+    select c.id, c.name, c.lecturer,
+      c.category, c.cover_uuid as coverUuid, c.price,
+      c.orig_price as origPrice, c.subject, c.created_time as createdTime,
+      c.startTime as starttime, c.terminal_time as terminalTime, c.course_text as courseText
+    from sys_course c
+    inner join sys_order o
+    on o.course_id = c.id
+    and o.uid=#{uid}
+  </select>
 </mapper>

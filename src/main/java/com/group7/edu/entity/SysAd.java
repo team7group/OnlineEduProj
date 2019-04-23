@@ -1,14 +1,10 @@
 package com.group7.edu.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
  * 广告
  *
  * @author default
- * @date   2019/04/09
+ * @date   2019/04/11
  */
 public class SysAd {
     /**

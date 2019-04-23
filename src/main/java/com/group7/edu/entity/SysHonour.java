@@ -4,7 +4,7 @@ package com.group7.edu.entity;
  * 荣誉，展示在宣传页面上的
  *
  * @author default
- * @date   2019/04/09
+ * @date   2019/04/11
  */
 public class SysHonour {
     /**

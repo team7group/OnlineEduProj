@@ -2,6 +2,7 @@ package com.group7.edu;
 
 import com.group7.edu.entity.SysVideo;
 import com.group7.edu.mapper.SysVideoMapper;
+import com.group7.edu.service.SysOrderService;
 import com.group7.edu.utils.PasswordUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +16,13 @@ import java.util.concurrent.ThreadLocalRandom;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EduApplicationTests {
+
+    @Resource
+//    private SysOrderService sysOrderService;
+    @Test
+    public void testa(){
+//        sysOrderService.findBackOrder();
+    }
 
     @Test
     public void contextLoads() {

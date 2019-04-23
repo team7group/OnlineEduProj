@@ -1,13 +1,16 @@
 package com.group7.edu.oss;
 
 import com.group7.edu.oss.*;
+import org.springframework.stereotype.Service;
 
 import java.net.URL;
 import java.util.Date;
 
 /**
  * @author 993926972
- */
+
+*/
+@Service
 public class OssPictureProcessing implements OssPicture {
     @Override
     public  String  pctureArbitrarySize(String fileUuid, int w, int h) {
