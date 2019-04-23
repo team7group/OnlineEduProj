@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.syt.SysPaymentModeMapperDTO">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysPaymentMode">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="icon_uuid" jdbcType="VARCHAR" property="iconUuid" />
+    <result column="payment_type" jdbcType="INTEGER" property="paymentType" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+    <result column="agent" jdbcType="VARCHAR" property="agent" />
+    <result column="account_number" jdbcType="VARCHAR" property="accountNumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, icon_uuid, payment_type, account_name, agent, account_number
+  </sql>
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_payment_mode
+  </select>
+
+</mapper>

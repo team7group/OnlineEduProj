@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.SysBarrageMapper">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysBarrage">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="duration" jdbcType="INTEGER" property="duration" />
+    <result column="vid" jdbcType="INTEGER" property="vid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="pos" jdbcType="TINYINT" property="pos" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="barrage_text" jdbcType="VARCHAR" property="barrageText" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, duration, vid, uid, pos, created_time, barrage_text
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.group7.edu.entity.SysBarrageKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_barrage
+    where id = #{id,jdbcType=BIGINT}
+      and duration = #{duration,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.group7.edu.entity.SysBarrageKey">
+    delete from sys_barrage
+    where id = #{id,jdbcType=BIGINT}
+      and duration = #{duration,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group7.edu.entity.SysBarrage">
+    insert into sys_barrage (id, duration, vid, 
+      uid, pos, created_time, 
+      barrage_text)
+    values (#{id,jdbcType=BIGINT}, #{duration,jdbcType=INTEGER}, #{vid,jdbcType=INTEGER}, 
+      #{uid,jdbcType=INTEGER}, #{pos,jdbcType=TINYINT}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{barrageText,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.group7.edu.entity.SysBarrage">
+    insert into sys_barrage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+      <if test="vid != null">
+        vid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="pos != null">
+        pos,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="barrageText != null">
+        barrage_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="vid != null">
+        #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="pos != null">
+        #{pos,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="barrageText != null">
+        #{barrageText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.SysBarrage">
+    update sys_barrage
+    <set>
+      <if test="vid != null">
+        vid = #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="pos != null">
+        pos = #{pos,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="barrageText != null">
+        barrage_text = #{barrageText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and duration = #{duration,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.SysBarrage">
+    update sys_barrage
+    set vid = #{vid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      pos = #{pos,jdbcType=TINYINT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      barrage_text = #{barrageText,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and duration = #{duration,jdbcType=INTEGER}
+  </update>
+</mapper>
