@@ -166,7 +166,7 @@
     select distinct capter from sys_video where course = #{course} order by capter
   </select>
 
-  <select id="part" resultType="com.group7.edu.entity.Part">
+  <select id="part" resultType="com.group7.edu.entity.hky.Part">
     select id, name,cover_uuid as coverUuid from sys_video where course =#{course} and capter =#{capter}  ORDER BY capter limit #{limit},#{numbers}
   </select>
 

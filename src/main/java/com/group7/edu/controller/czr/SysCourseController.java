@@ -1,4 +1,4 @@
-package com.group7.edu.controller;
+package com.group7.edu.controller.czr;
 
 import com.alibaba.fastjson.JSON;
 import com.group7.edu.dto.SysCourseDTO;

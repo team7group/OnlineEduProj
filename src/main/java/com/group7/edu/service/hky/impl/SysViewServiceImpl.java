@@ -1,7 +1,7 @@
 package com.group7.edu.service.hky.impl;
 
-import com.group7.edu.entity.Page;
-import com.group7.edu.entity.Part;
+import com.group7.edu.entity.hky.Page;
+import com.group7.edu.entity.hky.Part;
 import com.group7.edu.mapper.hky.SysStudentVideoRelationMapperHky;
 import com.group7.edu.mapper.hky.SysVideoMapperHky;
 import com.group7.edu.service.hky.SysVideoService;

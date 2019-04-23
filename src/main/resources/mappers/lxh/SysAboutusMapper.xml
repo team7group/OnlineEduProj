@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.lxh.SysAboutusMapperLxh">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.lxh.SysAboutus">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="image_uuid" jdbcType="VARCHAR" property="imageUuid" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="ceatetime" jdbcType="TIMESTAMP" property="ceatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, image_uuid, description, ceatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_aboutus
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_aboutus
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.group7.edu.entity.lxh.SysAboutus">
+    insert into sys_aboutus (id, image_uuid, description, 
+      ceatetime)
+    values (#{id,jdbcType=INTEGER}, #{imageUuid,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{ceatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.group7.edu.entity.lxh.SysAboutus">
+    insert into sys_aboutus
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="imageUuid != null">
+        image_uuid,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="ceatetime != null">
+        ceatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imageUuid != null">
+        #{imageUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ceatetime != null">
+        #{ceatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.entity.lxh.SysAboutus">
+    update sys_aboutus
+    <set>
+      <if test="imageUuid != null">
+        image_uuid = #{imageUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ceatetime != null">
+        ceatetime = #{ceatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.group7.edu.entity.lxh.SysAboutus">
+    update sys_aboutus
+    set image_uuid = #{imageUuid,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      ceatetime = #{ceatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

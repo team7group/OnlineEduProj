@@ -1,4 +1,4 @@
-package com.group7.edu.controller;
+package com.group7.edu.controller.czr;
 
 import com.group7.edu.entity.SysAgreement;
 import com.group7.edu.service.czr.SysAgreementService;

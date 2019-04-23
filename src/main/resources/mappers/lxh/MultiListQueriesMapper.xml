@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.lxh.MultiListQueriesMapperLxh">
+  <!--<select id="multiListQueries" parameterType="com.group7.edu.entity.MultiListQueries" resultType="com.group7.edu.entity.MultiListQueries">
+    SELECT
+    course.id as courseId ,
+    course.name as courseName ,
+    course.category ,
+    course.cover_url as coverUrl ,
+    course.course_text as courseTest,
+    info.id as infoId,
+    info.number ,
+    info.image_uuid as imageUuid,
+    info.info_text as infoText,
+    news.id as newId ,
+    news.title ,
+    news.cover_uuid as coverUuid ,
+    news.created_time  as createdTime,
+    news.news_text as newsText,
+    subject.id as subjectId,
+    subject.name as subjectName
+    FROM
+    sys_course as course ,
+    sys_industry_info as info,
+    sys_news as news,
+    sys_subject as subject
+    where
+    concat(
+    course.name,
+    course.category,
+    course.course_text,
+    course.subject,
+    course.lecturer,
+    info.number,
+    info.info_text,
+    news.number,
+    news.title,
+    news.news_text,
+    subject.name)
+    <if test="params!= null">
+      like  concat('%',#{params},'%')
+    </if>
+
+  </select>-->
+</mapper>
