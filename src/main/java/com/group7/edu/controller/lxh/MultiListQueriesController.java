@@ -24,6 +24,12 @@ public class MultiListQueriesController {
     private MultiListQueriesService multiListQueriesService;
     @RequestMapping("/home/multi/list")
     public List multiListQueries(@RequestBody(required = false) MultiListQueries multiListQueries ) {
+        System.out.println("------------------------------------------------------------");
+        System.out.println("MultiListQueriesController.multiListQueries");
+        System.out.println("multiListQueries = [" + multiListQueries + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
+
         System.out.println(multiListQueries.getPageSize()+"\t"+multiListQueries.getPageNum());
 
         Map<String, Object> map = new HashMap<>();
@@ -91,6 +97,11 @@ public class MultiListQueriesController {
 
 
      public List<?> newsList(@RequestBody SysNews news){
+         System.out.println("------------------------------------------------------------");
+         System.out.println("MultiListQueriesController.newsList");
+         System.out.println("news = [" + news + "]");
+         System.out.println("time = " + new Date());
+         System.out.println("------------------------------------------------------------");
          List<SysNews> list = multiListQueriesService.newsList(news);
 
          return list;
@@ -98,12 +109,22 @@ public class MultiListQueriesController {
 
     @RequestMapping("/home/new/list")
     public ResponseEntity findNewsList(@RequestBody SysNews news){
+        System.out.println("------------------------------------------------------------");
+        System.out.println("MultiListQueriesController.findNewsList");
+        System.out.println("news = [" + news + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         List<SysNews> list = multiListQueriesService.newsList(news);
 
         return   new ResponseEntity( new PageEntity<>(list), HttpStatus.OK);
     }
     //@RequestMapping("/home/course/listl")
     public List<?> courseList(@RequestBody SysCourse sysCourse){
+        System.out.println("------------------------------------------------------------");
+        System.out.println("MultiListQueriesController.courseList");
+        System.out.println("sysCourse = [" + sysCourse + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         List<SysCourse> list = multiListQueriesService.courseList(sysCourse);
 
         return list;
@@ -111,6 +132,11 @@ public class MultiListQueriesController {
 
     @RequestMapping("/home/info/list")
     public  List<?> infoList(@RequestBody SysIndustryInfo info){
+        System.out.println("------------------------------------------------------------");
+        System.out.println("MultiListQueriesController.infoList");
+        System.out.println("info = [" + info + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         List<SysIndustryInfo> list = multiListQueriesService.infoList(info);
 
         return list;
@@ -118,6 +144,11 @@ public class MultiListQueriesController {
 
     @RequestMapping("/home/subject/list")
     public List<?> subjectList(@RequestBody SysSubject subject){
+        System.out.println("------------------------------------------------------------");
+        System.out.println("MultiListQueriesController.subjectList");
+        System.out.println("subject = [" + subject + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         List<SysSubject> list = multiListQueriesService.subjectList(subject);
 
         return list;
@@ -125,6 +156,11 @@ public class MultiListQueriesController {
 
 
     public static List mapTransitionList(Map map) {
+        System.out.println("------------------------------------------------------------");
+        System.out.println("MultiListQueriesController.mapTransitionList");
+        System.out.println("map = [" + map + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         List list = new ArrayList();
         Iterator iter = map.entrySet().iterator(); // 获得map的Iterator
         while (iter.hasNext()) {

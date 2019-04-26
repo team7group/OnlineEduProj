@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,7 +24,11 @@ public class SysNewsController {
     private SysNewsService sysNewsService;
     @RequestMapping("/home/news/list")
     public ResponseEntity findSysCourse(@RequestBody SysNews sysNews) {
-
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysNewsController.findSysCourse");
+        System.out.println("sysNews = [" + sysNews + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         List<SysNews> list = sysNewsService.selectAllSysNews(sysNews);
 
         return new ResponseEntity( new PageEntity<>(list), HttpStatus.OK);

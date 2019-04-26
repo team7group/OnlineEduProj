@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,7 +24,11 @@ public class SysCourseController {
 
     @PostMapping("/home/course/list")
     public ResponseEntity findSysCourse(@RequestBody SysCourse sysCourse) {
-
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysCourseController.findSysCourse");
+        System.out.println("sysCourse = [" + sysCourse + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         List<SysCourse> list = sysCourseService.selectAllSysCourse(sysCourse);
         System.out.println("SysCourselist:"+new PageEntity<>(list));
 

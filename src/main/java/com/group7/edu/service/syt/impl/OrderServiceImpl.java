@@ -70,7 +70,7 @@ public class OrderServiceImpl implements OrderService {
         sysOrder.setCost(sysCourse.getPrice());
         sysOrder.setCreatedTime(new Date());
         sysOrder.setCourseId(sysCourse.getId());
-        sysOrder.setCourseName(sysCourse.getName());
+//        sysOrder.setCourseName(sysCourse.getName());
 
         int i = sysOrderMapper.insert(sysOrder);
         if(i == 0){

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author hky
@@ -39,6 +40,11 @@ public class SysCurriculumController {
     //头部图片,评价分数，班级公告
     @RequestMapping("/basic/{classId}/{courseId}")
     public ResultData banner(@PathVariable("classId") Integer classId,@PathVariable("courseId") Integer courseId){
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysCurriculumController.banner");
+        System.out.println("classId = [" + classId + "], courseId = [" + courseId + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         System.out.println("访问");
         if(classId == null || classId <= 0 ){
             return ResultData.isFailure("班级Id输入有误");
@@ -68,6 +74,11 @@ public class SysCurriculumController {
     //查询课程章节
     @RequestMapping("/chapter/{course}")
     public ResultData chapter(@PathVariable("course") Integer course){
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysCurriculumController.chapter");
+        System.out.println("course = [" + course + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         if (course == null || course == 0 || course < 0 ){
             return ResultData.isFailure("章节查询失败");
         }
@@ -77,6 +88,11 @@ public class SysCurriculumController {
     //查询章节的子目录
     @RequestMapping("/part")
     public ResultData part(@RequestParam(defaultValue = "1") Integer nowPage, @RequestParam(defaultValue = "10") Integer numbers, SysVideo sysVideo){
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysCurriculumController.part");
+        System.out.println("nowPage = [" + nowPage + "], numbers = [" + numbers + "], sysVideo = [" + sysVideo + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         if (nowPage < 1 ){
             return ResultData.isFailure("当前页数输入有误!");
         }
@@ -96,7 +112,11 @@ public class SysCurriculumController {
     //建议
     @RequestMapping("/advice")
     public ResultData advice(com.group7.edu.entity.SysCourseEvaluation sysCourseEvaluations){
-
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysCurriculumController.advice");
+        System.out.println("sysCourseEvaluations = [" + sysCourseEvaluations + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         if(sysCourseEvaluations.getCourse() == null || sysCourseEvaluations.getCourse() == 0){
             return ResultData.isFailure("请传入正确的课程id");
         }

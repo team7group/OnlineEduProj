@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author default
@@ -19,6 +20,11 @@ public class SysAboutusController {
 
     @RequestMapping("/home/about/id")
     public SysAboutus findSysAboutus(Integer id) {
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysAboutusController.findSysAboutus");
+        System.out.println("id = [" + id + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         SysAboutus sysAboutus1 = sysAboutusService.selectByPrimaryKey(id);
         return sysAboutus1;
     }

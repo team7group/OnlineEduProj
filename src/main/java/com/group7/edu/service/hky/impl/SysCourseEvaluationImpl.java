@@ -14,13 +14,13 @@ import java.util.Date;
 public class SysCourseEvaluationImpl implements SysCourseEvaluation {
 
     @Resource(name = "sysCourseEvaluationMapperHky")
-    SysCourseEvaluationMapperHky sysCourseEvaluationMapper;
+    SysCourseEvaluationMapperHky sysCourseEvaluationMapperHky;
 
 
     @Override
     public ResultData evaluation(int course) {
 
-        Double evaluation = sysCourseEvaluationMapper.evaluation(course);
+        Double evaluation = sysCourseEvaluationMapperHky.evaluation(course);
         if (evaluation == null || evaluation < 0.0){
             return ResultData.isFailure("查询评分失败");
         }
@@ -31,7 +31,7 @@ public class SysCourseEvaluationImpl implements SysCourseEvaluation {
     public ResultData advice(com.group7.edu.entity.SysCourseEvaluation sysCourseEvaluation) {
 
         com.group7.edu.entity.SysCourseEvaluation sysCourseEvaluation1 = new com.group7.edu.entity.SysCourseEvaluation();
-        sysCourseEvaluation1 = sysCourseEvaluationMapper.isEvaluate(ShiroUtils.getUserId(),sysCourseEvaluation.getCourse());
+        sysCourseEvaluation1 = sysCourseEvaluationMapperHky.isEvaluate(ShiroUtils.getUserId(),sysCourseEvaluation.getCourse());
         if(sysCourseEvaluation1 != null){
             ResultData resultData = new ResultData();
             resultData.put("code",2);
@@ -45,7 +45,7 @@ public class SysCourseEvaluationImpl implements SysCourseEvaluation {
         sysCourseEvaluation.setCreatedTime(sqlData);
         sysCourseEvaluation.setUserId(ShiroUtils.getUserId());
 
-        int result = sysCourseEvaluationMapper.insert(sysCourseEvaluation);
+        int result = sysCourseEvaluationMapperHky.insert(sysCourseEvaluation);
         if(result > 0 )
             return ResultData.isSuccess("意见提交成功");
 

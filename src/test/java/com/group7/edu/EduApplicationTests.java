@@ -32,10 +32,10 @@ public class EduApplicationTests {
     @Resource
     private SysBarrageExtMapper sysBarrageExtMapper;
 
-    private final int VIDEO_ID_MAX = 10;
+    private final int VIDEO_ID_MAX = 30;
     private final int USER_ID_MAX = 100000;
     private final int VIDEO_DURATION_MAX = 6000;
-    private final int BARRAGE_MAX_COUNT = 5000000;
+    private final int BARRAGE_MAX_COUNT = 1000000;
 
     private Integer[] videoIds = new Integer[VIDEO_ID_MAX];
     private Integer[] userIds = new Integer[USER_ID_MAX];
@@ -116,7 +116,7 @@ public class EduApplicationTests {
                 sysBarrage.setDuration(rnd.nextInt(0, VIDEO_DURATION_MAX));
                 sysBarrage.setCreatedTime(new Date());
                 n = rnd.nextInt(0, len - 300);
-                String str = builder.substring(n, n + rnd.nextInt(5, 128));
+                String str = builder.substring(n, n + rnd.nextInt(1, 10));
                 sysBarrage.setBarrageText(str);
                 barrages.put(sysBarrage);
                 System.out.println("i = " + i);
@@ -125,7 +125,7 @@ public class EduApplicationTests {
             }
         }
 
-        CopyOnWriteArrayList<Thread> list = new CopyOnWriteArrayList<>();
+        final CopyOnWriteArrayList<Thread> list = new CopyOnWriteArrayList<>();
 
         // insert to database
         ExecutorService pool = Executors.newFixedThreadPool(16);

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author c
@@ -25,6 +26,11 @@ public class SysAgreementController {
      */
     @RequestMapping("/agreement/get")
     public ResultData findAgreementByName(String name) {
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysAgreementController.findAgreementByName");
+        System.out.println("name = [" + name + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         if (StringUtils.isBlank(name)) {
             return ResultData.isFailure("name值非法");
         }

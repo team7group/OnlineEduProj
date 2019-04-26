@@ -6,15 +6,14 @@ import org.csource.fastdfs.*;
 
 import java.io.IOException;
 
-
 public class FastDFSClient {
 	private TrackerClient trackerClient = null;
 	private TrackerServer trackerServer = null;
 	private StorageClient storageClient = null;
 	private StorageServer storageServer = null;
+
 	public FastDFSClient(String conf) throws Exception{
-		String path = this.getClass().getResource("/").getPath();
-		ClientGlobal.init(path+conf);
+		ClientGlobal.init(System.getProperty("user.dir") + "/" + conf);
 		trackerClient = new TrackerClient();
 		trackerServer = trackerClient.getConnection();
 		storageClient = new StorageClient(trackerServer,storageServer);
@@ -65,6 +64,4 @@ public class FastDFSClient {
 		String[] strings = storageClient.upload_file(fileContent, null, null);
 		return strings;
 	}
-
-
 }

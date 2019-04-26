@@ -20,7 +20,7 @@ public class SysViewServiceImpl implements SysVideoService {
     @Resource(name = "sysVideoMapperHky")
     SysVideoMapperHky sysVideoMapper;
 
-    @Resource
+    @Resource(name = "sysStudentVideoRelationMapperHky")
     SysStudentVideoRelationMapperHky studentVideoRelationMapper;
 
     @Override

@@ -107,7 +107,6 @@ public class SysStudentServiceImpl implements SysStudentService {
             if ((checkinDays | i) == checkinDays) {
                 System.out.println("已经签到");
                 map.put("day"+j,0);
-                //Todo
             } else {
                 System.out.println("未签到");
                 map.put("day"+j,1);
@@ -153,7 +152,7 @@ public class SysStudentServiceImpl implements SysStudentService {
              */
             String paths[] = client.uploadFile(b,suffix);
             StringBuffer sb = new StringBuffer();
-            sb.append(paths[0]+File.separator+paths[1]);
+            sb.append(paths[0]+ File.separator+paths[1]);
             //group1
             //M00/00/00xxx.jpg
             System.out.println("上传成功："+sb.toString());
@@ -168,6 +167,5 @@ public class SysStudentServiceImpl implements SysStudentService {
             return R.error("上传失败");
 
         }
-
     }
 }

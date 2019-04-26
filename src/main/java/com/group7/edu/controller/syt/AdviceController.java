@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 @RestController
 public class AdviceController {
@@ -22,11 +23,21 @@ public class AdviceController {
 
     @RequestMapping("/sys/advice/subInfo")
     public ResultData subList(){
+        System.out.println("------------------------------------------------------------");
+        System.out.println("AdviceController.subList");
+        System.out.println("");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         return subjectService.subjectList();
     }
 
     @RequestMapping("/sys/advice/submit")
     public ResultData submit(@RequestBody FeedBackDTO feedBackDTO){
+        System.out.println("------------------------------------------------------------");
+        System.out.println("AdviceController.submit");
+        System.out.println("feedBackDTO = [" + feedBackDTO + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         if(feedBackDTO.getType() == null){
             return ResultData.isFailure("投诉建议类型不能为空");
         }if(feedBackDTO.getSubject() == null){

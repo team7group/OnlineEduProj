@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.tql.SysFavoriteTqlMapper">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.tql.SysFavorite">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="created_time" jdbcType="DATE" property="createdTime" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="video_id" jdbcType="INTEGER" property="videoId" />
+  </resultMap>
+  <select id="videoSelect" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from sys_favorite where uid=#{uid} and video_id = #{videoId}
+  </select>
+  <insert id="insertSelective" parameterType="com.group7.edu.entity.tql.SysFavorite">
+    insert into sys_favorite
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="videoId != null">
+        video_id,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=DATE},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="videoId != null">
+        #{videoId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

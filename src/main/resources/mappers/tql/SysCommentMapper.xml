@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.tql.SysCommentTqlMapper">
+    <resultMap id="BaseResultMap" type="com.group7.edu.entity.tql.SysComment">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="uid" jdbcType="INTEGER" property="uid" />
+        <result column="vid" jdbcType="INTEGER" property="vid" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="created_time" jdbcType="DATE" property="createdTime" />
+        <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    </resultMap>
+    <select id="commentaryInformation" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select c.content,c.created_time,s.nickname from sys_comment c , sys_student s where c.uid = s.id and c.vid = #{vid} order by created_time  desc
+    </select>
+    <insert id="addComments" parameterType="com.group7.edu.entity.tql.SysComment">
+        insert into sys_comment (uid,vid,content,created_time) values (#{uid},#{vid},#{content},#{createdTime})
+    </insert>
+</mapper>

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * 
@@ -20,6 +21,11 @@ public class SysHomepageIntroduceController {
 
     @RequestMapping("/home/introduce/id")
     public SysHomepageIntroduce findSysIntroduce(Integer id) {
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysHomepageIntroduceController.findSysIntroduce");
+        System.out.println("id = [" + id + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         SysHomepageIntroduce sysHomepageIntroduce1 = sysHomepageIntroduceService.selectByPrimaryKey(id);
         return sysHomepageIntroduce1;
     }

@@ -7,13 +7,9 @@
     <result column="cost" jdbcType="DECIMAL" property="cost" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
     <result column="course_id" jdbcType="INTEGER" property="courseId" />
-    <result column="course_name" jdbcType="VARCHAR" property="courseName" />
-    <result column="lecturer_name" jdbcType="VARCHAR" property="lecturerName" />
-    <result column="cover_uuid" jdbcType="VARCHAR" property="coverUuid" />
-    <result column="expire_time" jdbcType="DATE" property="expireTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, uid, cost, created_time, course_id, course_name, lecturer_name, cover_uuid, expire_time
+    id, uid, cost, created_time, course_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -27,13 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.group7.edu.entity.SysOrder">
     insert into sys_order (id, uid, cost, 
-      created_time, course_id, course_name, 
-      lecturer_name, cover_uuid, expire_time
-      )
+      created_time, course_id)
     values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{cost,jdbcType=DECIMAL}, 
-      #{createdTime,jdbcType=TIMESTAMP}, #{courseId,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, 
-      #{lecturerName,jdbcType=VARCHAR}, #{coverUuid,jdbcType=VARCHAR}, #{expireTime,jdbcType=DATE}
-      )
+      #{createdTime,jdbcType=TIMESTAMP}, #{courseId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.group7.edu.entity.SysOrder">
     insert into sys_order
@@ -53,18 +45,6 @@
       <if test="courseId != null">
         course_id,
       </if>
-      <if test="courseName != null">
-        course_name,
-      </if>
-      <if test="lecturerName != null">
-        lecturer_name,
-      </if>
-      <if test="coverUuid != null">
-        cover_uuid,
-      </if>
-      <if test="expireTime != null">
-        expire_time,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -81,18 +61,6 @@
       </if>
       <if test="courseId != null">
         #{courseId,jdbcType=INTEGER},
-      </if>
-      <if test="courseName != null">
-        #{courseName,jdbcType=VARCHAR},
-      </if>
-      <if test="lecturerName != null">
-        #{lecturerName,jdbcType=VARCHAR},
-      </if>
-      <if test="coverUuid != null">
-        #{coverUuid,jdbcType=VARCHAR},
-      </if>
-      <if test="expireTime != null">
-        #{expireTime,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -111,18 +79,6 @@
       <if test="courseId != null">
         course_id = #{courseId,jdbcType=INTEGER},
       </if>
-      <if test="courseName != null">
-        course_name = #{courseName,jdbcType=VARCHAR},
-      </if>
-      <if test="lecturerName != null">
-        lecturer_name = #{lecturerName,jdbcType=VARCHAR},
-      </if>
-      <if test="coverUuid != null">
-        cover_uuid = #{coverUuid,jdbcType=VARCHAR},
-      </if>
-      <if test="expireTime != null">
-        expire_time = #{expireTime,jdbcType=DATE},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -131,11 +87,7 @@
     set uid = #{uid,jdbcType=INTEGER},
       cost = #{cost,jdbcType=DECIMAL},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
-      course_id = #{courseId,jdbcType=INTEGER},
-      course_name = #{courseName,jdbcType=VARCHAR},
-      lecturer_name = #{lecturerName,jdbcType=VARCHAR},
-      cover_uuid = #{coverUuid,jdbcType=VARCHAR},
-      expire_time = #{expireTime,jdbcType=DATE}
+      course_id = #{courseId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

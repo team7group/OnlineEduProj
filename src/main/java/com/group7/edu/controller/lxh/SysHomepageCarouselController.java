@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author default
@@ -18,6 +19,11 @@ public class SysHomepageCarouselController {
 
     @RequestMapping("/home/carouse/id")
     public SysHomepageCarousel findSysCarouse(Integer id) {
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysHomepageCarouselController.findSysCarouse");
+        System.out.println("id = [" + id + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         System.out.println(id);
         SysHomepageCarousel sysHomepageCarousel1 = sysHomepageCarouselService.selectByPrimaryKey(id);
         return sysHomepageCarousel1;

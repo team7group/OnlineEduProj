@@ -2,7 +2,6 @@ package com.group7.edu.controller.czr;
 
 import com.alibaba.fastjson.JSON;
 import com.group7.edu.dto.SysCourseDTO;
-import com.group7.edu.dto.SysCourseEvaluationDTO;
 import com.group7.edu.entity.SysAnswerQuestion;
 import com.group7.edu.service.czr.SysCourseService;
 import com.group7.edu.utils.ResultData;
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class SysCourseController {
@@ -22,6 +21,11 @@ public class SysCourseController {
 
     @RequestMapping("/course/detail/{id}")
     public ResultData findCourseDetail(@PathVariable("id") Integer id) {
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysCourseController.findCourseDetail");
+        System.out.println("id = [" + id + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         if (id == null || id <= 0) {
             return ResultData.isFailure("参数非法");
         }
@@ -34,6 +38,11 @@ public class SysCourseController {
 
     @RequestMapping("/course/qa/get")
     public ResultData findQaByPage(Integer courseId, Integer page, Integer pageSize) {
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysCourseController.findQaByPage");
+        System.out.println("courseId = [" + courseId + "], page = [" + page + "], pageSize = [" + pageSize + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         if (courseId == null || page == null || pageSize == null) {
             return ResultData.isFailure("参数非法");
         }
@@ -53,6 +62,11 @@ public class SysCourseController {
 
     @RequestMapping("/course/syllabus/get/{id}")
     public ResultData findSyllabusById(@PathVariable("id") Integer id) {
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysCourseController.findSyllabusById");
+        System.out.println("id = [" + id + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         if (id == null || id <= 0) {
             return ResultData.isFailure("参数非法");
         }
@@ -65,6 +79,11 @@ public class SysCourseController {
 
     @RequestMapping("/course/evaluation/get")
     public ResultData findEvaluationById(Integer courseId, Integer page, Integer pageSize) {
+        System.out.println("------------------------------------------------------------");
+        System.out.println("SysCourseController.findEvaluationById");
+        System.out.println("courseId = [" + courseId + "], page = [" + page + "], pageSize = [" + pageSize + "]");
+        System.out.println("time = " + new Date());
+        System.out.println("------------------------------------------------------------");
         if (courseId == null || courseId <= 0 || page == null || pageSize == null) {
             return ResultData.isFailure("参数非法");
         }

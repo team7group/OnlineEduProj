@@ -6,7 +6,7 @@ import com.group7.edu.entity.SysAnswerQuestion;
 import com.group7.edu.entity.SysCourse;
 import com.group7.edu.mapper.czr.SysCourseExtMapper;
 import com.group7.edu.mapper.SysCourseMapper;
-import com.group7.edu.oss.OssPicture;
+import com.group7.edu.osshandle.OssPicture;
 import com.group7.edu.service.czr.SysCourseService;
 import com.group7.edu.utils.ResultData;
 import org.codehaus.plexus.util.StringUtils;
