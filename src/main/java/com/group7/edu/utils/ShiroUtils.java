@@ -1,7 +1,6 @@
 package com.group7.edu.utils;
 
 import com.group7.edu.entity.SysStudent;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.SimpleSession;
 import org.apache.shiro.subject.Subject;
@@ -62,7 +61,8 @@ public class ShiroUtils {
         return 1;
     }
     public static SysStudent getCurrentUser(){
-        return (SysStudent) SecurityUtils.getSubject().getPrincipal();
+//        return (SysStudent) SecurityUtils.getSubject().getPrincipal();
+        return getUser();
     }
 
 

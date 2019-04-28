@@ -98,7 +98,7 @@ public class ShiroConfig {
         map.put("/sys/verificationCode", "anon");
         map.put("/sys/student/resetPassword", "anon");
         map.put("/sys/student/login", "anon");
-        map.put("/**","user");
+        map.put("/**","anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
         return shiroFilterFactoryBean;
