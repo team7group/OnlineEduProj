@@ -15,4 +15,6 @@ public interface SysBarrageExtMapper {
             @Param("duration") Integer duration,
             @Param("off") Integer offset,
             @Param("len") Integer length);
+
+    List<String> selectTop300(Integer vid);
 }

@@ -29,8 +29,8 @@ public class SysStudentController {
         System.out.println("------------------------------------------------------------");
         return sysStudentService.findStudentById(id);
     }
-    @RequestMapping("/verifyPwd")
 
+    @RequestMapping("/verifyPwd")
     public R verifyPwd(String pwd, int id){
         System.out.println("------------------------------------------------------------");
         System.out.println("SysStudentController.verifyPwd");
@@ -49,6 +49,7 @@ public class SysStudentController {
         System.out.println("------------------------------------------------------------");
         return sysStudentService.updateStudent(sysStudent);
     }
+
     @RequestMapping("/updatePwd")
     public R updatePwd(String oldPwd,String newPwd, int id){
         System.out.println("------------------------------------------------------------");
@@ -58,6 +59,7 @@ public class SysStudentController {
         System.out.println("------------------------------------------------------------");
         return sysStudentService.updatePwd(oldPwd, newPwd, id);
     }
+
     @RequestMapping("/updateWechat")
     public R updateWechat(String wechat, int id){
         System.out.println("------------------------------------------------------------");
@@ -67,6 +69,7 @@ public class SysStudentController {
         System.out.println("------------------------------------------------------------");
        return sysStudentService.updateWechat(wechat,id);
     }
+
     @RequestMapping("/updateQQ")
     public R updateQq(String QQ, int id){
         System.out.println("------------------------------------------------------------");
@@ -76,6 +79,7 @@ public class SysStudentController {
         System.out.println("------------------------------------------------------------");
         return sysStudentService.updateQQ(QQ,id);
     }
+
     @RequestMapping("/findsignIn")
     public R findsignIn(long id) {
         System.out.println("------------------------------------------------------------");

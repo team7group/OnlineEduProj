@@ -4,11 +4,13 @@ import com.group7.edu.entity.SysBarrage;
 import com.group7.edu.service.czr.SysBarrageService;
 import com.group7.edu.utils.ResultData;
 import com.group7.edu.utils.ShiroUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -69,4 +71,12 @@ public class SysBarrageController {
         return ResultData.isSuccess("插入成功");
     }
 
+    @RequestMapping("/barrage/top500/{vid}")
+    public List<String> getTop500(@PathVariable("vid") Integer vid){
+        List<String> top500 = sysBarrageService.findTop500(vid);
+        if (top500 == null) {
+            top500 = new ArrayList<>();
+        }
+        return top500;
+    }
 }

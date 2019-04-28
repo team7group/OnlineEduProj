@@ -174,6 +174,12 @@ public class EduApplicationTests {
             System.out.println(stringBuilder);
         }
     }
+
+
+    @Test
+    public void test2() {
+
+    }
 }
 
 

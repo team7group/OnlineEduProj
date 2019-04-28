@@ -11,4 +11,6 @@ public interface SysBarrageService {
     int add(SysBarrage barrage);
 
     int addByBatch(SysBarrage barrage);
+
+    List<String> findTop500(Integer vid);
 }

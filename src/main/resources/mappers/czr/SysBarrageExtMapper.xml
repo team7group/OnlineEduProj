@@ -35,4 +35,8 @@
         ORDER BY created_time DESC
         LIMIT #{off}, #{len};
     </select>
+    
+    <select id="selectTop300" parameterType="integer" resultType="java.lang.String">
+        SELECT barrage_text FROM sys_barrage WHERE vid = #{vid} LIMIT 0, 500
+    </select>
 </mapper>

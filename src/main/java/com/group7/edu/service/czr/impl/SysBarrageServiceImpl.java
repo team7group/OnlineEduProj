@@ -42,4 +42,14 @@ public class SysBarrageServiceImpl implements SysBarrageService {
     public int addByBatch(SysBarrage barrage) {
         return 0;
     }
+
+    @Override
+    public List<String> findTop500(Integer vid) {
+        try {
+            return sysBarrageExtMapper.selectTop300(vid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

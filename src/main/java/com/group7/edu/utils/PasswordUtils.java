@@ -43,6 +43,14 @@ public class PasswordUtils {
         }
         return stringBuilder.toString();
     }
+    public static String getVerificationCode() {
+        ThreadLocalRandom rnd = ThreadLocalRandom.current();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = rnd.nextInt(4,5); i > 0; i--) {
+            stringBuilder.append(CHARS[rnd.nextInt(CHARS.length)]);
+        }
+        return stringBuilder.toString();
+    }
 
     private PasswordUtils() {}
 }
