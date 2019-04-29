@@ -1,0 +1,46 @@
+Manifest-Version: 1.0
+Class-Path: jsqlparser-1.0.jar fastjson-1.2.56.jar javax.annotation-ap
+ i-1.3.2.jar spring-boot-starter-web-2.1.4.RELEASE.jar shiro-crypto-co
+ re-1.4.0.jar slf4j-api-1.7.26.jar plexus-classworlds-2.5.2.jar log4j-
+ api-2.11.2.jar jsr250-api-1.0.jar spring-core-5.1.6.RELEASE.jar commo
+ ns-lang3-3.8.1.jar commons-collections-3.2.2.jar tomcat-embed-websock
+ et-9.0.17.jar javax.inject-1.jar mybatis-generator-maven-plugin-1.3.7
+ .jar spring-boot-2.1.4.RELEASE.jar spring-beans-5.1.6.RELEASE.jar myb
+ atis-spring-2.0.0.jar spring-boot-starter-log4j2-2.1.4.RELEASE.jar sp
+ ring-boot-starter-2.1.4.RELEASE.jar snakeyaml-1.23.jar mybatis-spring
+ -boot-autoconfigure-2.0.0.jar mysql-connector-java-8.0.15.jar jcomman
+ der-1.72.jar pagehelper-spring-boot-autoconfigure-1.2.10.jar org.ecli
+ pse.sisu.plexus-0.3.3.jar spring-boot-starter-mail-2.1.4.RELEASE.jar 
+ shiro-spring-1.4.0.jar spring-aop-5.1.6.RELEASE.jar httpclient-4.4.1.
+ jar shiro-crypto-cipher-1.4.0.jar spring-tx-5.1.6.RELEASE.jar shiro-c
+ rypto-hash-1.4.0.jar shiro-cache-1.4.0.jar spring-boot-starter-tomcat
+ -2.1.4.RELEASE.jar filters-2.0.235.jar mybatis-generator-core-1.3.7.j
+ ar spring-boot-starter-json-2.1.4.RELEASE.jar pagehelper-spring-boot-
+ starter-1.2.10.jar tomcat-embed-core-9.0.17.jar jboss-logging-3.3.2.F
+ inal.jar ehcache-core-2.6.11.jar jackson-module-parameter-names-2.9.8
+ .jar activation-1.1.jar maven-model-3.5.4.jar spring-expression-5.1.6
+ .RELEASE.jar spring-boot-starter-jdbc-2.1.4.RELEASE.jar hibernate-val
+ idator-6.0.16.Final.jar jackson-databind-2.9.6.jar spring-context-5.1
+ .6.RELEASE.jar log4j-jul-2.11.2.jar spring-webmvc-5.1.6.RELEASE.jar k
+ aptcha-0.0.9.jar spring-context-support-5.1.6.RELEASE.jar javax.mail-
+ 1.6.2.jar shiro-event-1.4.0.jar aliyun-java-sdk-ecs-4.2.0.jar jackson
+ -datatype-jsr310-2.9.8.jar tomcat-embed-el-9.0.17.jar shiro-lang-1.4.
+ 0.jar fastdfs-client-java-1.27-RELEASE.jar maven-plugin-api-3.5.4.jar
+  shiro-config-core-1.4.0.jar spring-boot-autoconfigure-2.1.4.RELEASE.
+ jar shiro-config-ogdl-1.4.0.jar testng-7.0.0-beta3.jar shiro-core-1.4
+ .0.jar log4j-core-2.11.2.jar log4j-slf4j-impl-2.11.2.jar commons-code
+ c-1.11.jar commons-beanutils-1.9.3.jar mybatis-3.5.0.jar plexus-compo
+ nent-annotations-1.5.5.jar jackson-core-2.9.6.jar commons-io-2.2.jar 
+ spring-jcl-5.1.6.RELEASE.jar stax-api-1.0.1.jar aliyun-java-sdk-ram-3
+ .0.0.jar classmate-1.4.0.jar aliyun-java-sdk-sts-3.0.0.jar cdi-api-1.
+ 0.jar plexus-utils-3.1.0.jar jackson-datatype-jdk8-2.9.8.jar druid-1.
+ 1.14.jar maven-artifact-3.5.4.jar jdom-1.1.jar commons-fileupload-1.3
+ .2.jar spring-boot-devtools-2.1.4.RELEASE.jar spring-jdbc-5.1.6.RELEA
+ SE.jar jul-to-slf4j-1.7.26.jar httpcore-4.4.11.jar validation-api-2.0
+ .1.Final.jar shiro-web-1.4.0.jar HikariCP-3.2.0.jar jettison-1.1.jar 
+ druid-spring-boot-starter-1.1.14.jar shiro-ehcache-1.4.0.jar aliyun-j
+ ava-sdk-core-3.4.0.jar spring-web-5.1.6.RELEASE.jar org.eclipse.sisu.
+ inject-0.3.3.jar jackson-annotations-2.9.6.jar mybatis-spring-boot-st
+ arter-2.0.0.jar pagehelper-5.1.2.jar
+Main-Class: com.group7.edu.EduApplication
+

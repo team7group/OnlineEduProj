@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.group7.edu.mapper.SysStudentMapperDTO">
+  <resultMap id="BaseResultMap" type="com.group7.edu.entity.SysStudent">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="password_hash" jdbcType="VARCHAR" property="passwordHash" />
+    <result column="password_salt" jdbcType="VARCHAR" property="passwordSalt" />
+    <result column="banned" jdbcType="BIT" property="banned" />
+    <result column="checkin_days" jdbcType="INTEGER" property="checkinDays" />
+    <result column="icon_uuid" jdbcType="VARCHAR" property="iconUuid" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="qq" jdbcType="CHAR" property="qq" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, number, username, nickname, password_hash, password_salt, banned, checkin_days, 
+    icon_uuid, phone, email, sex, birthday, wechat, qq
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_student
+    where phone=#{phoneOrEmail} or email=#{phoneOrEmail}
+  </select>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.dto.SysStudentDTO">
+    update sys_student
+    <set>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordHash != null">
+        password_hash = #{passwordHash,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordSalt != null">
+        password_salt = #{passwordSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="banned != null">
+        banned = #{banned,jdbcType=BIT},
+      </if>
+      <if test="checkinDays != null">
+        checkin_days = #{checkinDays,jdbcType=INTEGER},
+      </if>
+      <if test="iconUuid != null">
+        icon_uuid = #{iconUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=CHAR},
+      </if>
+    </set>
+    where email = #{email,jdbcType=VARCHAR}
+  </update>
+
+
+
+</mapper>
