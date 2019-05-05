@@ -4,10 +4,7 @@ import com.group7.edu.entity.SysBarrage;
 import com.group7.edu.service.czr.SysBarrageService;
 import com.group7.edu.utils.ResultData;
 import com.group7.edu.utils.ShiroUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -15,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class SysBarrageController {
 
     @Resource

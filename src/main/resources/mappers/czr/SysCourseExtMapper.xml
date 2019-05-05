@@ -71,4 +71,47 @@
     <select id="selectEvaluationCount" resultType="integer">
         SELECT COUNT(*) FROM sys_course_evaluation WHERE course = #{courseId}
     </select>
+
+    <resultMap id="PersonalCourse" type="com.group7.edu.dto.SysPersonCourse">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="course_name" jdbcType="VARCHAR" property="courseName"/>
+        <result column="teacher_name" jdbcType="VARCHAR" property="teacherName"/>
+        <result column="cover_url" jdbcType="VARCHAR" property="courseCover"/>
+        <result column="course_text" jdbcType="VARCHAR" property="courseText"/>
+    </resultMap>
+    
+    <select id="selectPersonalTotalCount" resultType="integer">
+        SELECT COUNT(*)
+        FROM sys_course c LEFT JOIN sys_teacher t ON t.id = c.lecturer
+        WHERE c.id IN (SELECT course_id FROM sys_order o WHERE o.uid = #{uid})
+        LIMIT #{off}, #{len}
+    </select>
+
+    <select id="selectPersonalCourse" resultMap="PersonalCourse">
+        SELECT c.`name` as course_name, c.course_text, c.cover_url, t.realname as teacher_name, c.id
+        FROM sys_course c LEFT JOIN sys_teacher t ON t.id = c.lecturer
+        WHERE c.id IN (SELECT course_id FROM sys_order o WHERE o.uid = #{uid})
+        LIMIT #{off}, #{len}
+    </select>
+
+    <resultMap id="BaseDiyCourse" type="com.group7.edu.entity.SysCourse">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="cover_url" property="coverUrl"/>
+    </resultMap>
+
+    <select id="selectAllCourse" resultMap="BaseDiyCourse">
+        SELECT id, name, cover_url FROM sys_course LIMIT 0, 6
+    </select>
+
+    <resultMap id="BaseDiyTeacher" type="com.group7.edu.entity.SysTeacher">
+        <id column="id" property="id"/>
+        <result column="realname" property="realname"/>
+        <result column="nickname" property="nickname"/>
+        <result column="icon_uuid" property="iconUuid"/>
+    </resultMap>
+
+    <select id="selectAllTeacher" resultMap="BaseDiyTeacher">
+        SELECT id, realname, nickname, icon_uuid FROM sys_teacher LIMIT 0, 2
+    </select>
 </mapper>

@@ -14,6 +14,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 @RestController("sysStudentControllerKgw")
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class SysStudentController {
 
     @Resource(name = "sysStudentServiceKgw")
@@ -33,7 +35,6 @@ public class SysStudentController {
 
     @Resource
     private Producer producer;
-
 
     @RequestMapping("/sys/student/login")
     public ResultData login(@RequestBody SysStudentDTO sysStudentDTO) {
@@ -50,6 +51,7 @@ public class SysStudentController {
             Subject subject = SecurityUtils.getSubject();
 
             //将用户名密码封装为token对象
+            
             UsernamePasswordToken token = new UsernamePasswordToken(sysStudentDTO.getPhoneOrEmail(), sysStudentDTO.getPassword());
 
             //记住我
@@ -58,7 +60,7 @@ public class SysStudentController {
             }
             //登录
             subject.login(token);
-            return ResultData.isSuccess();
+            return ResultData.isSuccess().put("uid", ShiroUtils.getUserId());
         } catch (AuthenticationException e) {
             return ResultData.isFailure(e.getMessage());
         }
@@ -69,6 +71,16 @@ public class SysStudentController {
     @RequestMapping("/sys/captcha.jpg")
     public void captcha(HttpServletResponse response) {
 
+
+        System.out.println("这个是获取验证码的SessionId");
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+
         try {
             //获取并将验证码code存入session中
             String captchaCode = producer.createText();
@@ -77,7 +89,7 @@ public class SysStudentController {
             //画出图片
             BufferedImage bufferedImage = producer.createImage(captchaCode);
 
-            //获得输出流
+            //获得输出
             OutputStream os = response.getOutputStream();
 
             //把生成的验证码展示到客户端
@@ -88,11 +100,38 @@ public class SysStudentController {
         }
     }
 
+    @RequestMapping("/test/login")
+    public ResultData testLogin() {
+        try {
+            //进入权限认证
+            //得到subject
+            Subject subject = SecurityUtils.getSubject();
+
+            //将用户名密码封装为token对象
+            UsernamePasswordToken token = new UsernamePasswordToken("czryues@hotmail.com", "123456");
+
+            //登录
+            subject.login(token);
+            return ResultData.isSuccess();
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            return ResultData.isFailure(e.getMessage());
+        }
+    }
 
     @RequestMapping("/sys/student/register")
     public ResultData register(@RequestBody SysStudentDTO sysStudentDTO) {
         // 验证验证码
         String captchaCode = (String) ShiroUtils.getAttribute("captchaCode");
+
+        System.out.println("这个是注册时候的Sessionid");
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
+        System.out.println("ShiroUtils.getSession().getId() = " + ShiroUtils.getSession().getId());
 
         System.out.println("captchaCode = " + captchaCode);
 

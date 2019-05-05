@@ -7,6 +7,7 @@ import com.group7.edu.service.kgw.SysFocusService;
 import com.group7.edu.service.kgw.SysServiceTypeService;
 import com.group7.edu.utils.ResultData;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class SysContactController {
 
     @Resource

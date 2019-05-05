@@ -69,23 +69,51 @@ public class SysVideoServiceImpl implements SysVideoService {
         return ResultData.isFailure("收藏失败");
     }
 
+//    @Override
+//    public ResultData relatedVideos(int capter) {
+//        SysVideo sysVideos = sysVideoTqlMapper.relatedVideos(capter);
+//        if (sysVideos!=null){
+//            List<SysVideo> chapterVideos = sysVideoTqlMapper.chapterVideos(sysVideos.getCapter());
+//            for (SysVideo chapterVideo : chapterVideos) {
+//                String url = ossSource.onlinePreview(chapterVideo.getFileUuid(), chapterVideo.getName(), 0);
+//                chapterVideo.setUrl(url);
+//            }
+//            if (chapterVideos!=null){
+//                String url = ossSource.onlinePreview(sysVideos.getFileUuid(), sysVideos.getName(), 0);
+//                Map<String,Object> map = new HashMap<>();
+//                map.put("url",url);
+//                map.put("chapter",chapterVideos);
+//                return (ResultData) ResultData.isSuccess().put("relevant",map);
+//            }
+//        }
+//        return ResultData.isFailure();
+//    }
+
     @Override
-    public ResultData relatedVideos(int capter) {
-        SysVideo sysVideos = sysVideoTqlMapper.relatedVideos(capter);
+    public ResultData relatedVideos(String capter) {
+        List<SysVideo> sysVideos = sysVideoTqlMapper.relatedVideos(capter);
+        int a = 1;
         if (sysVideos!=null){
-            List<SysVideo> chapterVideos = sysVideoTqlMapper.chapterVideos(sysVideos.getCapter());
-            for (SysVideo chapterVideo : chapterVideos) {
-                String url = ossSource.onlinePreview(chapterVideo.getFileUuid(), chapterVideo.getName(), 0);
-                chapterVideo.setUrl(url);
-            }
-            if (chapterVideos!=null){
-                String url = ossSource.onlinePreview(sysVideos.getFileUuid(), sysVideos.getName(), 0);
-                Map<String,Object> map = new HashMap<>();
-                map.put("url",url);
-                map.put("chapter",chapterVideos);
-                return (ResultData) ResultData.isSuccess().put("relevant",map);
+            for (SysVideo sysVideo : sysVideos) {
+                if (a==1){
+                    List<SysVideo> chapterVideos = sysVideoTqlMapper.chapterVideos(sysVideo.getCapter());
+                    for (SysVideo chapterVideo : chapterVideos) {
+                        System.out.println(chapterVideo);
+                        String url = ossSource.onlinePreview(chapterVideo.getFileUuid(), chapterVideo.getName(), 0);
+                        chapterVideo.setUrl(url);
+                    }
+                    if (chapterVideos!=null){
+                        String url = ossSource.onlinePreview(sysVideo.getFileUuid(), sysVideo.getName(), 0);
+                        Map<String,Object> map = new HashMap<>();
+                        map.put("url",url);
+                        map.put("chapter",chapterVideos);
+                        return ResultData.isSuccess().put("relevant",map);
+                    }
+                    a++;
+                }
             }
         }
         return ResultData.isFailure();
     }
 }
+

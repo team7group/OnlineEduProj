@@ -5,6 +5,7 @@ import com.group7.edu.service.syt.FeedBackService;
 import com.group7.edu.service.syt.SubjectService;
 import com.group7.edu.utils.ResultData;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
 import java.util.Date;
 
 @RestController
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class AdviceController {
 
     @Resource

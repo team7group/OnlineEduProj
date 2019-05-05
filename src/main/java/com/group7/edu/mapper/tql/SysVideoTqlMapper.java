@@ -44,7 +44,8 @@ public interface SysVideoTqlMapper {
      * @param capter 视频章节编号
      * @return 0?1
      */
-    SysVideo relatedVideos(int capter);
+    List<SysVideo> relatedVideos(String capter);
+//    SysVideo relatedVideos(int capter);
 
     SysVideo videoSelect(@Param("uid") int uid, @Param("name") String name);
 

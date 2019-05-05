@@ -3,6 +3,7 @@ package com.group7.edu.controller.zxl;
 import com.group7.edu.entity.SysStudent;
 import com.group7.edu.service.zxl.SysStudentService;
 import com.group7.edu.utils.R;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +17,7 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class SysStudentController {
     @Resource(name = "sysStudentServiceZxl")
     SysStudentService sysStudentService;

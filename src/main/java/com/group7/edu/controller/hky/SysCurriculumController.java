@@ -7,10 +7,8 @@ import com.group7.edu.service.hky.SysCourseService;
 import com.group7.edu.service.hky.SysGroupService;
 import com.group7.edu.service.hky.SysVideoService;
 import com.group7.edu.utils.ResultData;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import java.util.Date;
 
@@ -20,6 +18,7 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/curriculuma")
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class SysCurriculumController {
 
 

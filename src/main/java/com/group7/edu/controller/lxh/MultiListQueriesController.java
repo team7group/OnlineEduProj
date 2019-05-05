@@ -4,8 +4,10 @@ import com.group7.edu.entity.lxh.*;
 import com.group7.edu.entity.lxh.MultiListQueries;
 import com.group7.edu.service.lxh.MultiListQueriesService;
 import com.group7.edu.utils.PageEntity;
+import com.group7.edu.utils.SysConst;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +20,7 @@ import java.util.*;
  * @date 2019/4/11
  */
 @RestController("multiListQueriesControllerLxh")
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class MultiListQueriesController {
 
     @Resource(name = "multiListQueriesServiceLxh")
@@ -46,6 +49,7 @@ public class MultiListQueriesController {
             List<?> news = newsList(sysNews);
             for (Object news1 : news) {
                 System.out.println("\t\t\tnews:"+news1.toString());
+
             }
 
 
@@ -104,6 +108,10 @@ public class MultiListQueriesController {
          System.out.println("------------------------------------------------------------");
          List<SysNews> list = multiListQueriesService.newsList(news);
 
+         list.forEach(sysNews -> {
+             sysNews.setCoverUuid(SysConst.IMG_URL);
+         });
+
          return list;
      }
 
@@ -115,6 +123,10 @@ public class MultiListQueriesController {
         System.out.println("time = " + new Date());
         System.out.println("------------------------------------------------------------");
         List<SysNews> list = multiListQueriesService.newsList(news);
+
+        list.forEach(sysNews -> {
+            sysNews.setCoverUuid(SysConst.IMG_URL);
+        });
 
         return   new ResponseEntity( new PageEntity<>(list), HttpStatus.OK);
     }
@@ -138,6 +150,10 @@ public class MultiListQueriesController {
         System.out.println("time = " + new Date());
         System.out.println("------------------------------------------------------------");
         List<SysIndustryInfo> list = multiListQueriesService.infoList(info);
+
+        list.forEach(sysIndustryInfo -> {
+            sysIndustryInfo.setImageUuid(SysConst.IMG_URL);
+        });
 
         return list;
     }

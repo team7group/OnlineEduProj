@@ -2,10 +2,12 @@ package com.group7.edu.service.czr.impl;
 
 import com.group7.edu.dto.SysCourseDTO;
 import com.group7.edu.dto.SysCourseEvaluationDTO;
+import com.group7.edu.dto.SysPersonCourse;
 import com.group7.edu.entity.SysAnswerQuestion;
 import com.group7.edu.entity.SysCourse;
-import com.group7.edu.mapper.czr.SysCourseExtMapper;
+import com.group7.edu.entity.SysTeacher;
 import com.group7.edu.mapper.SysCourseMapper;
+import com.group7.edu.mapper.czr.SysCourseExtMapper;
 import com.group7.edu.osshandle.OssPicture;
 import com.group7.edu.service.czr.SysCourseService;
 import com.group7.edu.utils.ResultData;
@@ -13,6 +15,7 @@ import org.codehaus.plexus.util.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -129,5 +132,44 @@ public class SysCourseServiceImpl implements SysCourseService {
             }
         }
         return ResultData.isSuccess().put("count", count).put("evaluations", evaluations);
+    }
+
+    @Override
+    public ResultData findCoursesInfo() {
+        try {
+            List<SysTeacher> sysTeachers = sysCourseExtMapper.selectAllTeacher();
+            List<SysCourse> sysCourses = sysCourseExtMapper.selectAllCourse();
+            List<SysCourseDTO> list = new ArrayList<>();
+            for (SysCourse sysCours : sysCourses) {
+                Integer id = sysCours.getId();
+                SysCourseDTO courseDetails = findCourseDetails(id);
+                list.add(courseDetails);
+            }
+            return ResultData.isSuccess().put("teachers", sysTeachers)
+                    .put("courses", list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultData.isFailure("获取失败");
+        }
+    }
+
+    @Override
+    public Integer getPersonalTotalPage(Integer uid, Integer pageSize) {
+        try {
+            return sysCourseExtMapper.selectEvaluationCount(uid) / pageSize;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<SysPersonCourse> getPersonalCourse(Integer uid, Integer pageNum, Integer pageSize) {
+        try {
+            return sysCourseExtMapper.selectPersonalCourse(uid, (pageNum - 1) * pageSize, pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

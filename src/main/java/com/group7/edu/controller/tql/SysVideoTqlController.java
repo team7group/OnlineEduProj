@@ -5,6 +5,7 @@ import com.group7.edu.entity.tql.SysVideo;
 import com.group7.edu.service.tql.SysCommentService;
 import com.group7.edu.service.tql.SysVideoService;
 import com.group7.edu.utils.ResultData;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +13,7 @@ import javax.annotation.Resource;
 import java.util.Date;
 
 @RestController
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class SysVideoTqlController {
 
     @Resource
@@ -47,7 +49,7 @@ public class SysVideoTqlController {
         return sysVideoService.preservation(id);
     }
     @RequestMapping("/sys/video/relate")
-    public ResultData relatedVideos(int id){
+    public ResultData relatedVideos(String id){
         System.out.println("------------------------------------------------------------");
         System.out.println("SysVideoTqlController.relatedVideos");
         System.out.println("id = [" + id + "]");

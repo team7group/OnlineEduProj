@@ -5,7 +5,7 @@ import com.group7.edu.service.wjy.SysVideoService;
 import com.group7.edu.utils.PageEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,13 +20,14 @@ import java.util.List;
  * @Modified By:
  */
 @RestController
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class SysVideoController {
 
     @Resource(name = "sysVideoServiceWjy")
     private SysVideoService sysVideoService;
 
     @RequestMapping("/sys/my_collections")
-    public ResponseEntity myCollections(@RequestBody SysVideo sysVideo){
+    public ResponseEntity myCollections(SysVideo sysVideo){
         System.out.println("------------------------------------------------------------");
         System.out.println("SysVideoController.myCollections");
         System.out.println("sysVideo = [" + sysVideo + "]");

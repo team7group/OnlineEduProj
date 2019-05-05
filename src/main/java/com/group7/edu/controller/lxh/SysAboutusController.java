@@ -2,6 +2,8 @@ package com.group7.edu.controller.lxh;
 
 import com.group7.edu.entity.lxh.SysAboutus;
 import com.group7.edu.service.lxh.SysAboutusService;
+import com.group7.edu.utils.SysConst;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +15,7 @@ import java.util.Date;
  * @date 2019/4/15
  */
 @RestController("sysAboutusControllerLxh")
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class SysAboutusController {
 
     @Resource(name = "sysAboutusServiceLxh")
@@ -26,6 +29,9 @@ public class SysAboutusController {
         System.out.println("time = " + new Date());
         System.out.println("------------------------------------------------------------");
         SysAboutus sysAboutus1 = sysAboutusService.selectByPrimaryKey(id);
+
+        sysAboutus1.setImageUuid(SysConst.IMG_URL);
+
         return sysAboutus1;
     }
 

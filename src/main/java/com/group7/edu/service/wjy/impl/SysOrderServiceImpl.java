@@ -21,8 +21,9 @@ public class SysOrderServiceImpl implements SysOrderService {
 
     //拿历史订单
     @Override
-    public List<SysOrderDto> findOrderHistory(SysOrderDto id) {
-        List<SysOrderDto> order = sysOrderMapperWjy.findOrderHistory(id);
+    public List<SysOrderDto> findOrderHistory(SysOrderDto sysOrderDto) {
+        sysOrderDto.setPageNum((sysOrderDto.getPageNum() - 1) * 3);
+        List<SysOrderDto> order = sysOrderMapperWjy.findOrderHistory(sysOrderDto);
         return order;
     }
 }

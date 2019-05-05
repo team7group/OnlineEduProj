@@ -40,8 +40,13 @@ public class SysStudentServiceImpl implements SysStudentService {
         sysStudentDTO.setBanned(false);
         sysStudentDTO.setCheckinDays(0);
 
-        int i = sysStudentMapper.insert(sysStudentDTO);
-        return i>0?ResultData.isSuccess("注册成功"):ResultData.isFailure("注册失败");
+        int i = -1;
+        try {
+            i = sysStudentMapper.insert(sysStudentDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i>0?ResultData.isSuccess("注册成功"):ResultData.isFailure("注册失败: 用户可能已经存在");
     }
 
     //找回密码时判断邮箱是否存在

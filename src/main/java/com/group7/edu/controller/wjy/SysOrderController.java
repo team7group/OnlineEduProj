@@ -5,7 +5,7 @@ import com.group7.edu.service.wjy.SysOrderService;
 import com.group7.edu.utils.PageEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +20,7 @@ import java.util.List;
  * @Modified By:
  */
 @RestController
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class SysOrderController {
 
     @Resource(name = "sysOrderServiceWjy")
@@ -27,7 +28,7 @@ public class SysOrderController {
 
     //查看历史订单
     @RequestMapping("/sys/order_history")
-    public ResponseEntity orderHistory(@RequestBody SysOrderDto sysOrderDto){
+    public ResponseEntity orderHistory(SysOrderDto sysOrderDto){
         System.out.println("------------------------------------------------------------");
         System.out.println("SysOrderController.orderHistory");
         System.out.println("sysOrderDto = [" + sysOrderDto + "]");

@@ -4,6 +4,7 @@ import com.group7.edu.entity.tql.SysNetDiskFile;
 import com.group7.edu.service.tql.SysNetDiskFileService;
 import com.group7.edu.utils.PagingUtils;
 import com.group7.edu.utils.ResultData;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,7 @@ import javax.annotation.Resource;
 import java.util.Date;
 
 @RestController
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class SkyDriveController {
 
     @Resource

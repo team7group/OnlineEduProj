@@ -27,6 +27,7 @@
     <include refid="Base_Column_List"/>
     from sys_student
     where phone=#{phoneOrEmail} or email=#{phoneOrEmail}
+    LIMIT 0,1;
   </select>
 
   <update id="updateByPrimaryKeySelective" parameterType="com.group7.edu.dto.SysStudentDTO">

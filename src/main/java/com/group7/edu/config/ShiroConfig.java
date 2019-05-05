@@ -93,12 +93,36 @@ public class ShiroConfig {
 //        map.put("/logout","logout");//退出登录
 //        map.put("/**","user");//记住我之后可以访问
 //        map.put("/**","authc");//登录之后
+
+        map.put("/test/**", "anon");
+
+        map.put("/test/login", "anon");
+
         map.put("/sys/captcha.jpg", "anon");
         map.put("/sys/student/register", "anon");
         map.put("/sys/verificationCode", "anon");
         map.put("/sys/student/resetPassword", "anon");
         map.put("/sys/student/login", "anon");
-        map.put("/**","anon");
+
+        map.put("/home/**", "anon");
+        map.put("/sys/ad", "anon");
+        map.put("/sys/sysContactWay/commit", "anon");
+        map.put("/sys/focus", "anon");
+        map.put("/sys/serviceType", "anon");
+        map.put("/home/multi/list", "anon");
+        map.put("/home/course/list", "anon");
+        map.put("/home/new/list", "anon");
+        map.put("/home/introduce/id", "anon");
+        map.put("/home/introduce", "anon");
+        map.put("/home/carouse/id", "anon");
+        map.put("/home/about/id", "anon");
+        map.put("/home/about", "anon");
+
+        map.put("/cou/cou_tea", "anon");
+        map.put("/course/**", "anon");
+
+        map.put("/**","user");
+
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
         return shiroFilterFactoryBean;

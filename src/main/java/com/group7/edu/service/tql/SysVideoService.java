@@ -8,5 +8,5 @@ public interface SysVideoService {
     ResultData spotFabulous(int id);
     ResultData share(SysVideo sysVideo, int time);
     ResultData preservation(int id);
-    ResultData relatedVideos(int capter);
+    ResultData relatedVideos(String capter);
 }

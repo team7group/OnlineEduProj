@@ -1,7 +1,7 @@
 package com.group7.edu.service.czr;
 
 import com.group7.edu.dto.SysCourseDTO;
-import com.group7.edu.dto.SysCourseEvaluationDTO;
+import com.group7.edu.dto.SysPersonCourse;
 import com.group7.edu.entity.SysAnswerQuestion;
 import com.group7.edu.entity.SysCourse;
 import com.group7.edu.utils.ResultData;
@@ -21,4 +21,10 @@ public interface SysCourseService {
     String findSyllabus(Integer courseId);
 
     ResultData findCourseEvaluationById(Integer courseId, Integer page, Integer pageSize);
+
+    Integer getPersonalTotalPage(Integer uid, Integer pageSize);
+
+    List<SysPersonCourse> getPersonalCourse(Integer uid, Integer pageNum, Integer pageSize);
+
+    ResultData findCoursesInfo();
 }

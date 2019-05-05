@@ -4,6 +4,7 @@ import com.group7.edu.entity.SysAgreement;
 import com.group7.edu.service.czr.SysAgreementService;
 import com.group7.edu.utils.ResultData;
 import org.codehaus.plexus.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,7 @@ import java.util.Date;
  * @author c
  */
 @RestController
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class SysAgreementController {
 
     @Resource

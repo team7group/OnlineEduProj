@@ -170,8 +170,11 @@
   <update id="preservation" parameterType="java.lang.Integer">
     update sys_video set  sharing_times = sharing_times+1 where id=#{id}
   </update>
-  <select id="relatedVideos" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select * from  sys_video where id=#{capter}
+<!--  <select id="relatedVideos" parameterType="java.lang.Integer" resultMap="BaseResultMap">-->
+<!--    select * from  sys_video where id=#{capter}-->
+<!--  </select>-->
+  <select id="relatedVideos" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from  sys_video where file_uuid=#{capter}
   </select>
   <select id="chapterVideos" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select * from  sys_video where capter=#{capter}

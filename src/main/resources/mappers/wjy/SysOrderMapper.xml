@@ -102,10 +102,11 @@
   <select id="findOrderHistory" resultType="com.group7.edu.dto.SysOrderDto" parameterType="com.group7.edu.dto.SysOrderDto">
      select o.id, o.uid, o.cost,
         o.created_time createdTime, o.course_id courseId ,
-        c.name courseName ,c.terminal_time terminalTime
+        c.name courseName ,c.terminal_time terminalTime, c.cover_url coverUrl
       from sys_order o
       inner join sys_course c
       on o.course_id = c.id
       where o.uid = #{uid}
+      LIMIT #{pageNum}, 3
   </select>
 </mapper>

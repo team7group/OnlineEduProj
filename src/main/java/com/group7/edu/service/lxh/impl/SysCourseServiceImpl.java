@@ -19,7 +19,6 @@ public class SysCourseServiceImpl implements SysCourseService {
 
     @Override
     public List<SysCourse> selectAllSysCourse(SysCourse sysCourse) {
-
         return sysCourseMapperLxh.selectAllSysCourse(sysCourse);
     }
 }

@@ -3,6 +3,7 @@ package com.group7.edu.controller.syt;
 
 import com.group7.edu.service.syt.OrderService;
 import com.group7.edu.utils.ResultData;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +11,7 @@ import javax.annotation.Resource;
 import java.util.Date;
 
 @RestController
+@CrossOrigin(value = "*", allowCredentials = "true")
 public class OrderController {
 
     @Resource
